@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KTM Komuter Klang Valley - KTMB KITS</title>
+  <meta name="description"
+    content="Learn more about the KTM Komuter Klang Valley suburban rail transit, including the Ladies Coach initiative, tap-and-go gating, and route maps.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Service Info Page Specific Styling */
+    .intro-hero {
+      background: linear-gradient(135deg, #1d4f30 0%, #1e4d92 100%);
+      color: var(--white);
+      padding: 80px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      margin-bottom: 40px;
+    }
+
+    .intro-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .intro-hero-title {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      font-family: var(--font-display);
+      letter-spacing: -0.5px;
+    }
+
+    .intro-hero-desc {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto 24px auto;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+    }
+
+    .intro-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid #10b981;
+      color: #34d399;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .info-container {
+      max-width: 1200px;
+      margin: 0 auto 80px auto;
+      padding: 0 24px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      margin-bottom: 70px;
+    }
+
+    @media (max-width: 768px) {
+      .section-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .intro-hero-title {
+        font-size: 28px;
+      }
+    }
+
+    .info-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .feature-list-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .feature-bullet {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(26, 61, 125, 0.1);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .amenity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .amenity-item {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s;
+    }
+
+    .amenity-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .amenity-icon-wrapper {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: rgba(26, 61, 125, 0.08);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .route-timeline {
+      position: relative;
+      margin: 40px 0;
+      padding-left: 30px;
+      border-left: 2px solid #10b981;
+    }
+
+    .route-stop {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .route-stop::before {
+      content: '';
+      position: absolute;
+      left: -37px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid #10b981;
+    }
+
+    .route-stop.major::before {
+      background: var(--accent);
+      border-color: #10b981;
+      width: 16px;
+      height: 16px;
+      left: -39px;
+      top: 2px;
+    }
+
+    .cta-card {
+      background: linear-gradient(135deg, rgba(26, 61, 125, 0.03) 0%, rgba(26, 61, 125, 0.08) 100%);
+      border: 1px solid rgba(26, 61, 125, 0.15);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      text-align: center;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <svg style="display: none;">
+    <!-- Globe -->
+    <symbol id="icon-globe" viewBox="0 0 24 24">
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.4z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Check Circle -->
+    <symbol id="icon-check-circle" viewBox="0 0 24 24">
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+        fill="currentColor" />
+    </symbol>
+  </svg>
+
+  <!-- HEADER -->
+  <header id="site-header" class="scrolled">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="color: var(--accent);">
+            <path
+              d="M4 15.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4s-8 .5-8 4v9.5z"
+              stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            <circle cx="7.5" cy="15.5" r="1.5" fill="currentColor" />
+            <circle cx="16.5" cy="15.5" r="1.5" fill="currentColor" />
+            <path d="M6 7h12v5H6V7z" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">KTMB</span>
+          <span class="logo-sub">KITS PORTAL</span>
+        </div>
+      </a>
+
+      <!-- Menu links -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link" data-translate="nav-book">Book Tickets</a>
+        <a href="status.html" class="nav-link" data-translate="nav-status">Live Status</a>
+        <a href="schedule.html" class="nav-link" data-translate="nav-schedule">Train Schedule</a>
+        <a href="reports.html" class="nav-link" data-translate="nav-reports">Service Report</a>
+      </nav>
+
+      <!-- Nav CTA / Language -->
+      <div class="nav-actions">
+        <div class="lang-dropdown-wrapper">
+          <button class="btn-lang" aria-label="Select Language">
+            <svg width="16" height="16">
+              <use href="#icon-globe"></use>
+            </svg>
+            <span>EN</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              style="margin-left: 2px; transition: transform 0.2s; vertical-align: middle;">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="lang-dropdown-menu">
+            <button class="lang-option active" data-lang="en">
+              <span>English (EN)</span>
+            </button>
+            <button class="lang-option" data-lang="bm">
+              <span>Bahasa Malaysia (BM)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- User auth container -->
+        <div class="auth-container" id="auth-container">
+          <div class="logged-out-actions" id="logged-out-actions">
+            <button class="btn-signup-nav" id="btn-signup-desktop" data-translate="nav-signup">Sign Up</button>
+            <button class="btn-signin" id="btn-signin-desktop" data-translate="nav-login">Log In</button>
+          </div>
+
+          <div class="user-dropdown-wrapper" id="user-dropdown-wrapper" style="display:none;">
+            <button class="btn-user-profile" id="btn-user-profile" aria-expanded="false" aria-haspopup="true">
+              <span class="user-avatar" id="nav-user-avatar">U</span>
+              <span class="user-name" id="nav-user-name">User</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="user-dropdown-menu" id="user-dropdown-menu">
+              <a href="mybookings.html" id="menu-my-bookings">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="margin-right: 8px; vertical-align: middle;">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <span data-translate="nav-mybookings">My Bookings</span>
+              </a>
+              <hr class="dropdown-divider">
+              <a href="#" id="menu-signout" class="text-danger">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="margin-right: 8px; vertical-align: middle;">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span data-translate="nav-signout">Sign Out</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="intro-hero"
+    style="padding-top: 150px; min-height: 400px; display: flex; align-items: center; justify-content: center; position: relative;">
+    <!-- Slideshow Background -->
+    <div class="hero-slideshow" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+      <div class="hero-slide active"
+        style="background-image: url('assets/ktm.jpg'); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: opacity 1.5s ease-in-out; opacity: 1;">
+      </div>
+      <div class="hero-slide"
+        style="background-image: url('assets/ktm_komuter_station.png'); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: opacity 1.5s ease-in-out; opacity: 0;">
+      </div>
+      <div class="hero-slide"
+        style="background-image: url('assets/hero_train.png'); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: opacity 1.5s ease-in-out; opacity: 0;">
+      </div>
+    </div>
+    <!-- Dark Overlay to ensure readability -->
+    <div class="hero-overlay"
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(29, 79, 48, 0.85) 0%, rgba(30, 77, 146, 0.7) 100%); z-index: 2;">
+    </div>
+
+    <!-- Content container -->
+    <div class="intro-hero-content"
+      style="position: relative; z-index: 3; max-width: 800px; margin: 0 auto; text-align: center;">
+      <div class="intro-badge" data-translate="intro-kom-badge">Urban Commuter Rail</div>
+      <h1 class="intro-hero-title" data-translate="intro-kom-title">KTM Komuter Klang Valley</h1>
+      <p class="intro-hero-desc" data-translate="intro-kom-subtitle">Connecting housing suburbs, educational
+        institutions, and busy commercial centers in Kuala Lumpur.</p>
+    </div>
+  </section>
+
+  <!-- MAIN INFO CONTENT -->
+  <main class="info-container">
+    <div class="section-grid">
+      <!-- Description Section -->
+      <div>
+        <h2 style="font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 16px;"
+          data-translate="intro-kom-heading">What is KTM Komuter Klang Valley?</h2>
+        <p style="font-size: 15px; color: var(--gray-700); line-height: 1.7; margin-bottom: 16px;"
+          data-translate="intro-kom-body1">
+          Launched in 1995, the **KTM Komuter Klang Valley** network is a crucial passenger suburban train service
+          serving Kuala Lumpur and the surrounding Selangor districts. Operating on dual electrified lines, it provides
+          hundreds of thousands of commuters with an affordable, congestion-free alternative to reach city jobs.
+        </p>
+        <p style="font-size: 15px; color: var(--gray-700); line-height: 1.7;" data-translate="intro-kom-body2">
+          KTM Komuter integrates with the wider RapidKL transit system (LRT, MRT, and Monorail) at interchange hubs such
+          as KL Sentral, Kajang, Kampung Baru, and Subang Jaya. Tap-and-go capabilities with Touch 'n Go cards and
+          Komuter Link cards make ticketing seamless.
+        </p>
+      </div>
+
+      <!-- Features Checklist Card -->
+      <div class="info-card">
+        <h3 style="font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 16px;"
+          data-translate="intro-kom-features">Key Transit Benefits</h3>
+        <div class="feature-list">
+          <div class="feature-list-item">
+            <div class="feature-bullet">1</div>
+            <div>
+              <strong style="color: var(--primary);" data-translate="intro-kom-feat1-title">High Passenger
+                Capacity</strong>
+              <p style="font-size: 13px; color: var(--gray-600); margin-top: 4px;"
+                data-translate="intro-kom-feat1-desc">Each six-car train can hold up to 1,100 passengers during rush
+                hour traffic.</p>
+            </div>
+          </div>
+          <div class="feature-list-item">
+            <div class="feature-bullet">2</div>
+            <div>
+              <strong style="color: var(--primary);" data-translate="intro-kom-feat2-title">Ladies Coach
+                Protection</strong>
+              <p style="font-size: 13px; color: var(--gray-600); margin-top: 4px;"
+                data-translate="intro-kom-feat2-desc">Dedicated coaches (Coach E & F) designated exclusively for female
+                passengers for enhanced safety and comfort.</p>
+            </div>
+          </div>
+          <div class="feature-list-item">
+            <div class="feature-bullet">3</div>
+            <div>
+              <strong style="color: var(--primary);" data-translate="intro-kom-feat3-title">Cashless
+                Convenience</strong>
+              <p style="font-size: 13px; color: var(--gray-600); margin-top: 4px;"
+                data-translate="intro-kom-feat3-desc">Support for standard Touch 'n Go card tapping and KITS QR boarding
+                passes at automated ticket gates.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Onboard & Station Amenities -->
+    <h2 style="font-size: 24px; font-weight: 700; color: var(--primary); text-align: center; margin-bottom: 8px;"
+      data-translate="intro-kom-amenities-title">Transit Features & Accessibility</h2>
+    <p style="text-align: center; color: var(--gray-500); margin-bottom: 40px;"
+      data-translate="intro-kom-amenities-subtitle">Practical services designed for everyday commuters and students.</p>
+
+    <div class="amenity-grid">
+      <div class="amenity-item">
+        <div class="amenity-icon-wrapper">👩</div>
+        <h3 style="font-size: 16px; font-weight: 700; color: var(--primary);" data-translate="intro-kom-amenity-ladies">
+          Ladies Coach</h3>
+        <p style="font-size: 12.5px; color: var(--gray-600); line-height: 1.5;"
+          data-translate="intro-kom-amenity-ladies-desc">Middle coaches E and F are strictly for female riders. Look for
+          pink platform markings.</p>
+      </div>
+
+      <div class="amenity-item">
+        <div class="amenity-icon-wrapper">♿</div>
+        <h3 style="font-size: 16px; font-weight: 700; color: var(--primary);"
+          data-translate="intro-kom-amenity-disabled">Accessibility</h3>
+        <p style="font-size: 12.5px; color: var(--gray-600); line-height: 1.5;"
+          data-translate="intro-kom-amenity-disabled-desc">Wheelchair ramps, dedicated coach seating areas, and tactile
+          paths at major stations.</p>
+      </div>
+
+      <div class="amenity-item">
+        <div class="amenity-icon-wrapper">🚲</div>
+        <h3 style="font-size: 16px; font-weight: 700; color: var(--primary);" data-translate="intro-kom-amenity-bike">
+          Foldable Bikes</h3>
+        <p style="font-size: 12.5px; color: var(--gray-600); line-height: 1.5;"
+          data-translate="intro-kom-amenity-bike-desc">Commuters are allowed to bring folded bicycles onboard during
+          off-peak hours for last-mile transit.</p>
+      </div>
+
+      <div class="amenity-item">
+        <div class="amenity-icon-wrapper">❄️</div>
+        <h3 style="font-size: 16px; font-weight: 700; color: var(--primary);" data-translate="intro-kom-amenity-ac">
+          Air-Conditioned</h3>
+        <p style="font-size: 12.5px; color: var(--gray-600); line-height: 1.5;"
+          data-translate="intro-kom-amenity-ac-desc">Fully air-conditioned coaches ensure a cool, relaxing commute
+          despite outdoor heat.</p>
+      </div>
+    </div>
+
+    <!-- Lines Highlights -->
+    <div style="margin-top: 80px;">
+      <h2 style="font-size: 24px; font-weight: 700; color: var(--primary); text-align: center; margin-bottom: 8px;"
+        data-translate="intro-kom-route-title">Klang Valley Train Lines</h2>
+      <p style="text-align: center; color: var(--gray-500); margin-bottom: 40px;"
+        data-translate="intro-kom-route-subtitle">Two major lines serving the central rail corridors.</p>
+
+      <div class="route-timeline" style="border-left-color: #10b981;">
+        <div class="route-stop major">
+          <h4 style="font-weight: 700; color: var(--primary);" data-translate="intro-line-batu">Batu Caves - Pulau
+            Sebang Line</h4>
+          <p style="font-size: 13px; color: var(--gray-600);" data-translate="intro-line-batu-desc">Connects the
+            northern tourist attraction Batu Caves to Tampin/Pulau Sebang in Negeri Sembilan, crossing KL Sentral.</p>
+        </div>
+        <div class="route-stop major">
+          <h4 style="font-weight: 700; color: var(--primary);" data-translate="intro-line-tanjung">Tanjung Malim - Port
+            Klang Line</h4>
+          <p style="font-size: 13px; color: var(--gray-600);" data-translate="intro-line-tanjung-desc">Connects Tanjung
+            Malim in southern Perak to the Port Klang coastal terminal, passing through Rawang and Shah Alam.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="cta-card">
+      <h2 style="font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 12px;"
+        data-translate="intro-kom-cta-title">Check Train Frequencies</h2>
+      <p style="color: var(--gray-600); max-width: 600px; margin: 0 auto 24px auto;"
+        data-translate="intro-kom-cta-desc">Plan your commute by looking up live timetables or ticketing values. KTM
+        Komuter runs daily starting 5:30 AM.</p>
+      <a href="schedule.html" class="btn-save" style="display: inline-block; padding: 12px 28px; text-decoration: none;"
+        data-translate="intro-kom-btn-sched">View Train Schedules</a>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="support">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <div class="footer-logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color: var(--primary);">
+              <path
+                d="M4 15.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4s-8 .5-8 4v9.5z"
+                stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <circle cx="7.5" cy="15.5" r="1.5" fill="currentColor" />
+              <circle cx="16.5" cy="15.5" r="1.5" fill="currentColor" />
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="footer-logo-title">KTMB</span>
+            <span class="footer-logo-sub">MALAYSIA RAILWAY</span>
+          </div>
+        </a>
+        <p data-translate="footer-desc">Keretapi Tanah Melayu Berhad (KTMB) is the main rail operator in Peninsular
+          Malaysia. We deliver safe, sustainable, and reliable transport solutions for the nation.</p>
+      </div>
+
+      <div class="footer-links-col">
+        <h4 data-translate="footer-networks">Our Networks</h4>
+        <ul>
+          <li><a href="ets-intercity.html">Electric Train Service (ETS) & Intercity</a></li>
+          <li><a href="ktm-komuter.html">KTM Komuter Klang Valley</a></li>
+          <li><a href="ktm-northern.html">KTM Komuter Northern</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4 data-translate="footer-support">Help & Support</h4>
+        <ul>
+          <li><a href="support.html#faq" data-translate="support-tab-faq">Frequently Asked Questions</a></li>
+          <li><a href="support.html#refund" data-translate="support-tab-refund">Ticket Refund & Cancellation</a></li>
+          <li><a href="support.html#facilities" data-translate="support-tab-facilities">Train Station Facilities</a></li>
+          <li><a href="support.html#contact" data-translate="support-tab-contact">Contact Support</a></li>
+          <li><a href="support.html#careers" data-translate="support-tab-careers">Career Opportunities</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-newsletter">
+        <h4 data-translate="footer-update">Stay Updated</h4>
+        <p data-translate="footer-update-desc">Subscribe to our monthly newsletter to receive exclusive travel
+          discounts.</p>
+        <form class="newsletter-form" action="#" method="POST"
+          onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+          <input type="email" placeholder="Your email address" required aria-label="Email Address">
+          <button type="submit" class="btn-subscribe" data-translate="footer-btn-join">Join</button>
+        </form>
+        <div class="social-links">
+          <a href="#" class="social-icon" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1V12h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.388.555a3.002 3.002 0 0 0-2.11 2.108C0 8.03 0 12 0 12s0 3.97.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.48 20.5 12 20.5 12 20.5s7.52 0 9.388-.555a3.002 3.002 0 0 0 2.11-2.108C24 15.97 24 12 24 12s0-3.97-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 Keretapi Tanah Melayu Berhad. All rights reserved.</div>
+      <div class="footer-policy-links">
+        <a href="#" data-translate="footer-policy-privacy">Privacy Policy</a>
+        <a href="#" data-translate="footer-policy-terms">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/translations.js"></script>
+  <script src="assets/notifications.js"></script>
+  <script>
+    // Initialize bilingual terms directly in document to prevent editing huge translations.js
+    if (typeof translations !== 'undefined') {
+      // English Extensions
+      translations.en['intro-kom-badge'] = "Urban Commuter Rail";
+      translations.en['intro-kom-title'] = "KTM Komuter Klang Valley";
+      translations.en['intro-kom-subtitle'] = "Connecting housing suburbs, educational institutions, and busy commercial centers in Kuala Lumpur.";
+      translations.en['intro-kom-heading'] = "What is KTM Komuter Klang Valley?";
+      translations.en['intro-kom-body1'] = "Launched in 1995, the KTM Komuter Klang Valley network is a crucial passenger suburban train service serving Kuala Lumpur and the surrounding Selangor districts. Operating on dual electrified lines, it provides hundreds of thousands of commuters with an affordable, congestion-free alternative to reach city jobs.";
+      translations.en['intro-kom-body2'] = "KTM Komuter integrates with the wider RapidKL transit system (LRT, MRT, and Monorail) at interchange hubs such as KL Sentral, Kajang, Kampung Baru, and Subang Jaya. Tap-and-go capabilities with Touch 'n Go cards and Komuter Link cards make ticketing seamless.";
+      translations.en['intro-kom-features'] = "Key Transit Benefits";
+      translations.en['intro-kom-feat1-title'] = "High Passenger Capacity";
+      translations.en['intro-kom-feat1-desc'] = "Each six-car train can hold up to 1,100 passengers during rush hour traffic.";
+      translations.en['intro-kom-feat2-title'] = "Ladies Coach Protection";
+      translations.en['intro-kom-feat2-desc'] = "Dedicated coaches (Coach E & F) designated exclusively for female passengers for enhanced safety and comfort.";
+      translations.en['intro-kom-feat3-title'] = "Cashless Convenience";
+      translations.en['intro-kom-feat3-desc'] = "Support for standard Touch 'n Go card tapping and KITS QR boarding passes at automated ticket gates.";
+      translations.en['intro-kom-amenities-title'] = "Transit Features & Accessibility";
+      translations.en['intro-kom-amenities-subtitle'] = "Practical services designed for everyday commuters and students.";
+      translations.en['intro-kom-amenity-ladies'] = "Ladies Coach";
+      translations.en['intro-kom-amenity-ladies-desc'] = "Middle coaches E and F are strictly for female riders. Look for pink platform markings.";
+      translations.en['intro-kom-amenity-disabled'] = "Accessibility Support";
+      translations.en['intro-kom-amenity-disabled-desc'] = "Wheelchair ramps, dedicated coach seating areas, and tactile paths at major stations.";
+      translations.en['intro-kom-amenity-bike'] = "Foldable Bikes";
+      translations.en['intro-kom-amenity-bike-desc'] = "Commuters are allowed to bring folded bicycles onboard during off-peak hours for last-mile transit.";
+      translations.en['intro-kom-amenity-ac'] = "Air-Conditioned";
+      translations.en['intro-kom-amenity-ac-desc'] = "Fully air-conditioned coaches ensure a cool, relaxing commute despite outdoor heat.";
+      translations.en['intro-kom-route-title'] = "Klang Valley Train Lines";
+      translations.en['intro-kom-route-subtitle'] = "Two major lines serving the central rail corridors.";
+      translations.en['intro-line-batu'] = "Batu Caves - Pulau Sebang Line";
+      translations.en['intro-line-batu-desc'] = "Connects the northern tourist attraction Batu Caves to Tampin/Pulau Sebang in Negeri Sembilan, crossing KL Sentral.";
+      translations.en['intro-line-tanjung'] = "Tanjung Malim - Port Klang Line";
+      translations.en['intro-line-tanjung-desc'] = "Connects Tanjung Malim in southern Perak to the Port Klang coastal terminal, passing through Rawang and Shah Alam.";
+      translations.en['intro-kom-cta-title'] = "Check Train Frequencies";
+      translations.en['intro-kom-cta-desc'] = "Plan your commute by looking up live timetables or ticketing values. KTM Komuter runs daily starting 5:30 AM.";
+      translations.en['intro-kom-btn-sched'] = "View Train Schedules";
+
+      // BM Extensions
+      translations.bm['intro-kom-badge'] = "Rel Komuter Bandar";
+      translations.bm['intro-kom-title'] = "KTM Komuter Lembah Klang";
+      translations.bm['intro-kom-subtitle'] = "Menghubungkan kawasan perumahan, institusi pengajian, dan pusat komersial sibuk di Kuala Lumpur.";
+      translations.bm['intro-kom-heading'] = "Apakah itu KTM Komuter Lembah Klang?";
+      translations.bm['intro-kom-body1'] = "Dilancarkan pada tahun 1995, rangkaian KTM Komuter Lembah Klang merupakan perkhidmatan kereta api komuter penumpang penting bagi Kuala Lumpur dan kawasan sekitar Selangor. Beroperasi di atas landasan berkembar berelektrik, ia menyediakan alternatif berpatutan dan bebas kesesakan untuk pekerja kota.";
+      translations.bm['intro-kom-body2'] = "KTM Komuter bersepadu dengan sistem transit RapidKL yang lain (LRT, MRT, dan Monorel) di hab pertukaran utama seperti KL Sentral, Kajang, Kampung Baru, dan Subang Jaya. Penggunaan kad Touch 'n Go dan kad Komuter Link memudahkan pembayaran tambang.";
+      translations.bm['intro-kom-features'] = "Kelebihan Utama Transit";
+      translations.bm['intro-kom-feat1-title'] = "Kapasiti Penumpang Tinggi";
+      translations.bm['intro-kom-feat1-desc'] = "Setiap tren enam koc mampu membawa sehingga 1,100 penumpang semasa waktu puncak pagi dan petang.";
+      translations.bm['intro-kom-feat2-title'] = "Koc Khas Wanita";
+      translations.bm['intro-kom-feat2-desc'] = "Koc khusus (Koc E & F) diperuntukkan khas bagi wanita sahaja demi meningkatkan keselamatan dan keselesaan perjalanan.";
+      translations.bm['intro-kom-feat3-title'] = "Kemudahan Tanpa Tunai";
+      translations.bm['intro-kom-feat3-desc'] = "Sokongan imbasan terus kad Touch 'n Go serta tiket kod QR KITS di pintu pagar kawalan stesen.";
+      translations.bm['intro-kom-amenities-title'] = "Ciri Transit & Kebolehcapaian";
+      translations.bm['intro-kom-amenities-subtitle'] = "Perkhidmatan praktikal untuk komuter harian dan pelajar sekolah.";
+      translations.bm['intro-kom-amenity-ladies'] = "Koc Wanita";
+      translations.bm['intro-kom-amenity-ladies-desc'] = "Koc tengah E dan F adalah untuk penumpang wanita sahaja. Rujuk pelekat khas berwarna merah jambu.";
+      translations.bm['intro-kom-amenity-disabled'] = "Sokongan Kebolehcapaian";
+      translations.bm['intro-kom-amenity-disabled-desc'] = "Kemudahan tanjakan kerusi roda, tempat duduk khas dalam koc, dan laluan taktil di stesen utama.";
+      translations.bm['intro-kom-amenity-bike'] = "Basikal Lipat";
+      translations.bm['intro-kom-amenity-bike-desc'] = "Penumpang dibenarkan membawa basikal lipat ke dalam koc semasa waktu luar puncak untuk melengkapkan transit.";
+      translations.bm['intro-kom-amenity-ac'] = "Sistem Penyaman Udara";
+      translations.bm['intro-kom-amenity-ac-desc'] = "Koc berhawa dingin sepenuhnya memastikan perjalanan yang selesa dan sejuk sepanjang hari.";
+      translations.bm['intro-kom-route-title'] = "Laluan Komuter Lembah Klang";
+      translations.bm['intro-kom-route-subtitle'] = "Dua koridor rel utama yang menghubungkan pinggir bandar.";
+      translations.bm['intro-line-batu'] = "Laluan Batu Caves - Pulau Sebang";
+      translations.bm['intro-line-batu-desc'] = "Menghubungkan kawasan tarikan pelancong Batu Caves di utara ke Tampin/Pulau Sebang di Negeri Sembilan, merentasi KL Sentral.";
+      translations.bm['intro-line-tanjung'] = "Laluan Tanjung Malim - Pelabuhan Klang";
+      translations.bm['intro-line-tanjung-desc'] = "Menghubungkan Tanjung Malim di Perak selatan ke jeti Pelabuhan Klang, melalui stesen Rawang dan Shah Alam.";
+      translations.bm['intro-kom-cta-title'] = "Semak Kekerapan Tren";
+      translations.bm['intro-kom-cta-desc'] = "Rancang perjalanan harian anda dengan melihat jadual tren komuter live. Tren beroperasi bermula jam 5:30 pagi.";
+      translations.bm['intro-kom-btn-sched'] = "Lihat Jadual Perjalanan";
+    }
+
+    // User authentication status checker
+    function checkUserSession() {
+      const sessionStr = localStorage.getItem('kits_user_session');
+      const userDropdown = document.getElementById('user-dropdown-wrapper');
+      const loggedOutActions = document.getElementById('logged-out-actions');
+
+      if (sessionStr) {
+        const currentUser = JSON.parse(sessionStr);
+        if (userDropdown) userDropdown.style.display = 'block';
+        if (loggedOutActions) loggedOutActions.style.display = 'none';
+        document.getElementById('nav-user-avatar').textContent = currentUser.name.charAt(0).toUpperCase();
+        document.getElementById('nav-user-name').textContent = currentUser.name.split(' ')[0];
+      } else {
+        if (userDropdown) userDropdown.style.display = 'none';
+        if (loggedOutActions) loggedOutActions.style.display = 'block';
+      }
+    }
+
+    // Hero Slideshow Auto-slide
+    function initHeroSlideshow() {
+      const slides = document.querySelectorAll('.hero-slide');
+      if (slides.length <= 1) return;
+
+      let currentIndex = 0;
+      setInterval(() => {
+        slides[currentIndex].classList.remove('active');
+        slides[currentIndex].style.opacity = '0';
+
+        currentIndex = (currentIndex + 1) % slides.length;
+
+        slides[currentIndex].classList.add('active');
+        slides[currentIndex].style.opacity = '1';
+      }, 5000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      checkUserSession();
+      initHeroSlideshow();
+
+      // Sign out action
+      const menuSignout = document.getElementById('menu-signout');
+      if (menuSignout) {
+        menuSignout.addEventListener('click', (e) => {
+          e.preventDefault();
+          localStorage.removeItem('kits_user_session');
+          checkUserSession();
+        });
+      }
+
+      // Language Switcher Sync
+      const currentLang = localStorage.getItem('kits_lang') || 'en';
+      applyLanguage(currentLang);
+
+      document.querySelectorAll('.lang-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+          const lang = opt.getAttribute('data-lang');
+          applyLanguage(lang);
+        });
+      });
+    });
+  </script>
+
+  <!-- AI Chatbot Widget -->
+  <script src="assets/chatbot.js"></script>
+</body>
+
+</html>

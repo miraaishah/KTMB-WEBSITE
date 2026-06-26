@@ -1,0 +1,3885 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KTMB Malaysia - Book Train Tickets</title>
+  <meta name="description"
+    content="Book ETS and Intercity train tickets across Malaysia. Select your seats, enter details, and secure your tickets online.">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <svg style="display: none;">
+    <!-- Globe -->
+    <symbol id="icon-globe" viewBox="0 0 24 24">
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.4z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Map Pin -->
+    <symbol id="icon-pin" viewBox="0 0 24 24">
+      <path
+        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Calendar -->
+    <symbol id="icon-calendar" viewBox="0 0 24 24">
+      <path
+        d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Passengers -->
+    <symbol id="icon-users" viewBox="0 0 24 24">
+      <path
+        d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Arrow Right -->
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+      <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" fill="currentColor" />
+    </symbol>
+  </svg>
+
+  <!-- HEADER -->
+  <header id="site-header" class="scrolled">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="color: var(--accent);">
+            <path
+              d="M4 15.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4s-8 .5-8 4v9.5z"
+              stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            <circle cx="7.5" cy="15.5" r="1.5" fill="currentColor" />
+            <circle cx="16.5" cy="15.5" r="1.5" fill="currentColor" />
+            <path d="M6 7h12v5H6V7z" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">KTMB</span>
+          <span class="logo-sub">KITS PORTAL</span>
+        </div>
+      </a>
+
+      <!-- Menu links -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link" data-translate="nav-book">Book Tickets</a>
+        <a href="status.html" class="nav-link" data-translate="nav-status">Live Status</a>
+        <a href="schedule.html" class="nav-link" data-translate="nav-schedule">Train Schedule</a>
+        <a href="reports.html" class="nav-link" data-translate="nav-reports">Service Report</a>
+      </nav>
+
+      <!-- Nav CTA / Language -->
+      <div class="nav-actions">
+        <div class="lang-dropdown-wrapper">
+          <button class="btn-lang" aria-label="Select Language">
+            <svg width="16" height="16">
+              <use href="#icon-globe"></use>
+            </svg>
+            <span>EN</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              style="margin-left: 2px; transition: transform 0.2s; vertical-align: middle;">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="lang-dropdown-menu">
+            <button class="lang-option active" data-lang="en">
+              <span>English (EN)</span>
+            </button>
+            <button class="lang-option" data-lang="bm">
+              <span>Bahasa Malaysia (BM)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- User auth container -->
+        <div class="auth-container" id="auth-container">
+          <div class="logged-out-actions" id="logged-out-actions">
+            <button class="btn-signup-nav" id="btn-signup-desktop" data-translate="nav-signup">Sign Up</button>
+            <button class="btn-signin" id="btn-signin-desktop" data-translate="nav-login">Log In</button>
+          </div>
+
+          <div class="user-dropdown-wrapper" id="user-dropdown-wrapper" style="display:none;">
+            <button class="btn-user-profile" id="btn-user-profile" aria-expanded="false" aria-haspopup="true">
+              <span class="user-avatar" id="nav-user-avatar">U</span>
+              <span class="user-name" id="nav-user-name">User</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="user-dropdown-menu" id="user-dropdown-menu">
+              <a href="mybookings.html" id="menu-my-bookings">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="margin-right: 8px; vertical-align: middle;">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <span data-translate="nav-mybookings">My Bookings</span>
+              </a>
+              <hr class="dropdown-divider">
+              <a href="#" id="menu-signout" class="text-danger">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="margin-right: 8px; vertical-align: middle;">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span data-translate="nav-signout">Sign Out</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN BOOKING PAGE CONTENT -->
+  <main class="booking-page-layout">
+    <!-- Active Search Info Summary Bar -->
+    <div class="search-summary-bar">
+      <div class="summary-info">
+        <div class="summary-route">
+          <span id="sum-origin">Origin</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            style="color: var(--accent);">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+          <span id="sum-dest">Destination</span>
+        </div>
+        <div class="summary-details">
+          <span id="sum-date">Date</span> | <span id="sum-passengers">1 Passenger</span> | <span
+            id="sum-service">ETS</span>
+        </div>
+      </div>
+      <button class="btn-modify" id="btn-modify-search" data-translate="booking-btn-modify">Modify Search</button>
+    </div>
+
+    <!-- Inline Modify Search Panel -->
+    <div class="modify-search-panel" id="modify-search-panel" style="display:none;">
+      <div class="modify-search-inner">
+        <!-- Trip Type Toggle Row -->
+        <div class="modify-trip-toggle-row">
+          <div class="modify-trip-toggle" id="modify-trip-toggle">
+            <button type="button" class="modify-trip-btn active" id="modify-btn-oneway" data-trip="oneway"
+              data-translate="widget-trip-oneway">One Way</button>
+            <button type="button" class="modify-trip-btn" id="modify-btn-roundtrip" data-trip="roundtrip"
+              data-translate="widget-trip-roundtrip">Round Trip</button>
+          </div>
+        </div>
+        <div class="modify-row">
+          <!-- Service Type -->
+          <div class="modify-field">
+            <label data-translate="widget-label-service">Service Type</label>
+            <select id="modify-service">
+              <option value="ETS & Intercity" data-translate="widget-tab-ets">ETS & Intercity</option>
+              <option value="Komuter Klang Valley" data-translate="widget-tab-komuter-kl">Komuter Klang Valley</option>
+              <option value="Komuter Northern" data-translate="widget-tab-komuter-north">Komuter Northern</option>
+            </select>
+          </div>
+          <!-- Origin -->
+          <div class="modify-field">
+            <label data-translate="widget-label-origin">Origin Station</label>
+            <select id="modify-origin" required>
+            </select>
+          </div>
+          <!-- Swap -->
+          <button type="button" class="modify-swap-btn" id="modify-swap-btn" title="Swap stations">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="17 1 21 5 17 9"></polyline>
+              <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+              <polyline points="7 23 3 19 7 15"></polyline>
+              <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+            </svg>
+          </button>
+          <!-- Destination -->
+          <div class="modify-field">
+            <label data-translate="widget-label-dest">Destination Station</label>
+            <select id="modify-dest" required>
+            </select>
+          </div>
+          <!-- Departure Date -->
+          <div class="modify-field">
+            <label data-translate="widget-label-depart">Departure Date</label>
+            <input type="date" id="modify-date">
+          </div>
+          <!-- Return Date (shown only for round trip) -->
+          <div class="modify-field modify-return-field" id="modify-return-field" style="display:none;">
+            <label data-translate="widget-label-return">Return Date</label>
+            <input type="date" id="modify-return-date">
+          </div>
+          <!-- Passengers -->
+          <div class="modify-field">
+            <label data-translate="widget-label-passengers">Passengers</label>
+            <div class="passenger-dropdown-wrapper">
+              <button type="button" class="btn-passenger-dropdown" id="passenger-dropdown-trigger"
+                style="width: 100%; justify-content: space-between; display: flex; align-items: center;">
+                <span id="passenger-dropdown-text">1 Pax (1 Adult)</span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  style="transition: transform 0.2s;">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="passenger-dropdown-panel" id="passenger-dropdown-panel">
+                <div class="pax-counter-row">
+                  <div class="pax-type-info">
+                    <strong data-translate="pax-type-adult">Adults</strong>
+                    <span data-translate="pax-age-adult">Ages 13+</span>
+                  </div>
+                  <div class="pax-counter-controls">
+                    <button type="button" class="btn-counter-minus" id="adult-minus" disabled>&minus;</button>
+                    <span class="counter-value" id="adult-count">1</span>
+                    <button type="button" class="btn-counter-plus" id="adult-plus">+</button>
+                  </div>
+                </div>
+                <div class="pax-counter-row">
+                  <div class="pax-type-info">
+                    <strong data-translate="pax-type-child">Children</strong>
+                    <span data-translate="pax-age-child">Ages 2-12 (50% Off)</span>
+                  </div>
+                  <div class="pax-counter-controls">
+                    <button type="button" class="btn-counter-minus" id="child-minus" disabled>&minus;</button>
+                    <span class="counter-value" id="child-count">0</span>
+                    <button type="button" class="btn-counter-plus" id="child-plus">+</button>
+                  </div>
+                </div>
+                <div class="pax-dropdown-footer">
+                  <span class="pax-limit-note" id="pax-limit-note" data-translate="pax-limit-note">Max 8
+                    passengers</span>
+                  <button type="button" class="btn-save btn-pax-apply" id="btn-pax-apply"
+                    data-translate="pass-btn-save">Apply</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Search Button -->
+          <button class="btn-modify-apply" id="btn-modify-apply" data-translate="widget-btn-search">Search</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step Progress Tracker -->
+    <div class="booking-progress-container" id="progress-container">
+      <div class="progress-step active" id="prog-step-1">
+        <div class="step-num">1</div>
+        <div class="step-label" data-translate="booking-step-select-train">Select Train</div>
+      </div>
+      <div class="progress-line" id="prog-line-1"></div>
+      <div class="progress-step" id="prog-step-2">
+        <div class="step-num">2</div>
+        <div class="step-label" data-translate="booking-step-select-seats">Select Seats</div>
+      </div>
+      <div class="progress-line" id="prog-line-2"></div>
+      <div class="progress-step" id="prog-step-3">
+        <div class="step-num">3</div>
+        <div class="step-label" data-translate="booking-step-review-pay">Review & Pay</div>
+      </div>
+    </div>
+
+    <!-- Stepped Sections Grid -->
+    <div class="booking-content-grid" id="main-booking-grid">
+      <!-- Left Column: Steps -->
+      <div class="booking-steps-column">
+
+        <!-- STEP 1: TRAIN LIST -->
+        <section class="booking-step-section active" id="step-section-1">
+          <h2 class="section-title" data-translate="booking-trains-title">Available Trains</h2>
+          <p class="section-subtitle" data-translate="booking-trains-subtitle">Please select a train for your departure
+            journey.</p>
+
+          <!-- Filter and Sort Bar -->
+          <div class="filter-sort-bar">
+            <div class="filter-group">
+              <span class="filter-label" data-translate="filter-title">Filter & Sort</span>
+              <div class="time-filter-options">
+                <button class="time-filter-btn active" data-time="all" data-translate="filter-timing-all">All
+                  Timings</button>
+                <button class="time-filter-btn" data-time="morning" data-translate="filter-timing-morning">Morning
+                  (06:00 - 12:00)</button>
+                <button class="time-filter-btn" data-time="afternoon" data-translate="filter-timing-afternoon">Afternoon
+                  (12:00 - 17:00)</button>
+                <button class="time-filter-btn" data-time="night" data-translate="filter-timing-night">Night (17:00 -
+                  24:00)</button>
+              </div>
+            </div>
+            <div class="sort-group">
+              <label for="train-sort" data-translate="sort-label">Sort By</label>
+              <select id="train-sort" class="sort-select">
+                <option value="time" data-translate="sort-time">Departure Time</option>
+                <option value="price" data-translate="sort-price">Cheapest Price</option>
+                <option value="duration" data-translate="sort-duration">Shortest Duration</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="train-list" id="available-trains-list">
+            <!-- Dynamic Train Cards inserted here -->
+          </div>
+        </section>
+
+        <!-- STEP 2: SEAT SELECTOR -->
+        <section class="booking-step-section" id="step-section-2">
+          <h2 class="section-title" data-translate="booking-seats-title">Select Seats</h2>
+          <p class="section-subtitle" data-translate="booking-seats-subtitle">Choose your preferred coach and seat
+            layout. Aisle is in the middle.</p>
+
+          <div class="seat-selector-card">
+            <div class="coach-tabs">
+              <button class="coach-tab active" data-coach="A" data-translate="booking-coach-a">Coach A</button>
+              <button class="coach-tab" data-coach="B" data-translate="booking-coach-b">Coach B</button>
+              <button class="coach-tab" data-coach="C" data-translate="booking-coach-c">Coach C</button>
+              <button class="coach-tab" data-coach="D" data-translate="booking-coach-d">Coach D</button>
+              <button class="coach-tab" data-coach="E" data-translate="booking-coach-e">Coach E</button>
+              <button class="coach-tab" data-coach="F" data-translate="booking-coach-f">Coach F</button>
+            </div>
+
+            <div class="seat-map-header">
+              <div class="legend-item"><span class="legend-box seat-avail"></span> <span
+                  data-translate="booking-legend-avail">Available</span></div>
+              <div class="legend-item"><span class="legend-box seat-sel"></span> <span
+                  data-translate="booking-legend-sel">Selected</span></div>
+              <div class="legend-item"><span class="legend-box seat-occ"></span> <span
+                  data-translate="booking-legend-occ">Occupied</span></div>
+            </div>
+
+            <!-- Seat grid wrapper -->
+            <div class="seat-grid-container">
+              <div class="train-front" data-translate="booking-direction">Front (Direction of Travel)</div>
+              <div class="seat-grid" id="train-seat-grid">
+                <!-- Dynamically generated seats -->
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button class="btn-cancel" onclick="goToStep(1)" data-translate="booking-btn-back">Back</button>
+              <button class="btn-save" id="btn-confirm-seats" data-translate="booking-btn-confirm-seats">Confirm
+                Seats</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- STEP 3: REVIEW & PAYMENT -->
+        <section class="booking-step-section" id="step-section-3">
+          <h2 class="section-title" data-translate="booking-step-review-pay">Review & Pay</h2>
+          <p class="section-subtitle" data-translate="booking-pay-subtitle">Complete passenger details and billing
+            details to secure your ticket.</p>
+
+          <!-- Passenger input dynamically generated -->
+          <div class="passenger-details-card">
+            <h3 data-translate="booking-pass-details-title">Passenger Details</h3>
+            <form id="booking-passenger-form">
+              <div id="dynamic-passenger-fields">
+                <!-- Inputs for name and IC/Passport -->
+              </div>
+            </form>
+          </div>
+
+          <!-- Mock Payment Card -->
+          <div class="payment-method-card">
+            <h3 data-translate="booking-payment-title">Select Payment Method</h3>
+            <div class="payment-options">
+              <label class="payment-option-label active">
+                <input type="radio" name="payment-method" value="card" checked>
+                <span class="option-title" data-translate="booking-pay-card">Credit / Debit Card</span>
+              </label>
+              <label class="payment-option-label">
+                <input type="radio" name="payment-method" value="fpx">
+                <span class="option-title" data-translate="booking-pay-fpx">FPX Online Banking</span>
+              </label>
+              <label class="payment-option-label">
+                <input type="radio" name="payment-method" value="tng">
+                <span class="option-title" data-translate="booking-pay-tng">Touch 'n Go eWallet</span>
+              </label>
+            </div>
+
+            <form class="modal-form" id="card-payment-form" style="margin-top: 20px;">
+              <div class="form-group">
+                <label for="card-num" data-translate="booking-label-cardnum">Card Number</label>
+                <input type="text" id="card-num" placeholder="e.g. 4111 2222 3333 4444" required>
+              </div>
+              <div class="form-grid" style="margin-bottom: 0;">
+                <div class="form-group">
+                  <label for="card-expiry" data-translate="booking-label-expiry">Expiry Date</label>
+                  <input type="text" id="card-expiry" placeholder="MM/YY" required>
+                </div>
+                <div class="form-group">
+                  <label for="card-cvv" data-translate="booking-label-cvv">CVV</label>
+                  <input type="password" id="card-cvv" placeholder="e.g. 123" maxlength="3" required>
+                </div>
+              </div>
+            </form>
+
+            <div class="step-actions" style="margin-top: 30px;">
+              <button class="btn-cancel" onclick="goToStep(2)" data-translate="booking-btn-back">Back</button>
+              <button class="btn-save" id="btn-pay-now"
+                style="min-width: 160px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                <span data-translate="booking-btn-pay">Pay RM</span> <span id="btn-total-fare">0.00</span>
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Column: Sticky Summary Sidebar -->
+      <aside class="booking-summary-sidebar" id="summary-sidebar">
+        <h3 data-translate="booking-sidebar-title">Booking Summary</h3>
+        <hr class="dropdown-divider" style="margin: 12px 0;">
+
+        <div class="summary-section">
+          <h4 data-translate="booking-sidebar-journey">Journey</h4>
+          <p id="side-route">Origin to Destination</p>
+          <p id="side-date" style="font-size: 13px; color: var(--gray-600);">Date</p>
+        </div>
+
+        <!-- Outbound Details -->
+        <div class="summary-section" id="side-outbound-details" style="display: none;">
+          <h4
+            style="color: var(--accent); margin-bottom: 6px; font-weight: 700; font-size: 13px; text-transform: uppercase;">
+            <span data-translate="booking-outbound-label">Outbound Journey</span>
+          </h4>
+          <div style="margin-left: 8px;">
+            <p id="side-train-name" style="font-weight: 700; font-size: 14px; margin: 0 0 2px 0;">ETS Platinum 9122</p>
+            <p id="side-train-time" style="font-size: 12px; color: var(--gray-600); margin: 0 0 4px 0;">08:00 AM - 10:20
+              AM</p>
+            <p style="font-size: 12px; font-weight: 600; margin: 0;">
+              <span data-translate="booking-sidebar-seats">Selected Seats</span>: <span id="side-seats-list"
+                style="color: var(--primary-light);">None</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Return Details -->
+        <div class="summary-section" id="side-return-details"
+          style="display: none; border-top: 1px dashed rgba(255, 255, 255, 0.1); margin-top: 12px; padding-top: 12px;">
+          <h4
+            style="color: var(--accent); margin-bottom: 6px; font-weight: 700; font-size: 13px; text-transform: uppercase;">
+            <span data-translate="booking-return-label">Return Journey</span>
+          </h4>
+          <div style="margin-left: 8px;">
+            <p id="side-return-train-name" style="font-weight: 700; font-size: 14px; margin: 0 0 2px 0;">ETS Platinum
+              9123</p>
+            <p id="side-return-train-time" style="font-size: 12px; color: var(--gray-600); margin: 0 0 4px 0;">06:00 PM
+              - 08:20 PM</p>
+            <p style="font-size: 12px; font-weight: 600; margin: 0;">
+              <span data-translate="booking-sidebar-seats">Selected Seats</span>: <span id="side-return-seats-list"
+                style="color: var(--primary-light);">None</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="summary-price-breakdown" id="side-price-breakdown" style="display: none;">
+          <div class="price-row">
+            <span data-translate="booking-sidebar-base">Base Fare</span>
+            <span id="side-base-price">RM 0.00</span>
+          </div>
+          <div class="price-row">
+            <span data-translate="booking-sidebar-sst">SST (6%)</span>
+            <span id="side-tax">RM 0.00</span>
+          </div>
+          <hr class="dropdown-divider" style="margin: 8px 0; border-color: rgba(255,255,255,0.1);">
+          <div class="price-row total">
+            <span data-translate="booking-sidebar-total">Total Fare</span>
+            <span id="side-total-price">RM 0.00</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- SUCCESS SCREEN / E-TICKET SECTION -->
+    <section class="booking-success-section" id="success-section" style="display: none;">
+      <div class="success-banner">
+        <div class="success-icon">✓</div>
+        <h2 data-translate="success-title">Payment Successful!</h2>
+        <p><span data-translate="success-desc">Your train ticket booking is confirmed. Your reference is:</span> <strong
+            id="success-booking-ref">REF12345678</strong></p>
+      </div>
+
+      <!-- PDF E-Ticket Display Card -->
+      <div class="e-ticket-card">
+        <div class="ticket-header">
+          <div class="ticket-brand">
+            <span style="font-weight: 800; font-size: 20px; color: var(--primary);">KTMB</span>
+            <span style="font-size: 11px; font-weight: 600; color: var(--gray-600); display: block; margin-top: -2px;"
+              data-translate="success-ticket-brand">KITS E-TICKET</span>
+          </div>
+          <div class="ticket-ref-block">
+            <span style="font-size: 11px; color: var(--gray-600); text-transform: uppercase;"
+              data-translate="success-label-ref">Reference</span>
+            <span id="ticket-ref" style="font-weight: 700; color: var(--primary);">KTMB-912830</span>
+          </div>
+        </div>
+
+        <div class="ticket-body">
+          <!-- Outbound Journey Header (Only shown for round trip) -->
+          <div id="ticket-outbound-header-container" style="display: none;">
+            <h4 style="margin: 0 0 15px 0; color: var(--primary); font-size: 13px; text-transform: uppercase;"
+              data-translate="booking-outbound-label">Outbound Journey</h4>
+          </div>
+
+          <div class="ticket-route-stub">
+            <div class="stub-col">
+              <span class="stub-label" data-translate="success-label-origin">Origin</span>
+              <strong id="ticket-origin" style="font-size: 16px; color: var(--dark-900);">KL Sentral</strong>
+            </div>
+            <div class="stub-arrow">➔</div>
+            <div class="stub-col">
+              <span class="stub-label" data-translate="success-label-dest">Destination</span>
+              <strong id="ticket-dest" style="font-size: 16px; color: var(--dark-900);">Ipoh</strong>
+            </div>
+          </div>
+
+          <div class="ticket-details-grid">
+            <div class="stub-item">
+              <span class="stub-label"><span data-translate="success-label-date">Date</span> / <span
+                  data-translate="success-label-time">Time</span></span>
+              <span id="ticket-date-time">26 June 2026, 20:45</span>
+            </div>
+            <div class="stub-item">
+              <span class="stub-label" data-translate="success-label-trainclass">Train / Class</span>
+              <span id="ticket-train">ETS Platinum 9122</span>
+            </div>
+            <div class="stub-item">
+              <span class="stub-label" data-translate="success-label-coach">Coach</span>
+              <span id="ticket-coach">Coach A</span>
+            </div>
+            <div class="stub-item">
+              <span class="stub-label" data-translate="success-label-seats">Seats</span>
+              <strong id="ticket-seats" style="color: var(--primary);">A-04</strong>
+            </div>
+          </div>
+
+          <!-- Return Journey Stub (Only shown for round trip) -->
+          <div id="ticket-return-stub-container"
+            style="display: none; border-top: 1px dashed var(--gray-300); margin-top: 15px; padding-top: 15px; margin-bottom: 15px;">
+            <h4 style="margin: 0 0 10px 0; color: var(--primary); font-size: 13px; text-transform: uppercase;"
+              data-translate="booking-return-label">Return Journey</h4>
+
+            <div class="ticket-route-stub" style="margin-bottom: 10px;">
+              <div class="stub-col">
+                <span class="stub-label" data-translate="success-label-origin">Origin</span>
+                <strong id="ticket-return-origin" style="font-size: 15px; color: var(--dark-900);">Ipoh</strong>
+              </div>
+              <div class="stub-arrow">➔</div>
+              <div class="stub-col">
+                <span class="stub-label" data-translate="success-label-dest">Destination</span>
+                <strong id="ticket-return-dest" style="font-size: 15px; color: var(--dark-900);">KL Sentral</strong>
+              </div>
+            </div>
+
+            <div class="ticket-details-grid">
+              <div class="stub-item">
+                <span class="stub-label"><span data-translate="success-label-date">Date</span> / <span
+                    data-translate="success-label-time">Time</span></span>
+                <span id="ticket-return-date-time">28 June 2026, 20:45</span>
+              </div>
+              <div class="stub-item">
+                <span class="stub-label" data-translate="success-label-trainclass">Train / Class</span>
+                <span id="ticket-return-train">ETS Platinum 9123</span>
+              </div>
+              <div class="stub-item">
+                <span class="stub-label" data-translate="success-label-coach">Coach</span>
+                <span id="ticket-return-coach">Coach A</span>
+              </div>
+              <div class="stub-item">
+                <span class="stub-label" data-translate="success-label-seats">Seats</span>
+                <strong id="ticket-return-seats" style="color: var(--primary);">A-05</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="ticket-passenger-stub">
+            <span class="stub-label" data-translate="success-label-passenger">Primary Passenger</span>
+            <strong id="ticket-passenger-name" style="font-size: 15px; color: var(--dark-900);">Amirah Binti
+              Ahmad</strong>
+            <span id="ticket-passenger-id" style="font-size: 12px; color: var(--gray-600);">IC: 940812-14-5234</span>
+          </div>
+        </div>
+
+        <div class="ticket-footer-strip">
+          <div class="ticket-qr-block">
+            <!-- Mock SVG QR Code -->
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="6" height="6" />
+              <rect x="2" y="16" width="6" height="6" />
+              <rect x="16" y="2" width="6" height="6" />
+              <rect x="9" y="9" width="6" height="6" />
+              <line x1="2" y1="12" x2="6" y2="12" />
+              <line x1="12" y1="2" x2="12" y2="6" />
+              <line x1="18" y1="12" x2="22" y2="12" />
+              <line x1="12" y1="18" x2="12" y2="22" />
+            </svg>
+            <span style="font-size: 10px; color: var(--gray-600); margin-top: 4px; display: block; font-weight: 500;"
+              data-translate="success-label-scan">Scan at Gate</span>
+          </div>
+          <div class="ticket-price-block">
+            <span class="stub-label" data-translate="success-label-paid">Total Paid</span>
+            <strong id="ticket-price" style="font-size: 22px; color: var(--primary);">RM 48.76</strong>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 16px; justify-content: center; margin-top: 30px;">
+        <button class="btn-cancel" onclick="window.print()"
+          style="display: inline-flex; align-items: center; gap: 8px;">
+          <span data-translate="success-btn-print">Print Ticket</span>
+        </button>
+        <button class="btn-save" onclick="window.location.href='index.html'">
+          <span data-translate="success-btn-home">Back to Home</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="support">
+    <div class="footer-container">
+      <!-- Col 1: Brand Info -->
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">
+          <div class="footer-logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color: var(--primary);">
+              <path
+                d="M4 15.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4s-8 .5-8 4v9.5z"
+                stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <circle cx="7.5" cy="15.5" r="1.5" fill="currentColor" />
+              <circle cx="16.5" cy="15.5" r="1.5" fill="currentColor" />
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="footer-logo-title">KTMB</span>
+            <span class="footer-logo-sub">MALAYSIA RAILWAY</span>
+          </div>
+        </a>
+        <p data-translate="footer-desc">Keretapi Tanah Melayu Berhad (KTMB) is the main rail operator in Peninsular Malaysia. We deliver safe, sustainable, and reliable transport solutions for the nation.</p>
+      </div>
+
+      <!-- Col 2: Services -->
+      <div class="footer-links-col">
+        <h4 data-translate="footer-networks">Our Networks</h4>
+        <ul>
+          <li><a href="ets-intercity.html">Electric Train Service (ETS) & Intercity</a></li>
+          <li><a href="ktm-komuter.html">KTM Komuter Klang Valley</a></li>
+          <li><a href="ktm-northern.html">KTM Komuter Northern</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Quick Links -->
+      <div class="footer-links-col">
+        <h4 data-translate="footer-support">Help & Support</h4>
+        <ul>
+          <li><a href="support.html#faq" data-translate="support-tab-faq">Frequently Asked Questions</a></li>
+          <li><a href="support.html#refund" data-translate="support-tab-refund">Ticket Refund & Cancellation</a></li>
+          <li><a href="support.html#facilities" data-translate="support-tab-facilities">Train Station Facilities</a></li>
+          <li><a href="support.html#contact" data-translate="support-tab-contact">Contact Support</a></li>
+          <li><a href="support.html#careers" data-translate="support-tab-careers">Career Opportunities</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Newsletter -->
+      <div class="footer-newsletter">
+        <h4 data-translate="footer-update">Stay Updated</h4>
+        <p data-translate="footer-update-desc">Subscribe to our monthly newsletter to receive exclusive travel discounts and operational updates.</p>
+        <form class="newsletter-form" action="#" method="POST"
+          onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+          <input type="email" placeholder="Your email address" data-translate-placeholder="footer-placeholder-email"
+            required aria-label="Email Address">
+          <button type="submit" class="btn-subscribe" data-translate="footer-btn-join">Join</button>
+        </form>
+        <div class="social-links">
+          <a href="#" class="social-icon" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1V12h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.388.555a3.002 3.002 0 0 0-2.11 2.108C0 8.03 0 12 0 12s0 3.97.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.48 20.5 12 20.5 12 20.5s7.52 0 9.388-.555a3.002 3.002 0 0 0 2.11-2.108C24 15.97 24 12 24 12s0-3.97-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        &copy; 2026 Keretapi Tanah Melayu Berhad. All rights reserved.
+      </div>
+      <div class="footer-policy-links">
+        <a href="#" data-translate="footer-policy-privacy">Privacy Policy</a>
+        <a href="#" data-translate="footer-policy-terms">Terms of Service</a>
+        <a href="#" data-translate="footer-policy-antibribery">Anti-Bribery Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MY BOOKINGS MODAL -->
+  <div class="modal-overlay" id="bookings-modal">
+    <div class="modal-card" style="max-width: 600px;">
+      <div class="modal-header">
+        <div class="modal-title-area">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            style="color: var(--primary); display: inline-block; vertical-align: middle;">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+          <h3 data-translate="bookings-title"
+            style="display: inline-block; margin: 0; vertical-align: middle; font-family: var(--font-display); font-weight: 700; color: var(--primary);">
+            My Booking History
+          </h3>
+        </div>
+        <button class="modal-close" id="bookings-modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="tab-description" data-translate="bookings-desc">View your active and past train ticket bookings.</p>
+        <div id="bookings-list-container">
+          <!-- Dynamically Generated Bookings list -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH MODALS (SIGN IN / SIGN UP / FORGOT) -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-card" style="max-width: 480px;">
+      <div class="modal-header">
+        <div class="modal-title-area">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            style="color: var(--primary); display: inline-block; vertical-align: middle;">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <h3 id="auth-modal-title" data-translate="auth-title"
+            style="display: inline-block; margin: 0; vertical-align: middle; font-family: var(--font-display); font-weight: 700; color: var(--primary);">
+            KITS Account
+          </h3>
+        </div>
+        <button class="modal-close" id="auth-modal-close" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-tabs" id="auth-modal-tabs">
+        <button class="modal-tab-btn active" id="auth-tab-btn-signin" data-translate="auth-tab-signin">Sign In</button>
+        <button class="modal-tab-btn" id="auth-tab-btn-signup" data-translate="auth-tab-signup">Sign Up</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Sign In Tab -->
+        <div class="tab-content active" id="auth-tab-content-signin">
+          <form class="modal-form" id="auth-signin-form">
+            <div class="form-group">
+              <label for="auth-signin-email" data-translate="auth-label-email">Email Address</label>
+              <input type="email" id="auth-signin-email" required>
+            </div>
+            <div class="form-group">
+              <label for="auth-signin-password" data-translate="auth-label-password">Password</label>
+              <div class="password-input-container">
+                <input type="password" id="auth-signin-password" required>
+                <button type="button" class="btn-toggle-password" aria-label="Toggle Password Visibility">
+                  <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="display: none;">
+                    <path
+                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                    </path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="auth-extra-actions">
+              <label>
+                <input type="checkbox" id="auth-signin-remember">
+                <span data-translate="auth-label-remember">Remember Me</span>
+              </label>
+              <a class="forgot-link" id="auth-forgot-link" data-translate="auth-label-forgot">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn-save" style="width: 100%; margin-top: 10px;"
+              data-translate="auth-btn-signin">Sign In</button>
+            <p class="auth-switch-prompt" data-translate="auth-prompt-noaccount">
+              Don't have an account? <a class="auth-switch-link" id="auth-switch-to-signup">Sign Up</a>
+            </p>
+          </form>
+        </div>
+
+        <!-- Sign Up Tab -->
+        <div class="tab-content" id="auth-tab-content-signup">
+          <form class="modal-form" id="auth-signup-form">
+            <div class="form-group">
+              <label for="auth-signup-name" data-translate="auth-label-name">Full Name (As in IC / Passport)</label>
+              <input type="text" id="auth-signup-name" placeholder="Enter your full name"
+                data-translate-placeholder="auth-placeholder-name" required>
+            </div>
+            <div class="form-group">
+              <label for="auth-signup-email" data-translate="auth-label-email">Email Address</label>
+              <input type="email" id="auth-signup-email" placeholder="e.g. name@example.com"
+                data-translate-placeholder="auth-placeholder-email" required>
+            </div>
+            <div class="form-grid" style="margin-bottom: 0;">
+              <div class="form-group">
+                <label for="auth-signup-password" data-translate="auth-label-password">Password</label>
+                <div class="password-input-container">
+                  <input type="password" id="auth-signup-password" placeholder="Min. 8 characters"
+                    data-translate-placeholder="auth-placeholder-password" minlength="8" required>
+                  <button type="button" class="btn-toggle-password" aria-label="Toggle Password Visibility">
+                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="display: none;">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                      </path>
+                      <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="auth-signup-confirm-password" data-translate="auth-label-confirm">Confirm Password</label>
+                <div class="password-input-container">
+                  <input type="password" id="auth-signup-confirm-password" placeholder="Re-enter password"
+                    data-translate-placeholder="auth-placeholder-confirm" required>
+                  <button type="button" class="btn-toggle-password" aria-label="Toggle Password Visibility">
+                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="display: none;">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                      </path>
+                      <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="form-grid" style="margin-bottom: 0;">
+              <div class="form-group">
+                <label for="auth-signup-id-type" data-translate="auth-label-idtype">ID Document Type</label>
+                <select id="auth-signup-id-type" required>
+                  <option value="IC" data-translate="auth-opt-ic">Malaysian NRIC (MyKad)</option>
+                  <option value="Passport" data-translate="auth-opt-passport">International Passport</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="auth-signup-gender" data-translate="auth-label-gender">Gender</label>
+                <select id="auth-signup-gender" required>
+                  <option value="Female" data-translate="auth-opt-female">Female</option>
+                  <option value="Male" data-translate="auth-opt-male">Male</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="auth-signup-id-num" id="auth-signup-id-num-label" data-translate="auth-label-idnum">NRIC
+                (MyKad) Number</label>
+              <input type="text" id="auth-signup-id-num" placeholder="e.g. 950812-14-5678" required>
+            </div>
+            <button type="submit" class="btn-save" style="width: 100%; margin-top: 10px;"
+              data-translate="auth-btn-signup">Create Account</button>
+            <p class="auth-switch-prompt" data-translate="auth-prompt-hasaccount">
+              Already have an account? <a class="auth-switch-link" id="auth-switch-to-signin">Sign In</a>
+            </p>
+          </form>
+        </div>
+
+        <!-- Forgot Password Tab -->
+        <div class="tab-content" id="auth-tab-content-forgot">
+          <p class="tab-description" data-translate="auth-forgot-desc">Enter your registered email address and we'll
+            send you instructions to reset your password.</p>
+          <form class="modal-form" id="auth-forgot-form">
+            <div class="form-group">
+              <label for="auth-forgot-email" data-translate="auth-label-email">Email Address</label>
+              <input type="email" id="auth-forgot-email" placeholder="e.g. name@example.com"
+                data-translate-placeholder="auth-placeholder-email" required>
+            </div>
+            <button type="submit" class="btn-save" style="width: 100%; margin-top: 10px;"
+              data-translate="auth-btn-reset">Reset Password</button>
+            <p class="auth-switch-prompt">
+              <a class="auth-switch-link" id="auth-forgot-back-to-signin" data-translate="auth-btn-back">Back to Sign
+                In</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- BOOKING CONTROLLER SCRIPTS -->
+  <script src="assets/translations.js"></script>
+  <script src="assets/notifications.js"></script>
+  <script>
+    // Language selector dropdown options interaction
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.preventDefault();
+        const lang = opt.getAttribute('data-lang');
+        applyLanguage(lang);
+      });
+    });
+
+    // Wrap applyLanguage to add booking.html specific updates
+    if (typeof applyLanguage === 'function') {
+      const originalApplyLanguage = applyLanguage;
+      applyLanguage = function (lang) {
+        originalApplyLanguage(lang);
+
+        // 1. Re-translate passenger info labels/placeholders if step 3 is active
+        if (currentStep === 3) {
+          renderPassengerInputs();
+        }
+
+        // 2. Re-translate train list if step 1 is active
+        if (currentStep === 1 && searchQuery) {
+          renderTrainList();
+        }
+
+        // 3. Re-translate summary bar and sidebar dynamic texts
+        if (searchQuery) {
+          let paxNum = parseInt(searchQuery.passengersVal);
+          if (isNaN(paxNum)) paxNum = 1;
+          const sumPax = document.getElementById('sum-passengers');
+          if (sumPax) {
+            sumPax.textContent = `${paxNum} ${paxNum > 1 ? t('passenger-plural-label', 'Passengers') : t('passenger-singular-label', 'Passenger')}`;
+          }
+
+          const sideRoute = document.getElementById('side-route');
+          if (sideRoute) {
+            sideRoute.textContent = `${searchQuery.originText.split(' (')[0]} ${t('route-to', 'to')} ${searchQuery.destText.split(' (')[0]}`;
+          }
+
+          const sideDate = document.getElementById('side-date');
+          if (sideDate) {
+            sideDate.textContent = formatDateString(searchQuery.departDate) + (searchQuery.tripType === 'roundtrip' ? ` - ${t('widget-label-return', 'Return')}: ${formatDateString(searchQuery.returnDate)}` : '');
+          }
+        }
+
+        // 4. Update success screen coach details text if visible
+        const ticketCoach = document.getElementById('ticket-coach');
+        if (ticketCoach) {
+          const matches = ticketCoach.textContent.match(/[A-Z]$/);
+          if (matches) {
+            ticketCoach.textContent = `${t('booking-coach-label', 'Coach')} ${matches[0]}`;
+          }
+        }
+        const ticketReturnCoach = document.getElementById('ticket-return-coach');
+        if (ticketReturnCoach) {
+          const matches = ticketReturnCoach.textContent.match(/[A-Z]$/);
+          if (matches) {
+            ticketReturnCoach.textContent = `${t('booking-coach-label', 'Coach')} ${matches[0]}`;
+          }
+        }
+
+        // 5. Update sidebar translations
+        updateSidebarDetails();
+
+        // 5. Custom updates for signup ID type label in case user opens signup modal
+        const authSignupIdType = document.getElementById('auth-signup-id-type');
+        const authSignupIdNumLabel = document.getElementById('auth-signup-id-num-label');
+        if (authSignupIdType && authSignupIdNumLabel) {
+          if (authSignupIdType.value === 'IC') {
+            authSignupIdNumLabel.textContent = t('auth-label-idnum', 'NRIC (MyKad) Number');
+          } else {
+            authSignupIdNumLabel.textContent = t('auth-label-passport', 'Passport Number');
+          }
+        }
+      };
+    }
+
+    // --- AUTHENTICATION & DROPDOWN (SYNCED WITH INDEX.HTML) ---
+    let isLoggedIn = false;
+    let currentUser = null;
+
+    function checkUserSession() {
+      const session = localStorage.getItem('kits_user_session');
+      if (session) {
+        isLoggedIn = true;
+        currentUser = JSON.parse(session);
+      } else {
+        isLoggedIn = false;
+        currentUser = null;
+      }
+    }
+
+    function updateAuthUI() {
+      checkUserSession();
+      const loggedOutActions = document.getElementById('logged-out-actions');
+      const userDropdownWrapper = document.getElementById('user-dropdown-wrapper');
+      const navUserName = document.getElementById('nav-user-name');
+      const navUserAvatar = document.getElementById('nav-user-avatar');
+
+      if (isLoggedIn && currentUser) {
+        if (loggedOutActions) loggedOutActions.style.display = 'none';
+        if (userDropdownWrapper) userDropdownWrapper.style.display = 'block';
+        if (navUserName) navUserName.textContent = currentUser.name.split(' ')[0];
+        if (navUserAvatar) navUserAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+      } else {
+        if (loggedOutActions) loggedOutActions.style.display = 'flex';
+        if (userDropdownWrapper) userDropdownWrapper.style.display = 'none';
+      }
+    }
+
+    // Modal Triggers
+    const authModal = document.getElementById('auth-modal');
+    const authModalClose = document.getElementById('auth-modal-close');
+    const authTabBtnSignin = document.getElementById('auth-tab-btn-signin');
+    const authTabBtnSignup = document.getElementById('auth-tab-btn-signup');
+    const authTabContentSignin = document.getElementById('auth-tab-content-signin');
+    const authTabContentSignup = document.getElementById('auth-tab-content-signup');
+    const authTabContentForgot = document.getElementById('auth-tab-content-forgot');
+    const authModalTitle = document.getElementById('auth-modal-title');
+    const authModalTabs = document.getElementById('auth-modal-tabs');
+
+    function openAuthModal(tab = 'signin') {
+      if (authModal) {
+        authModal.classList.add('open');
+        switchAuthTab(tab);
+      }
+    }
+
+    function closeAuthModal() {
+      if (authModal) {
+        authModal.classList.remove('open');
+      }
+    }
+
+    function prefillRememberMe() {
+      const rememberedEmail = localStorage.getItem('kits_remember_email');
+      const emailInput = document.getElementById('auth-signin-email');
+      const rememberCheckbox = document.getElementById('auth-signin-remember');
+
+      if (emailInput && rememberCheckbox) {
+        rememberCheckbox.checked = false; // Always start unchecked by default
+        if (rememberedEmail) {
+          emailInput.value = rememberedEmail;
+        } else {
+          emailInput.value = '';
+        }
+      }
+    }
+
+    function switchAuthTab(tab) {
+      if (tab === 'signin') {
+        if (authTabBtnSignin) authTabBtnSignin.classList.add('active');
+        if (authTabBtnSignup) authTabBtnSignup.classList.remove('active');
+        if (authTabContentSignin) authTabContentSignin.classList.add('active');
+        if (authTabContentSignup) authTabContentSignup.classList.remove('active');
+        if (authTabContentForgot) authTabContentForgot.classList.remove('active');
+        if (authModalTabs) authModalTabs.style.display = 'flex';
+        if (authModalTitle) authModalTitle.textContent = 'KITS Account';
+        prefillRememberMe();
+      } else if (tab === 'signup') {
+        if (authTabBtnSignin) authTabBtnSignin.classList.remove('active');
+        if (authTabBtnSignup) authTabBtnSignup.classList.add('active');
+        if (authTabContentSignin) authTabContentSignin.classList.remove('active');
+        if (authTabContentSignup) authTabContentSignup.classList.add('active');
+        if (authTabContentForgot) authTabContentForgot.classList.remove('active');
+        if (authModalTabs) authModalTabs.style.display = 'flex';
+        if (authModalTitle) authModalTitle.textContent = 'KITS Account';
+      } else if (tab === 'forgot') {
+        if (authTabContentSignin) authTabContentSignin.classList.remove('active');
+        if (authTabContentSignup) authTabContentSignup.classList.remove('active');
+        if (authTabContentForgot) authTabContentForgot.classList.add('active');
+        if (authModalTabs) authModalTabs.style.display = 'none';
+        if (authModalTitle) authModalTitle.textContent = 'Reset Password';
+      }
+    }
+
+    if (authModalClose) authModalClose.addEventListener('click', closeAuthModal);
+    if (authModal) {
+      authModal.addEventListener('click', (e) => {
+        if (e.target === authModal) closeAuthModal();
+      });
+    }
+
+    if (authTabBtnSignin) authTabBtnSignin.addEventListener('click', () => switchAuthTab('signin'));
+    if (authTabBtnSignup) authTabBtnSignup.addEventListener('click', () => switchAuthTab('signup'));
+
+    const btnSigninDesktop = document.getElementById('btn-signin-desktop');
+    const btnSignupDesktop = document.getElementById('btn-signup-desktop');
+    if (btnSigninDesktop) btnSigninDesktop.addEventListener('click', () => openAuthModal('signin'));
+    if (btnSignupDesktop) btnSignupDesktop.addEventListener('click', () => openAuthModal('signup'));
+
+    const authSwitchToSignup = document.getElementById('auth-switch-to-signup');
+    const authSwitchToSignin = document.getElementById('auth-switch-to-signin');
+    const authForgotLink = document.getElementById('auth-forgot-link');
+    const authForgotBackToSignin = document.getElementById('auth-forgot-back-to-signin');
+
+    if (authSwitchToSignup) authSwitchToSignup.addEventListener('click', () => switchAuthTab('signup'));
+    if (authSwitchToSignin) authSwitchToSignin.addEventListener('click', () => switchAuthTab('signin'));
+    if (authForgotLink) authForgotLink.addEventListener('click', () => switchAuthTab('forgot'));
+    if (authForgotBackToSignin) authForgotBackToSignin.addEventListener('click', () => switchAuthTab('signin'));
+
+    // ID Type listener
+    const authSignupIdType = document.getElementById('auth-signup-id-type');
+    const authSignupIdNumLabel = document.getElementById('auth-signup-id-num-label');
+    const authSignupIdNumInput = document.getElementById('auth-signup-id-num');
+
+    if (authSignupIdType) {
+      authSignupIdType.addEventListener('change', () => {
+        if (authSignupIdType.value === 'IC') {
+          if (authSignupIdNumLabel) authSignupIdNumLabel.textContent = t('auth-label-idnum', 'NRIC (MyKad) Number');
+          if (authSignupIdNumInput) {
+            authSignupIdNumInput.placeholder = 'e.g. 950812-14-5678';
+            authSignupIdNumInput.value = '';
+          }
+        } else {
+          if (authSignupIdNumLabel) authSignupIdNumLabel.textContent = t('auth-label-passport', 'Passport Number');
+          if (authSignupIdNumInput) {
+            authSignupIdNumInput.placeholder = 'e.g. A12345678';
+            authSignupIdNumInput.value = '';
+          }
+        }
+      });
+    }
+
+    // Sign In Submission
+    const authSigninForm = document.getElementById('auth-signin-form');
+    if (authSigninForm) {
+      authSigninForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('auth-signin-email').value.trim();
+        const password = document.getElementById('auth-signin-password').value;
+        const rememberCheckbox = document.getElementById('auth-signin-remember');
+        const remember = rememberCheckbox ? rememberCheckbox.checked : false;
+
+        const users = JSON.parse(localStorage.getItem('kits_registered_users') || '[]');
+        const user = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+
+        if (user) {
+          localStorage.setItem('kits_user_session', JSON.stringify(user));
+          if (remember) {
+            localStorage.setItem('kits_remember_me', 'true');
+            localStorage.setItem('kits_remember_email', email);
+          } else {
+            localStorage.setItem('kits_remember_me', 'false');
+            localStorage.removeItem('kits_remember_email');
+          }
+          updateAuthUI();
+          closeAuthModal();
+          authSigninForm.reset();
+          showToast(t('alert-welcome-back', 'Welcome back, {name}!').replace('{name}', user.name), 'success');
+
+          // Check if selected seats conflict with user's gender
+          handleGenderRestrictionsOnLogin();
+
+          // Re-trigger layout step sync for passenger auto-fill
+          if (currentStep === 3) {
+            renderPassengerInputs();
+          }
+        } else {
+          showToast(t('alert-invalid-login', 'Invalid email or password.'), 'error');
+        }
+      });
+    }
+
+    // Sign Up Submission
+    const authSignupForm = document.getElementById('auth-signup-form');
+    if (authSignupForm) {
+      authSignupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('auth-signup-name').value.trim();
+        const email = document.getElementById('auth-signup-email').value.trim();
+        const password = document.getElementById('auth-signup-password').value;
+        const confirmPassword = document.getElementById('auth-signup-confirm-password').value;
+        const idType = document.getElementById('auth-signup-id-type').value;
+        const gender = document.getElementById('auth-signup-gender').value;
+        const idNum = document.getElementById('auth-signup-id-num').value.trim();
+
+        if (password !== confirmPassword) {
+          showToast(t('alert-pwd-mismatch', 'Passwords do not match.'), 'error');
+          return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('kits_registered_users') || '[]');
+        const userExists = users.some(u => u.email.toLowerCase() === email.toLowerCase());
+
+        if (userExists) {
+          showToast(t('alert-email-registered', 'Email address already registered.'), 'error');
+          return;
+        }
+
+        const newUser = { name, email, password, idType, gender, idNum };
+        users.push(newUser);
+        localStorage.setItem('kits_registered_users', JSON.stringify(users));
+        localStorage.setItem('kits_user_session', JSON.stringify(newUser));
+
+        updateAuthUI();
+        closeAuthModal();
+        authSignupForm.reset();
+        showToast(t('alert-account-created', 'Account created! Welcome, {name}!').replace('{name}', name), 'success');
+
+        // Check if selected seats conflict with user's gender
+        handleGenderRestrictionsOnLogin();
+
+        if (currentStep === 3) {
+          renderPassengerInputs();
+        }
+      });
+    }
+
+    // Forgot Password Submission
+    const authForgotForm = document.getElementById('auth-forgot-form');
+    if (authForgotForm) {
+      authForgotForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('auth-forgot-email').value.trim();
+
+        showToast(t('alert-reset-sent', 'Password reset link sent to {email}!').replace('{email}', email), 'success');
+        authForgotForm.reset();
+        switchAuthTab('signin');
+      });
+    }
+
+    // Sign Out
+    const btnUserProfile = document.getElementById('btn-user-profile');
+    const userDropdownMenu = document.getElementById('user-dropdown-menu');
+
+    if (btnUserProfile && userDropdownMenu) {
+      btnUserProfile.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const show = userDropdownMenu.classList.toggle('show');
+        btnUserProfile.setAttribute('aria-expanded', show ? 'true' : 'false');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!btnUserProfile.contains(e.target) && !userDropdownMenu.contains(e.target)) {
+          userDropdownMenu.classList.remove('show');
+          btnUserProfile.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    function handleSignOut(e) {
+      if (e) e.preventDefault();
+      localStorage.removeItem('kits_user_session');
+      updateAuthUI();
+      if (userDropdownMenu) userDropdownMenu.classList.remove('show');
+      showToast(t('alert-signed-out', 'You have successfully signed out.'), 'success');
+
+      if (currentStep === 3) {
+        renderPassengerInputs();
+      }
+    }
+    const menuSignout = document.getElementById('menu-signout');
+    if (menuSignout) menuSignout.addEventListener('click', handleSignOut);
+
+
+    // --- PASSWORD SHOW/HIDE TOGGLES ---
+    const passwordToggles = document.querySelectorAll('.btn-toggle-password');
+    passwordToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const container = toggle.closest('.password-input-container');
+        const input = container.querySelector('input');
+        const eyeIcon = toggle.querySelector('.eye-icon');
+        const eyeOffIcon = toggle.querySelector('.eye-off-icon');
+
+        if (input.type === 'password') {
+          input.type = 'text';
+          if (eyeIcon) eyeIcon.style.display = 'none';
+          if (eyeOffIcon) eyeOffIcon.style.display = 'block';
+        } else {
+          input.type = 'password';
+          if (eyeIcon) eyeIcon.style.display = 'block';
+          if (eyeOffIcon) eyeOffIcon.style.display = 'none';
+        }
+      });
+    });
+
+    // Toast alert helper
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `<span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.animation = 'slideInLeft 0.3s reverse';
+        setTimeout(() => {
+          if (toast.parentNode === container) container.removeChild(toast);
+        }, 300);
+      }, 3000);
+    }
+
+
+    // --- TRAIN BOOKING STEP CONTROLLER ---
+    let currentStep = 1;
+    let searchQuery = null;
+    let selectedTrain = null;
+    let selectedSeats = [];
+    let activeCoach = 'A';
+    let selectedReturnTrain = null;
+    let selectedReturnSeats = [];
+    let activeReturnCoach = 'A';
+    let currentPhase = 'outbound'; // 'outbound' | 'return'
+
+    // --- REAL-TIME BOOKING SYNC & SEAT LOCKING ---
+    const tabId = sessionStorage.getItem('kits_tab_id') || 'tab-' + Math.random().toString(36).substr(2, 9);
+    sessionStorage.setItem('kits_tab_id', tabId);
+
+    function updateActiveLocks() {
+      const locks = JSON.parse(localStorage.getItem('kits_active_locks') || '[]');
+      const filtered = locks.filter(l => l.tabId !== tabId);
+
+      if (selectedSeats.length > 0 || selectedReturnSeats.length > 0) {
+        filtered.push({
+          tabId: tabId,
+          userEmail: (currentUser && currentUser.email) ? currentUser.email : 'guest',
+          trainName: selectedTrain ? selectedTrain.name : '',
+          date: searchQuery ? formatDateString(searchQuery.departDate) : '',
+          coach: activeCoach,
+          seats: selectedSeats.map(s => `${activeCoach}-${s}`),
+          returnTrainName: selectedReturnTrain ? selectedReturnTrain.name : '',
+          returnDate: (searchQuery && searchQuery.returnDate) ? formatDateString(searchQuery.returnDate) : '',
+          returnCoach: selectedReturnTrain ? activeReturnCoach : '',
+          returnSeats: selectedReturnSeats.map(s => `${activeReturnCoach}-${s}`),
+          timestamp: Date.now()
+        });
+      }
+      localStorage.setItem('kits_active_locks', JSON.stringify(filtered));
+    }
+
+    // Clean up locks when page is closed or reloaded
+    function clearActiveLocks() {
+      const locks = JSON.parse(localStorage.getItem('kits_active_locks') || '[]');
+      const filtered = locks.filter(l => l.tabId !== tabId);
+      localStorage.setItem('kits_active_locks', JSON.stringify(filtered));
+    }
+
+    window.addEventListener('beforeunload', () => {
+      clearActiveLocks();
+    });
+
+    function isETSTrain(trainName) {
+      return trainName && trainName.startsWith('ETS');
+    }
+
+    function getETSSeatGender(seatId) {
+      const row = parseInt(seatId.replace(/[^\d]/g, ''));
+      if (row >= 4 && row <= 6) return 'male';
+      if (row >= 7 && row <= 9) return 'female';
+      return 'general';
+    }
+
+    function checkGenderRestrictions() {
+      if (!isLoggedIn || !currentUser) return true;
+
+      const gender = currentUser.gender;
+
+      // Check outbound journey
+      if (selectedTrain) {
+        const isOutboundETS = isETSTrain(selectedTrain.name);
+        const isOutboundLadies = !isOutboundETS && (activeCoach === 'E' || activeCoach === 'F');
+
+        if (isOutboundLadies && gender === 'Male') {
+          return false;
+        }
+
+        if (isOutboundETS) {
+          for (const seat of selectedSeats) {
+            const seatGender = getETSSeatGender(seat);
+            if (seatGender === 'male' && gender === 'Female') return false;
+            if (seatGender === 'female' && gender === 'Male') return false;
+          }
+        }
+      }
+
+      // Check return journey
+      if (selectedReturnTrain) {
+        const isReturnETS = isETSTrain(selectedReturnTrain.name);
+        const isReturnLadies = !isReturnETS && (activeReturnCoach === 'E' || activeReturnCoach === 'F');
+
+        if (isReturnLadies && gender === 'Male') {
+          return false;
+        }
+
+        if (isReturnETS) {
+          for (const seat of selectedReturnSeats) {
+            const seatGender = getETSSeatGender(seat);
+            if (seatGender === 'male' && gender === 'Female') return false;
+            if (seatGender === 'female' && gender === 'Male') return false;
+          }
+        }
+      }
+
+      return true;
+    }
+
+    function handleGenderRestrictionsOnLogin() {
+      if (!checkGenderRestrictions()) {
+        // Clear selections
+        selectedSeats = [];
+        selectedReturnSeats = [];
+
+        // Update locks in localStorage
+        updateActiveLocks();
+
+        // Re-render
+        renderSeatMap();
+        updateSidebarDetails();
+        updatePricingSummary();
+
+        // Alert
+        const currentLang = localStorage.getItem('kits_lang') || 'en';
+        const msgEn = "Your selected seats/coaches have been cleared due to gender restrictions.";
+        const msgBm = "Pilihan tempat duduk/koc anda telah dikosongkan kerana sekatan jantina.";
+        showToast(currentLang === 'bm' ? msgBm : msgEn, 'error');
+
+        // If in step 3, go back to step 2 so they can pick allowed seats
+        if (currentStep === 3) {
+          goToStep(2);
+        }
+      }
+    }
+
+    function seedDefaultBookings(trainName, dateStr) {
+      if (!trainName || !dateStr) return;
+
+      const seedKey = `${trainName}|${dateStr}`;
+      const seeded = JSON.parse(localStorage.getItem('kits_seeded_train_dates') || '[]');
+
+      if (seeded.includes(seedKey)) return;
+
+      const bookings = JSON.parse(localStorage.getItem('kits_bookings') || '[]');
+      const coaches = ['A', 'B', 'C', 'D', 'E', 'F'];
+      const malaysianNames = [
+        'Siti Aminah', 'Chong Wei Min', 'Ravi Shankar', 'Muhammad Arif',
+        'Ahmad Farhan', 'Nurul Izzah', 'Tan Kah Seng', 'Priya Devi',
+        'Aizat Rahman', 'Sarah Lim', 'Vengadesan', 'Fatimah Zakaria'
+      ];
+
+      coaches.forEach(coach => {
+        const numBookings = Math.floor(Math.random() * 3) + 2; // 2 to 4 random bookings
+        const usedSeats = new Set();
+
+        for (let i = 0; i < numBookings; i++) {
+          const seatsForThisBooking = [];
+          const numSeats = Math.random() < 0.7 ? 1 : 2;
+
+          for (let j = 0; j < numSeats; j++) {
+            let attempts = 0;
+            while (attempts < 50) {
+              const isSingleCoach = (coach === 'A');
+              const letter = isSingleCoach
+                ? ['A', 'B', 'C'][Math.floor(Math.random() * 3)]
+                : ['A', 'B', 'C', 'D'][Math.floor(Math.random() * 4)];
+              const row = Math.floor(Math.random() * 10) + 1;
+              const seatId = `${letter}${row}`;
+              if (!usedSeats.has(seatId)) {
+                usedSeats.add(seatId);
+                seatsForThisBooking.push(seatId);
+                break;
+              }
+              attempts++;
+            }
+          }
+
+          if (seatsForThisBooking.length > 0) {
+            const randomName = malaysianNames[Math.floor(Math.random() * malaysianNames.length)];
+            const randomEmail = randomName.toLowerCase().replace(/\s+/g, '') + '@gmail.com';
+            const ref = 'KTMB-' + Math.floor(100000 + Math.random() * 900000);
+
+            bookings.push({
+              bookingRef: ref,
+              userEmail: randomEmail,
+              originText: searchQuery ? searchQuery.originText.split(' (')[0] : 'Kuala Lumpur',
+              destText: searchQuery ? searchQuery.destText.split(' (')[0] : 'Ipoh',
+              departDate: dateStr,
+              trainName: trainName,
+              depTime: '12:00',
+              coach: coach,
+              seats: seatsForThisBooking.map(s => `${coach}-${s}`),
+              passengerName: randomName,
+              passengerId: `MyKad: ${Math.floor(100000000000 + Math.random() * 900000000000)}`,
+              totalPrice: 35.00 * seatsForThisBooking.length,
+              tripType: 'oneway'
+            });
+          }
+        }
+      });
+
+      seeded.push(seedKey);
+      localStorage.setItem('kits_seeded_train_dates', JSON.stringify(seeded));
+      localStorage.setItem('kits_bookings', JSON.stringify(bookings));
+    }
+
+    function getOccupiedSeats(trainName, dateStr, coach) {
+      if (!trainName || !dateStr || !coach) return [];
+      const occupied = new Set();
+
+      // 1. Completed bookings
+      const bookings = JSON.parse(localStorage.getItem('kits_bookings') || '[]');
+      bookings.forEach(booking => {
+        // Outbound
+        if (booking.trainName === trainName && booking.departDate === dateStr && booking.coach === coach) {
+          if (Array.isArray(booking.seats)) {
+            booking.seats.forEach(s => {
+              const parts = s.split('-');
+              const seatId = parts[1] || parts[0];
+              occupied.add(seatId);
+            });
+          }
+        }
+        // Return
+        if (booking.tripType === 'roundtrip' && booking.returnTrainName === trainName && booking.returnDate === dateStr && booking.returnCoach === coach) {
+          if (Array.isArray(booking.returnSeats)) {
+            booking.returnSeats.forEach(s => {
+              const parts = s.split('-');
+              const seatId = parts[1] || parts[0];
+              occupied.add(seatId);
+            });
+          }
+        }
+      });
+
+      // 2. Active locks from other users/tabs
+      const locks = JSON.parse(localStorage.getItem('kits_active_locks') || '[]');
+      const now = Date.now();
+
+      locks.forEach(lock => {
+        // Exclude locks older than 5 minutes (stale locks)
+        if (now - lock.timestamp > 5 * 60 * 1000) return;
+        // Exclude our own tab locks
+        if (lock.tabId === tabId) return;
+
+        // Outbound locks by other tabs
+        if (lock.trainName === trainName && lock.date === dateStr && lock.coach === coach) {
+          if (Array.isArray(lock.seats)) {
+            lock.seats.forEach(s => {
+              const parts = s.split('-');
+              const seatId = parts[1] || parts[0];
+              occupied.add(seatId);
+            });
+          }
+        }
+
+        // Return locks by other tabs
+        if (lock.returnTrainName === trainName && lock.returnDate === dateStr && lock.returnCoach === coach) {
+          if (Array.isArray(lock.returnSeats)) {
+            lock.returnSeats.forEach(s => {
+              const parts = s.split('-');
+              const seatId = parts[1] || parts[0];
+              occupied.add(seatId);
+            });
+          }
+        }
+      });
+
+      return Array.from(occupied);
+    }
+
+    function handleBookingsUpdate() {
+      // Re-render Seat Map if on step 2
+      if (currentStep === 2) {
+        renderSeatMap();
+
+        // Check if any of our selected seats were locked or booked by someone else
+        const train = currentPhase === 'return' ? selectedReturnTrain : selectedTrain;
+        const date = currentPhase === 'return' ? searchQuery.returnDate : searchQuery.departDate;
+        const coach = currentPhase === 'return' ? activeReturnCoach : activeCoach;
+        const seatsArr = currentPhase === 'return' ? selectedReturnSeats : selectedSeats;
+
+        if (train && date && coach && seatsArr.length > 0) {
+          const dateStr = formatDateString(date);
+          const freshOccupied = getOccupiedSeats(train.name, dateStr, coach);
+          const conflictSeats = seatsArr.filter(seat => freshOccupied.includes(seat));
+
+          if (conflictSeats.length > 0) {
+            // Remove conflict seats
+            conflictSeats.forEach(seat => {
+              const idx = seatsArr.indexOf(seat);
+              if (idx > -1) seatsArr.splice(idx, 1);
+            });
+
+            // Re-render, update details & update active locks to match
+            renderSeatMap();
+            updateSidebarDetails();
+            updatePricingSummary();
+            updateActiveLocks();
+
+            // Show alert toast
+            const currentLang = localStorage.getItem('kits_lang') || 'en';
+            const msgEn = `One or more of your selected seats (${conflictSeats.join(', ')}) have just been locked or booked by another user.`;
+            const msgBm = `Satu atau lebih tempat duduk pilihan anda (${conflictSeats.join(', ')}) baru sahaja dikunci atau ditempah oleh pengguna lain.`;
+            showToast(currentLang === 'bm' ? msgBm : msgEn, 'error');
+          }
+        }
+      }
+    }
+
+    // Listen for storage events from other tabs to sync seat map & locks in real-time
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'kits_bookings' || e.key === 'kits_active_locks') {
+        handleBookingsUpdate();
+      }
+      if (e.key === 'kits_user_session') {
+        updateAuthUI();
+        handleGenderRestrictionsOnLogin();
+      }
+    });
+
+    // Mock Train Database with Live Delays & Platforms
+    // Mock Train Database with Live Delays & Platforms
+    const trainFares = {
+      'ETS & Intercity': [
+        { id: 't16', name: 'ETS Platinum 9123', dep: '06:00', arr: '08:20', duration: '2h 20m', basePrice: 46.00, platinum: true, seatsAvail: 15, status: 'ontime', delayText: '', platform: '3', origin: 'Butterworth', dest: 'KL Sentral' },
+        { id: 't27', name: 'KTM Intercity 40', dep: '06:00', arr: '09:10', duration: '3h 10m', basePrice: 22.00, platinum: false, seatsAvail: 45, status: 'ontime', delayText: '', platform: '2', origin: 'JB Sentral', dest: 'KL Sentral' },
+        { id: 't10', name: 'ETS Gold 9026', dep: '06:00', arr: '08:40', duration: '2h 40m', basePrice: 35.00, platinum: false, seatsAvail: 42, status: 'ontime', delayText: '', platform: '1', origin: 'KL Sentral', dest: 'Padang Besar' },
+        { id: 't23', name: 'KTM Intercity 47', dep: '06:15', arr: '09:25', duration: '3h 10m', basePrice: 22.00, platinum: false, seatsAvail: 50, status: 'ontime', delayText: '', platform: '1', origin: 'KL Sentral', dest: 'JB Sentral' },
+        { id: 't17', name: 'ETS Gold 9025', dep: '07:30', arr: '10:10', duration: '2h 40m', basePrice: 35.00, platinum: false, seatsAvail: 38, status: 'ontime', delayText: '', platform: '1', origin: 'Padang Besar', dest: 'KL Sentral' },
+        { id: 't1', name: 'ETS Platinum 9122', dep: '08:00', arr: '10:20', duration: '2h 20m', basePrice: 46.00, platinum: true, seatsAvail: 12, status: 'ontime', delayText: '', platform: '2', origin: 'KL Sentral', dest: 'Butterworth' },
+        { id: 't8', name: 'KTM Intercity 45', dep: '08:45', arr: '11:55', duration: '3h 10m', basePrice: 22.00, platinum: false, seatsAvail: 50, status: 'ontime', delayText: '', platform: '2', origin: 'KL Sentral', dest: 'JB Sentral' },
+        { id: 't11', name: 'ETS Platinum 9130', dep: '09:30', arr: '11:50', duration: '2h 20m', basePrice: 46.00, platinum: true, seatsAvail: 15, status: 'ontime', delayText: '', platform: '3', origin: 'KL Sentral', dest: 'Butterworth' },
+        { id: 't28', name: 'KTM Intercity 42', dep: '10:15', arr: '13:25', duration: '3h 10m', basePrice: 22.00, platinum: false, seatsAvail: 45, status: 'ontime', delayText: '', platform: '3', origin: 'JB Sentral', dest: 'KL Sentral' },
+        { id: 't5', name: 'ETS Platinum 9121', dep: '10:45', arr: '13:05', duration: '2h 20m', basePrice: 46.00, platinum: true, seatsAvail: 15, status: 'ontime', delayText: '', platform: '2', origin: 'Butterworth', dest: 'KL Sentral' },
+        { id: 't2', name: 'ETS Gold 9024', dep: '11:30', arr: '14:10', duration: '2h 40m', basePrice: 35.00, platinum: false, seatsAvail: 42, status: 'delayed', delayText: '15m', platform: '4', origin: 'KL Sentral', dest: 'Padang Besar' },
+        { id: 't18', name: 'ETS Platinum 9127', dep: '13:00', arr: '15:20', duration: '2h 20m', basePrice: 46.00, platinum: true, seatsAvail: 18, status: 'ontime', delayText: '', platform: '4', origin: 'Butterworth', dest: 'KL Sentral' },
+        { id: 't12', name: 'ETS Gold 9032', dep: '13:45', arr: '16:25', duration: '2h 40m', basePrice: 35.00, platinum: false, seatsAvail: 40, status: 'ontime', delayText: '', platform: '2', origin: 'KL Sentral', dest: 'Ipoh' },
+        { id: 't6', name: 'ETS Gold 9023', dep: '14:20', arr: '17:00', duration: '2h 40m', basePrice: 35.00, platinum: false, seatsAvail: 38, status: 'delayed', delayText: '10m', platform: '5', origin: 'Padang Besar', dest: 'KL Sentral' },
+        { id: 't24', name: 'KTM Intercity 49', dep: '14:30', arr: '17:40', duration: '3h 10m', basePrice: 22.00, platinum: false, seatsAvail: 48, status: 'ontime', delayText: '', platform: '3', origin: 'KL Sentral', dest: 'JB Sentral' },
+        { id: 't3', name: 'ETS Platinum 9128', dep: '15:15', arr: '17:35', duration: '2h 20m', basePrice: 46.00, platinum: true, seatsAvail: 8, status: 'ontime', delayText: '', platform: '3', origin: 'KL Sentral', dest: 'Butterworth' },
+        { id: 't9', name: 'KTM Intercity 46', dep: '15:30', arr: '18:40', duration: '3h 10m', basePrice: 22.00, platinum: false, seatsAvail: 45, status: 'delayed', delayText: '20m', platform: '1', origin: 'JB Sentral', dest: 'KL Sentral' },
+        { id: 't7', name: 'ETS Platinum 9125', dep: '16:50', arr: '19:10', duration: '2h 20m', basePrice: 46.00, platinum: true, seatsAvail: 22, status: 'ontime', delayText: '', platform: '3', origin: 'Ipoh', dest: 'KL Sentral' },
+        { id: 't13', name: 'ETS Platinum 9134', dep: '17:30', arr: '19:50', duration: '2h 20m', basePrice: 46.00, platinum: true, seatsAvail: 25, status: 'ontime', delayText: '', platform: '4', origin: 'KL Sentral', dest: 'Butterworth' },
+        { id: 't19', name: 'ETS Gold 9029', dep: '18:30', arr: '21:10', duration: '2h 40m', basePrice: 35.00, platinum: false, seatsAvail: 35, status: 'ontime', delayText: '', platform: '2', origin: 'Ipoh', dest: 'KL Sentral' },
+        { id: 't4', name: 'ETS Gold 9028', dep: '19:00', arr: '21:40', duration: '2h 40m', basePrice: 35.00, platinum: false, seatsAvail: 56, status: 'delayed', delayText: '30m', platform: '1', origin: 'KL Sentral', dest: 'Ipoh' },
+        { id: 't29', name: 'KTM Intercity 48', dep: '19:30', arr: '22:40', duration: '3h 10m', basePrice: 22.00, platinum: false, seatsAvail: 40, status: 'ontime', delayText: '', platform: '1', origin: 'JB Sentral', dest: 'KL Sentral' },
+        { id: 't25', name: 'KTM Intercity 51', dep: '20:00', arr: '23:10', duration: '3h 10m', basePrice: 22.00, platinum: false, seatsAvail: 50, status: 'ontime', delayText: '', platform: '2', origin: 'KL Sentral', dest: 'JB Sentral' },
+        { id: 't20', name: 'ETS Platinum 9131', dep: '20:45', arr: '23:05', duration: '2h 20m', basePrice: 46.00, platinum: true, seatsAvail: 15, status: 'ontime', delayText: '', platform: '1', origin: 'Butterworth', dest: 'KL Sentral' },
+        { id: 't14', name: 'ETS Gold 9036', dep: '21:30', arr: '00:10', duration: '2h 40m', basePrice: 35.00, platinum: false, seatsAvail: 30, status: 'ontime', delayText: '', platform: '2', origin: 'KL Sentral', dest: 'Padang Besar' },
+        { id: 't21', name: 'ETS Gold 9035', dep: '22:15', arr: '00:55', duration: '2h 40m', basePrice: 35.00, platinum: false, seatsAvail: 32, status: 'ontime', delayText: '', platform: '5', origin: 'Padang Besar', dest: 'KL Sentral' },
+        { id: 't15', name: 'ETS Gold 9040', dep: '00:30', arr: '03:10', duration: '2h 40m', basePrice: 35.00, platinum: false, seatsAvail: 40, status: 'ontime', delayText: '', platform: '3', origin: 'KL Sentral', dest: 'Ipoh' },
+        { id: 't22', name: 'ETS Gold 9039', dep: '00:30', arr: '03:10', duration: '2h 40m', basePrice: 35.00, platinum: false, seatsAvail: 42, status: 'ontime', delayText: '', platform: '3', origin: 'Ipoh', dest: 'KL Sentral' },
+        { id: 't26', name: 'KTM Intercity 53', dep: '00:30', arr: '03:40', duration: '3h 10m', basePrice: 22.00, platinum: false, seatsAvail: 45, status: 'ontime', delayText: '', platform: '1', origin: 'KL Sentral', dest: 'JB Sentral' },
+        { id: 't30', name: 'KTM Intercity 50', dep: '00:30', arr: '03:40', duration: '3h 10m', basePrice: 22.00, platinum: false, seatsAvail: 40, status: 'ontime', delayText: '', platform: '2', origin: 'JB Sentral', dest: 'KL Sentral' }
+      ],
+      'Komuter Klang Valley': [
+        { id: 'c4', name: 'Komuter Service 2007', dep: '06:00', arr: '07:20', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 120, status: 'ontime', delayText: '', platform: '3', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c16', name: 'Komuter Service 2008', dep: '06:00', arr: '07:20', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 110, status: 'ontime', delayText: '', platform: '2', origin: 'Pulau Sebang', dest: 'Batu Caves' },
+        { id: 'c5', name: 'Komuter Service 2009', dep: '06:30', arr: '07:50', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 130, status: 'ontime', delayText: '', platform: '1', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c1', name: 'Komuter Service 2011', dep: '07:15', arr: '08:35', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 120, status: 'ontime', delayText: '', platform: '3', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c17', name: 'Komuter Service 2012', dep: '08:00', arr: '09:20', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 115, status: 'ontime', delayText: '', platform: '1', origin: 'Pulau Sebang', dest: 'Batu Caves' },
+        { id: 'c6', name: 'Komuter Service 2013', dep: '08:30', arr: '09:50', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 125, status: 'ontime', delayText: '', platform: '2', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c2', name: 'Komuter Service 2015', dep: '09:45', arr: '11:05', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 94, status: 'delayed', delayText: '10m', platform: '2', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c18', name: 'Komuter Service 2016', dep: '10:30', arr: '11:50', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 112, status: 'ontime', delayText: '', platform: '3', origin: 'Pulau Sebang', dest: 'Batu Caves' },
+        { id: 'c7', name: 'Komuter Service 2017', dep: '11:15', arr: '12:35', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 105, status: 'ontime', delayText: '', platform: '1', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c8', name: 'Komuter Service 2019', dep: '12:45', arr: '14:05', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 118, status: 'ontime', delayText: '', platform: '3', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c19', name: 'Komuter Service 2020', dep: '13:00', arr: '14:20', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 122, status: 'ontime', delayText: '', platform: '2', origin: 'Pulau Sebang', dest: 'Batu Caves' },
+        { id: 'c3', name: 'Komuter Service 2021', dep: '14:20', arr: '15:40', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 110, status: 'ontime', delayText: '', platform: '3', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c20', name: 'Komuter Service 2024', dep: '15:30', arr: '16:50', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 108, status: 'ontime', delayText: '', platform: '1', origin: 'Pulau Sebang', dest: 'Batu Caves' },
+        { id: 'c9', name: 'Komuter Service 2023', dep: '16:00', arr: '17:20', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 115, status: 'ontime', delayText: '', platform: '2', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c10', name: 'Komuter Service 2025', dep: '17:30', arr: '18:50', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 120, status: 'ontime', delayText: '', platform: '3', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c21', name: 'Komuter Service 2028', dep: '18:00', arr: '19:20', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 125, status: 'ontime', delayText: '', platform: '1', origin: 'Pulau Sebang', dest: 'Batu Caves' },
+        { id: 'c11', name: 'Komuter Service 2027', dep: '19:00', arr: '20:20', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 115, status: 'ontime', delayText: '', platform: '2', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c12', name: 'Komuter Service 2029', dep: '20:30', arr: '21:50', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 110, status: 'ontime', delayText: '', platform: '3', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c22', name: 'Komuter Service 2032', dep: '20:45', arr: '22:05', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 118, status: 'ontime', delayText: '', platform: '2', origin: 'Pulau Sebang', dest: 'Batu Caves' },
+        { id: 'c13', name: 'Komuter Service 2031', dep: '22:00', arr: '23:20', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 100, status: 'ontime', delayText: '', platform: '1', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c23', name: 'Komuter Service 2034', dep: '23:00', arr: '00:20', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 105, status: 'ontime', delayText: '', platform: '3', origin: 'Pulau Sebang', dest: 'Batu Caves' },
+        { id: 'c14', name: 'Komuter Service 2033', dep: '23:30', arr: '00:50', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 110, status: 'ontime', delayText: '', platform: '2', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c15', name: 'Komuter Service 2035', dep: '00:30', arr: '01:50', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 95, status: 'ontime', delayText: '', platform: '3', origin: 'Batu Caves', dest: 'Pulau Sebang' },
+        { id: 'c24', name: 'Komuter Service 2036', dep: '00:30', arr: '01:50', duration: '1h 20m', basePrice: 8.50, platinum: false, seatsAvail: 90, status: 'ontime', delayText: '', platform: '1', origin: 'Pulau Sebang', dest: 'Batu Caves' }
+      ],
+      'Komuter Northern': [
+        { id: 'n4', name: 'KTM Northern Express 3104', dep: '06:00', arr: '07:15', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 85, status: 'ontime', delayText: '', platform: '1', origin: 'Butterworth', dest: 'Padang Besar' },
+        { id: 'n10', name: 'KTM Northern Express 3103', dep: '06:00', arr: '07:15', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 80, status: 'ontime', delayText: '', platform: '2', origin: 'Padang Besar', dest: 'Butterworth' },
+        { id: 'n1', name: 'KTM Northern Express 3102', dep: '06:30', arr: '07:45', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 88, status: 'ontime', delayText: '', platform: '1', origin: 'Butterworth', dest: 'Padang Besar' },
+        { id: 'n3', name: 'KTM Northern Express 3101', dep: '08:15', arr: '09:30', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 90, status: 'ontime', delayText: '', platform: '1', origin: 'Padang Besar', dest: 'Butterworth' },
+        { id: 'n5', name: 'KTM Northern Express 3106', dep: '09:30', arr: '10:45', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 82, status: 'ontime', delayText: '', platform: '2', origin: 'Butterworth', dest: 'Padang Besar' },
+        { id: 'n11', name: 'KTM Northern Express 3105', dep: '11:00', arr: '12:15', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 78, status: 'ontime', delayText: '', platform: '1', origin: 'Padang Besar', dest: 'Butterworth' },
+        { id: 'n2', name: 'KTM Northern Express 3108', dep: '13:00', arr: '14:15', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 75, status: 'delayed', delayText: '25m', platform: '2', origin: 'Butterworth', dest: 'Padang Besar' },
+        { id: 'n12', name: 'KTM Northern Express 3107', dep: '14:30', arr: '15:45', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 84, status: 'ontime', delayText: '', platform: '2', origin: 'Padang Besar', dest: 'Butterworth' },
+        { id: 'n6', name: 'KTM Northern Express 3110', dep: '16:00', arr: '17:15', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 95, status: 'ontime', delayText: '', platform: '1', origin: 'Butterworth', dest: 'Padang Besar' },
+        { id: 'n13', name: 'KTM Northern Express 3109', dep: '17:45', arr: '19:00', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 88, status: 'ontime', delayText: '', platform: '1', origin: 'Padang Besar', dest: 'Butterworth' },
+        { id: 'n7', name: 'KTM Northern Express 3112', dep: '19:30', arr: '20:45', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 70, status: 'ontime', delayText: '', platform: '2', origin: 'Butterworth', dest: 'Padang Besar' },
+        { id: 'n14', name: 'KTM Northern Express 3111', dep: '20:45', arr: '22:00', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 82, status: 'ontime', delayText: '', platform: '2', origin: 'Padang Besar', dest: 'Butterworth' },
+        { id: 'n8', name: 'KTM Northern Express 3118', dep: '22:00', arr: '23:15', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 75, status: 'ontime', delayText: '', platform: '1', origin: 'Butterworth', dest: 'Padang Besar' },
+        { id: 'n15', name: 'KTM Northern Express 3113', dep: '23:30', arr: '00:45', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 85, status: 'ontime', delayText: '', platform: '1', origin: 'Padang Besar', dest: 'Butterworth' },
+        { id: 'n9', name: 'KTM Northern Express 3116', dep: '00:30', arr: '01:45', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 90, status: 'ontime', delayText: '', platform: '2', origin: 'Butterworth', dest: 'Padang Besar' },
+        { id: 'n16', name: 'KTM Northern Express 3115', dep: '00:30', arr: '01:45', duration: '1h 15m', basePrice: 11.20, platinum: false, seatsAvail: 80, status: 'ontime', delayText: '', platform: '1', origin: 'Padang Besar', dest: 'Butterworth' }
+      ]
+    };
+
+    function loadSearchParameters() {
+      const q = localStorage.getItem('kits_search_query');
+      if (!q) {
+        showToast(t('alert-no-search', 'No search query found. Redirecting to home...'), 'error');
+        setTimeout(() => window.location.href = 'index.html', 1500);
+        return;
+      }
+      searchQuery = JSON.parse(q);
+
+      // Update Summary Bar
+      document.getElementById('sum-origin').textContent = searchQuery.originText.split(' (')[0];
+      document.getElementById('sum-dest').textContent = searchQuery.destText.split(' (')[0];
+      let dateText = formatDateString(searchQuery.departDate);
+      if (searchQuery.tripType === 'roundtrip' && searchQuery.returnDate) {
+        dateText += ` ⇄ ${formatDateString(searchQuery.returnDate)}`;
+      }
+      document.getElementById('sum-date').textContent = dateText;
+
+      let paxNum = parseInt(searchQuery.passengersVal);
+      if (isNaN(paxNum)) paxNum = 1;
+      if (searchQuery.passengersText) {
+        document.getElementById('sum-passengers').textContent = searchQuery.passengersText;
+      } else {
+        document.getElementById('sum-passengers').textContent = `${paxNum} ${paxNum > 1 ? t('passenger-plural-label', 'Passengers') : t('passenger-singular-label', 'Passenger')}`;
+      }
+      document.getElementById('sum-service').textContent = searchQuery.serviceType;
+
+      // Update Sidebar Summary
+      document.getElementById('side-route').textContent = `${searchQuery.originText.split(' (')[0]} ${t('route-to', 'to')} ${searchQuery.destText.split(' (')[0]}`;
+      document.getElementById('side-date').textContent = formatDateString(searchQuery.departDate) + (searchQuery.tripType === 'roundtrip' ? ` - ${t('widget-label-return', 'Return')}: ${formatDateString(searchQuery.returnDate)}` : '');
+
+      renderTrainList();
+    }
+
+    function formatDateString(dateStr) {
+      if (!dateStr) return '';
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('en-MY', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+
+    function getPassengerCount() {
+      if (!searchQuery) return 1;
+      const adults = searchQuery.adults !== undefined ? parseInt(searchQuery.adults) : (parseInt(searchQuery.passengersVal) || 1);
+      const children = searchQuery.children !== undefined ? parseInt(searchQuery.children) : 0;
+      return adults + children;
+    }
+
+    // Step navigation helper
+    function goToStep(step) {
+      if (step < 1 || step > 3) return;
+
+      checkUserSession(); // Ensure fresh user session state
+
+      // Validation before moving forward
+      if (step === 2) {
+        const train = currentPhase === 'return' ? selectedReturnTrain : selectedTrain;
+        if (!train) {
+          showToast(t('booking-select-train-alert', 'Please select a train first.'), 'error');
+          return;
+        }
+      }
+      if (step === 3) {
+        // Enforce gender restrictions on transition to Step 3
+        if (isLoggedIn && currentUser && !checkGenderRestrictions()) {
+          // Clear restricted selections
+          selectedSeats = [];
+          selectedReturnSeats = [];
+          updateActiveLocks();
+          renderSeatMap();
+          updateSidebarDetails();
+          updatePricingSummary();
+
+          const currentLang = localStorage.getItem('kits_lang') || 'en';
+          const msgEn = "Your selected seats/coaches violate gender restrictions.";
+          const msgBm = "Koc/tempat duduk yang anda pilih melanggar sekatan jantina.";
+          showToast(currentLang === 'bm' ? msgBm : msgEn, 'error');
+          return;
+        }
+
+        const requiredCount = getPassengerCount();
+
+        if (currentPhase === 'outbound') {
+          const outboundSeatsValid = selectedSeats.length === requiredCount;
+          if (!outboundSeatsValid) {
+            showToast(t('booking-confirm-seats-alert', 'Please select {count} seat(s) first.').replace('{count}', requiredCount), 'error');
+            return;
+          }
+
+          // Validate occupancy for outbound seats
+          const outboundOccupied = getOccupiedSeats(selectedTrain.name, formatDateString(searchQuery.departDate), activeCoach);
+          const outboundConflict = selectedSeats.filter(seat => outboundOccupied.includes(seat));
+          if (outboundConflict.length > 0) {
+            outboundConflict.forEach(seat => {
+              const idx = selectedSeats.indexOf(seat);
+              if (idx > -1) selectedSeats.splice(idx, 1);
+            });
+            renderSeatMap();
+            updateSidebarDetails();
+            updatePricingSummary();
+            const currentLang = localStorage.getItem('kits_lang') || 'en';
+            const msgEn = `Seat(s) ${outboundConflict.join(', ')} have just been booked by another user. Please choose another seat.`;
+            const msgBm = `Tempat duduk ${outboundConflict.join(', ')} telah ditempah oleh pengguna lain. Sila pilih tempat duduk lain.`;
+            showToast(currentLang === 'bm' ? msgBm : msgEn, 'error');
+            return;
+          }
+        } else {
+          const returnSeatsValid = selectedReturnSeats.length === requiredCount;
+          if (!returnSeatsValid) {
+            showToast(t('booking-confirm-seats-alert', 'Please select {count} seat(s) first.').replace('{count}', requiredCount), 'error');
+            return;
+          }
+
+          // Validate occupancy for return seats
+          const returnOccupied = getOccupiedSeats(selectedReturnTrain.name, formatDateString(searchQuery.returnDate), activeReturnCoach);
+          const returnConflict = selectedReturnSeats.filter(seat => returnOccupied.includes(seat));
+          if (returnConflict.length > 0) {
+            returnConflict.forEach(seat => {
+              const idx = selectedReturnSeats.indexOf(seat);
+              if (idx > -1) selectedReturnSeats.splice(idx, 1);
+            });
+            renderSeatMap();
+            updateSidebarDetails();
+            updatePricingSummary();
+            const currentLang = localStorage.getItem('kits_lang') || 'en';
+            const msgEn = `Seat(s) ${returnConflict.join(', ')} have just been booked by another user. Please choose another seat.`;
+            const msgBm = `Tempat duduk ${returnConflict.join(', ')} telah ditempah oleh pengguna lain. Sila pilih tempat duduk lain.`;
+            showToast(currentLang === 'bm' ? msgBm : msgEn, 'error');
+            return;
+          }
+        }
+
+        if (searchQuery && searchQuery.tripType === 'roundtrip' && currentPhase === 'outbound') {
+          // Transition: Outbound seats confirmed -> Move to Return Train Selection
+          currentPhase = 'return';
+          selectedReturnTrain = null;
+          selectedReturnSeats = [];
+          activeReturnCoach = 'A';
+
+          // Reset time filter to 'all' and update active filter button UI
+          activeTimeFilter = 'all';
+          document.querySelectorAll('.time-filter-btn').forEach(b => b.classList.remove('active'));
+          const allBtn = document.querySelector('.time-filter-btn[data-time="all"]');
+          if (allBtn) allBtn.classList.add('active');
+
+          updateSidebarDetails();
+          goToStep(1);
+          return;
+        }
+      }
+
+      // If going back to step 1, reset current phase train & seats
+      if (step === 1) {
+        if (currentPhase === 'return') {
+          selectedReturnTrain = null;
+          selectedReturnSeats = [];
+        } else {
+          selectedTrain = null;
+          selectedSeats = [];
+          selectedReturnTrain = null;
+          selectedReturnSeats = [];
+        }
+        updateSidebarDetails();
+        updateActiveLocks();
+      }
+
+      currentStep = step;
+
+      // Update Progress Step circles classes
+      for (let i = 1; i <= 3; i++) {
+        const progCircle = document.getElementById(`prog-step-${i}`);
+        const progLine = document.getElementById(`prog-line-${i}`);
+
+        if (i < step) {
+          progCircle.className = 'progress-step completed';
+        } else if (i === step) {
+          progCircle.className = 'progress-step active';
+        } else {
+          progCircle.className = 'progress-step';
+        }
+
+        if (progLine) {
+          progLine.className = i < step ? 'progress-line completed' : 'progress-line';
+        }
+      }
+
+      // Update progress labels dynamically for round trips
+      const progStep1Label = document.querySelector('#prog-step-1 .step-label');
+      const progStep2Label = document.querySelector('#prog-step-2 .step-label');
+
+      if (progStep1Label) {
+        if (searchQuery && searchQuery.tripType === 'roundtrip') {
+          progStep1Label.textContent = `${t('booking-step-select-train', 'Select Train')} (${currentPhase === 'return' ? t('booking-return-label', 'Return') : t('booking-outbound-label', 'Outbound')})`;
+        } else {
+          progStep1Label.textContent = t('booking-step-select-train', 'Select Train');
+        }
+      }
+
+      if (progStep2Label) {
+        if (searchQuery && searchQuery.tripType === 'roundtrip') {
+          progStep2Label.textContent = `${t('booking-step-select-seats', 'Select Seats')} (${currentPhase === 'return' ? t('booking-return-label', 'Return') : t('booking-outbound-label', 'Outbound')})`;
+        } else {
+          progStep2Label.textContent = t('booking-step-select-seats', 'Select Seats');
+        }
+      }
+
+      // Update Section Titles dynamically
+      const step1Title = document.querySelector('#step-section-1 .section-title');
+      const step1Subtitle = document.querySelector('#step-section-1 .section-subtitle');
+      if (step1Title && step1Subtitle) {
+        if (currentPhase === 'return') {
+          step1Title.setAttribute('data-translate', 'booking-trains-title-return');
+          step1Title.textContent = t('booking-trains-title-return', 'Available Return Trains');
+          step1Subtitle.setAttribute('data-translate', 'booking-trains-subtitle-return');
+          step1Subtitle.textContent = t('booking-trains-subtitle-return', 'Please select a train for your return journey.');
+        } else {
+          step1Title.setAttribute('data-translate', 'booking-trains-title');
+          step1Title.textContent = t('booking-trains-title', 'Available Trains');
+          step1Subtitle.setAttribute('data-translate', 'booking-trains-subtitle');
+          step1Subtitle.textContent = t('booking-trains-subtitle', 'Please select a train for your departure journey.');
+        }
+      }
+
+      const step2Title = document.querySelector('#step-section-2 .section-title');
+      const step2Subtitle = document.querySelector('#step-section-2 .section-subtitle');
+      if (step2Title && step2Subtitle) {
+        if (currentPhase === 'return') {
+          step2Title.setAttribute('data-translate', 'booking-seats-title-return');
+          step2Title.textContent = t('booking-seats-title-return', 'Select Return Seats');
+          step2Subtitle.setAttribute('data-translate', 'booking-seats-subtitle-return');
+          step2Subtitle.textContent = t('booking-seats-subtitle-return', 'Choose your preferred coach and seat layout for the return journey.');
+        } else {
+          step2Title.setAttribute('data-translate', 'booking-seats-title');
+          step2Title.textContent = t('booking-seats-title', 'Select Seats');
+          step2Subtitle.setAttribute('data-translate', 'booking-seats-subtitle');
+          step2Subtitle.textContent = t('booking-seats-subtitle', 'Choose your preferred coach and seat layout. Aisle is in the middle.');
+        }
+      }
+
+      // Toggle Active Step Sections
+      document.querySelectorAll('.booking-step-section').forEach((section, idx) => {
+        if (idx + 1 === step) {
+          section.classList.add('active');
+        } else {
+          section.classList.remove('active');
+        }
+      });
+
+      // Render step specific inputs
+      if (step === 1) {
+        renderTrainList();
+      } else if (step === 2) {
+        renderSeatMap();
+      } else if (step === 3) {
+        renderPassengerInputs();
+      }
+
+
+
+      updatePricingSummary();
+    }
+
+    let activeTimeFilter = 'all';
+    let activeSortCriteria = 'time';
+
+    function parseDuration(durationStr) {
+      const hMatch = durationStr.match(/(\d+)h/);
+      const mMatch = durationStr.match(/(\d+)m/);
+      const hours = hMatch ? parseInt(hMatch[1]) : 0;
+      const minutes = mMatch ? parseInt(mMatch[1]) : 0;
+      return (hours * 60) + minutes;
+    }
+
+    function initFiltersAndSort() {
+      // Set up time filter buttons click handlers
+      document.querySelectorAll('.time-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.time-filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeTimeFilter = btn.getAttribute('data-time');
+          renderTrainList();
+        });
+      });
+
+      // Set up sort select change handler
+      const sortSelect = document.getElementById('train-sort');
+      if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+          activeSortCriteria = e.target.value;
+          renderTrainList();
+        });
+      }
+    }
+
+    function getMalaysiaTime() {
+      const now = new Date();
+      const utc = now.getTime();
+      const localOffset = now.getTimezoneOffset() * 60000;
+      return new Date(utc + (3600000 * 8) + localOffset);
+    }
+
+    function getDynamicTrainList(service, departDateStr) {
+      if (!departDateStr) return [];
+
+      const baseTrains = trainFares[service] || [];
+
+      // Parse departDateStr as YYYY-MM-DD
+      const [depY, depM, depD] = departDateStr.split('-').map(Number);
+      const departDate = new Date(depY, depM - 1, depD, 0, 0, 0, 0);
+
+      // Get today in Malaysia space
+      const msiaTime = getMalaysiaTime();
+      const today = new Date(msiaTime.getFullYear(), msiaTime.getMonth(), msiaTime.getDate(), 0, 0, 0, 0);
+
+      const diffTime = departDate.getTime() - today.getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      const dayOfWeek = departDate.getDay(); // 0 = Sun, 5 = Fri, 6 = Sat
+      const isWeekend = (dayOfWeek === 0 || dayOfWeek === 5 || dayOfWeek === 6);
+
+      // Calculate a seed from date string to ensure the same date always returns identical results
+      let dateSeed = 0;
+      for (let i = 0; i < departDateStr.length; i++) {
+        dateSeed += departDateStr.charCodeAt(i);
+      }
+
+      let dynamicList = JSON.parse(JSON.stringify(baseTrains));
+
+      // Last-minute booking surcharge (within 3 days)
+      let priceSurcharge = 1.0;
+      if (diffDays <= 3 && diffDays >= 0) {
+        priceSurcharge = 1.15; // 15% increase
+      }
+
+      dynamicList.forEach((train, idx) => {
+        // Apply pricing surcharge
+        train.basePrice = parseFloat((train.basePrice * priceSurcharge).toFixed(2));
+
+        // Dynamic seat counts
+        if (diffDays <= 1 && diffDays >= 0) {
+          train.seatsAvail = (dateSeed + idx) % 5 + 2; // 2 to 6 seats left
+        } else if (diffDays <= 4 && diffDays >= 0) {
+          train.seatsAvail = (dateSeed + idx) % 11 + 5; // 5 to 15 seats left
+        } else {
+          train.seatsAvail = (dateSeed + idx) % 45 + 15; // 15 to 60 seats left
+        }
+
+        // Dynamic delays based on seed
+        const delayCheck = (dateSeed + idx) % 4;
+        if (delayCheck === 0) {
+          train.status = 'delayed';
+          train.delayText = ((dateSeed + idx) % 3 + 1) * 10 + 'm'; // 10m, 20m, or 30m
+        } else {
+          train.status = 'ontime';
+          train.delayText = '';
+        }
+      });
+
+      // Weekend Schedules (extra train services)
+      if (isWeekend) {
+        if (service === 'ETS & Intercity') {
+          dynamicList.push({
+            id: 't_extra_weekend',
+            name: 'ETS Business Class Extra 9199',
+            dep: '13:00',
+            arr: '15:20',
+            duration: '2h 20m',
+            basePrice: parseFloat((75.00 * priceSurcharge).toFixed(2)),
+            platinum: true,
+            seatsAvail: diffDays <= 2 ? 3 : 18,
+            status: 'ontime',
+            delayText: '',
+            platform: '5',
+            origin: 'KL Sentral',
+            dest: 'Butterworth'
+          });
+        } else if (service === 'Komuter Klang Valley') {
+          dynamicList.push({
+            id: 'c_extra_weekend',
+            name: 'Komuter Weekend Special 2099',
+            dep: '12:00',
+            arr: '13:20',
+            duration: '1h 20m',
+            basePrice: parseFloat((8.50 * priceSurcharge).toFixed(2)),
+            platinum: false,
+            seatsAvail: 150,
+            status: 'ontime',
+            delayText: '',
+            platform: '1',
+            origin: 'Batu Caves',
+            dest: 'Pulau Sebang'
+          });
+        }
+      }
+
+      return dynamicList;
+    }
+
+    // Route stop sequences for each service
+    const routeSequences = {
+      'ETS & Intercity': [
+        ['Padang Besar', 'Arau', 'Alor Setar', 'Sungai Petani', 'Butterworth', 'Ipoh', 'Tapah Road', 'Tanjung Malim', 'KL Sentral'],
+        ['KL Sentral', 'Seremban', 'Gemas', 'Kluang', 'JB Sentral']
+      ],
+      'Komuter Klang Valley': [
+        ['Batu Caves', 'Sentul', 'Putra', 'Bank Negara', 'KL Sentral', 'Midvalley', 'Seputeh', 'Salak Selatan', 'Bandar Tasik Selatan', 'Serdang', 'Kajang', 'UKM', 'Nilai', 'Labu', 'Tiroi', 'Pulau Sebang']
+      ],
+      'Komuter Northern': [
+        ['Butterworth', 'Bukit Tengah', 'Bukit Mertajam', 'Arau', 'Padang Besar']
+      ]
+    };
+
+    // Return the full corridor route containing searchOrigin and searchDest, oriented in travel direction
+    function getFullServiceRoute(searchOrigin, searchDest, service) {
+      const serviceOrder = [service, ...Object.keys(routeSequences).filter(s => s !== service)];
+      for (const svc of serviceOrder) {
+        const seqs = routeSequences[svc] || [];
+        for (const seq of seqs) {
+          const oIdx = seq.indexOf(searchOrigin);
+          const dIdx = seq.indexOf(searchDest);
+          if (oIdx !== -1 && dIdx !== -1 && oIdx !== dIdx) {
+            if (oIdx < dIdx) {
+              return seq;
+            } else {
+              return [...seq].reverse();
+            }
+          }
+        }
+      }
+      return [searchOrigin, searchDest];
+    }
+
+    // Build route strip HTML for a train card
+    function buildRouteStripHTML(trainItem, service, userOrigin, userDest) {
+      const stops = getFullServiceRoute(userOrigin, userDest, service);
+      if (stops.length <= 2) {
+        // Nothing interesting to show — already visible in the main timeline
+        return '';
+      }
+      let html = '<div class="train-route-strip">';
+
+      const origIdx = stops.indexOf(userOrigin);
+      const destIdx = stops.indexOf(userDest);
+
+      stops.forEach((stop, i) => {
+        const isUserStop = stop === userOrigin || stop === userDest;
+        let cls = 'route-stop';
+        if (isUserStop) {
+          cls += ' user-stop';
+        }
+
+        html += `<div class="${cls}"><div class="route-stop-dot"></div><span class="route-stop-name">${stop}</span></div>`;
+        if (i < stops.length - 1) {
+          let lineCls = 'route-stop-line';
+          if (i >= origIdx && i < destIdx) {
+            lineCls += ' active-segment';
+          }
+          html += `<div class="${lineCls}"></div>`;
+        }
+      });
+      html += '</div>';
+      return html;
+    }
+
+    // Render step 1 train list
+    function renderTrainList() {
+      const trainListContainer = document.getElementById('available-trains-list');
+      if (!trainListContainer) return;
+      trainListContainer.innerHTML = '';
+
+      const service = searchQuery.serviceType;
+
+      const searchOrigin = currentPhase === 'return'
+        ? searchQuery.destText.split(' (')[0].trim()
+        : searchQuery.originText.split(' (')[0].trim();
+      const searchDest = currentPhase === 'return'
+        ? searchQuery.originText.split(' (')[0].trim()
+        : searchQuery.destText.split(' (')[0].trim();
+      const departDateStr = currentPhase === 'return'
+        ? searchQuery.returnDate
+        : searchQuery.departDate;
+
+      // Get all trains across all categories to see if there is any route match
+      let allTrains = [];
+      Object.keys(trainFares).forEach(cat => {
+        allTrains = allTrains.concat(getDynamicTrainList(cat, departDateStr));
+      });
+
+      // Helper function to check if a train covers the searched route as a sub-route
+      function isSubRoute(trainOrigin, trainDest, searchOrigin, searchDest) {
+        const sequences = [
+          // ETS & Intercity — northbound corridor
+          ['KL Sentral', 'Tanjung Malim', 'Tapah Road', 'Ipoh', 'Sungai Petani', 'Butterworth', 'Arau', 'Padang Besar'],
+          ['Padang Besar', 'Arau', 'Butterworth', 'Sungai Petani', 'Ipoh', 'Tapah Road', 'Tanjung Malim', 'KL Sentral'],
+          // ETS & Intercity — southbound corridor
+          ['KL Sentral', 'Seremban', 'Gemas', 'Kluang', 'JB Sentral'],
+          ['JB Sentral', 'Kluang', 'Gemas', 'Seremban', 'KL Sentral'],
+          // Komuter Klang Valley
+          ['Batu Caves', 'Sentul', 'Putra', 'Bank Negara', 'KL Sentral', 'Midvalley', 'Seputeh', 'Salak Selatan', 'Bandar Tasik Selatan', 'Serdang', 'Kajang', 'UKM', 'Nilai', 'Labu', 'Tiroi', 'Pulau Sebang'],
+          ['Pulau Sebang', 'Tiroi', 'Labu', 'Nilai', 'UKM', 'Kajang', 'Serdang', 'Bandar Tasik Selatan', 'Salak Selatan', 'Seputeh', 'Midvalley', 'KL Sentral', 'Bank Negara', 'Putra', 'Sentul', 'Batu Caves'],
+          // Komuter Northern
+          ['Butterworth', 'Bukit Tengah', 'Bukit Mertajam', 'Arau', 'Padang Besar'],
+          ['Padang Besar', 'Arau', 'Bukit Mertajam', 'Bukit Tengah', 'Butterworth']
+        ];
+
+        for (const seq of sequences) {
+          const tOrigIdx = seq.indexOf(trainOrigin);
+          const tDestIdx = seq.indexOf(trainDest);
+          const sOrigIdx = seq.indexOf(searchOrigin);
+          const sDestIdx = seq.indexOf(searchDest);
+
+          if (tOrigIdx !== -1 && tDestIdx !== -1 && sOrigIdx !== -1 && sDestIdx !== -1) {
+            if (tOrigIdx <= sOrigIdx && sOrigIdx < sDestIdx && sDestIdx <= tDestIdx) {
+              return true;
+            }
+          }
+        }
+        return false;
+      }
+
+      const routeMatched = allTrains.filter(t => isSubRoute(t.origin, t.dest, searchOrigin, searchDest));
+
+      let trains;
+      if (routeMatched.length > 0) {
+        trains = routeMatched;
+      } else {
+        // Fallback to selected service type if no exact route exists in database
+        trains = getDynamicTrainList(service, departDateStr);
+      }
+
+      if (trains.length === 0) {
+        trainListContainer.innerHTML = '<p class="section-subtitle">No trains available on this route.</p>';
+        return;
+      }
+
+      // Prepend Back Button if in Return phase
+      if (currentPhase === 'return') {
+        const backBtn = document.createElement('button');
+        backBtn.className = 'btn-cancel';
+        backBtn.style.marginBottom = '20px';
+        backBtn.style.width = 'auto';
+        backBtn.style.display = 'inline-flex';
+        backBtn.style.alignItems = 'center';
+        backBtn.style.gap = '8px';
+        backBtn.innerHTML = `&larr; <span>${t('booking-back-outbound-seats', 'Back to Outbound Seat Selection')}</span>`;
+        backBtn.addEventListener('click', () => {
+          currentPhase = 'outbound';
+          goToStep(2);
+        });
+        trainListContainer.appendChild(backBtn);
+      }
+
+      // --- Filter out trains that have already departed (today only, outbound phase only) ---
+      // For the return phase, NEVER filter by current time — the return date is a separate chosen
+      // date, and all trains (including morning ones) must always be available to select.
+      const msiaNow = getMalaysiaTime();
+      const todayStr = `${msiaNow.getFullYear()}-${String(msiaNow.getMonth() + 1).padStart(2, '0')}-${String(msiaNow.getDate()).padStart(2, '0')}`;
+
+      if (currentPhase !== 'return' && departDateStr === todayStr) {
+        const nowMinutes = msiaNow.getHours() * 60 + msiaNow.getMinutes();
+        trains = trains.filter(trainItem => {
+          const [h, m] = trainItem.dep.split(':').map(Number);
+          const depMinutes = h * 60 + m;
+          // Keep trains departing more than 0 minutes from now
+          return depMinutes > nowMinutes;
+        });
+
+        // Set status to 'boarding' if estimated departure is within 15 minutes in the future
+        trains.forEach(trainItem => {
+          const [h, m] = trainItem.dep.split(':').map(Number);
+          let delayMins = 0;
+          if (trainItem.status === 'delayed' && trainItem.delayText) {
+            delayMins = parseInt(trainItem.delayText) || 0;
+          }
+          let estMin = m + delayMins;
+          let estHour = h;
+          if (estMin >= 60) {
+            estHour += Math.floor(estMin / 60);
+            estMin = estMin % 60;
+          }
+          const estMinutes = estHour * 60 + estMin;
+          if (estMinutes - nowMinutes <= 15) {
+            trainItem.status = 'boarding';
+            trainItem.delayText = '';
+          }
+        });
+
+        if (trains.length === 0) {
+          trainListContainer.innerHTML = `<p class="section-subtitle" style="text-align:center;padding:40px 10px;">
+            <span style="font-size:2rem;display:block;margin-bottom:12px;">🚉</span>
+            ${t('booking-no-more-trains', 'No more trains available for today. Please select a future date.')}
+          </p>`;
+          return;
+        }
+      }
+
+      // Filter trains
+      let filteredTrains = trains.filter(trainItem => {
+        if (activeTimeFilter === 'all') return true;
+
+        // dep is in HH:MM format (e.g. "08:00")
+        const hour = parseInt(trainItem.dep.split(':')[0]);
+
+        if (activeTimeFilter === 'morning') {
+          return hour >= 6 && hour < 12;
+        } else if (activeTimeFilter === 'afternoon') {
+          return hour >= 12 && hour < 17;
+        } else if (activeTimeFilter === 'night') {
+          return hour >= 17 || hour < 6;
+        }
+        return true;
+      });
+
+      // Sort trains
+      filteredTrains.sort((a, b) => {
+        if (activeSortCriteria === 'time') {
+          const timeA = parseInt(a.dep.replace(':', ''));
+          const timeB = parseInt(b.dep.replace(':', ''));
+          return timeA - timeB;
+        } else if (activeSortCriteria === 'price') {
+          return a.basePrice - b.basePrice;
+        } else if (activeSortCriteria === 'duration') {
+          return parseDuration(a.duration) - parseDuration(b.duration);
+        }
+        return 0;
+      });
+
+      if (filteredTrains.length === 0) {
+        trainListContainer.innerHTML = `<p class="section-subtitle" style="text-align: center; padding: 35px 10px;">${t('booking-no-trains-filtered', 'No trains matching the selected filters.')}</p>`;
+        return;
+      }
+
+      const userOrigin = currentPhase === 'return'
+        ? searchQuery.destText.split(' (')[0].trim()
+        : searchQuery.originText.split(' (')[0].trim();
+      const userDest = currentPhase === 'return'
+        ? searchQuery.originText.split(' (')[0].trim()
+        : searchQuery.destText.split(' (')[0].trim();
+
+      filteredTrains.forEach(trainItem => {
+        const card = document.createElement('div');
+        const isSelected = currentPhase === 'return'
+          ? (selectedReturnTrain && selectedReturnTrain.id === trainItem.id)
+          : (selectedTrain && selectedTrain.id === trainItem.id);
+        card.className = `train-card ${isSelected ? 'selected' : ''}`;
+        const routeStripHTML = buildRouteStripHTML(trainItem, service, userOrigin, userDest);
+        card.innerHTML = `
+          <div class="train-card-main">
+            <div class="train-card-left">
+              <span class="train-class-badge ${trainItem.platinum ? 'platinum' : 'gold'}">${trainItem.platinum ? 'PLATINUM' : 'GOLD'}</span>
+              <strong class="train-name">${trainItem.name}</strong>
+              <div style="font-size: 11px; color: var(--gray-600); margin-top: 4px; font-weight: 700; text-transform: uppercase;">
+                Platform ${trainItem.platform}
+              </div>
+              <div class="live-status-badge ${trainItem.status}">
+                <span class="live-status-pulse"></span>
+                <span>${t('status-' + trainItem.status, trainItem.status)} ${trainItem.delayText ? '(' + trainItem.delayText + ')' : ''}</span>
+              </div>
+            </div>
+            <div class="train-timeline">
+              <div class="timeline-station">
+                <strong>${trainItem.dep}</strong>
+                <span>${currentPhase === 'return' ? searchQuery.destText.split(' (')[0] : searchQuery.originText.split(' (')[0]}</span>
+              </div>
+              <div class="timeline-duration">
+                <span>${trainItem.duration}</span>
+                <div class="duration-arrow"></div>
+              </div>
+              <div class="timeline-station">
+                <strong>${trainItem.arr}</strong>
+                <span>${currentPhase === 'return' ? searchQuery.originText.split(' (')[0] : searchQuery.destText.split(' (')[0]}</span>
+              </div>
+            </div>
+            <div class="train-pricing-action">
+              <div class="price-block">
+                <span style="font-size: 11px; color: var(--gray-600); text-transform: uppercase; font-weight: 700;">${t('label-from', 'From')}</span>
+                <span class="train-price">RM ${trainItem.basePrice.toFixed(2)}</span>
+              </div>
+              <button class="btn-save select-train-btn" data-id="${trainItem.id}">${t('label-select', 'Select')}</button>
+            </div>
+          </div>
+          ${routeStripHTML}
+        `;
+        trainListContainer.appendChild(card);
+      });
+
+      // Add click handlers for buttons
+      trainListContainer.querySelectorAll('.select-train-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          // Search in filteredTrains first, fall back to full trains list
+          const chosen = filteredTrains.find(trainItem => trainItem.id === id)
+            || trains.find(trainItem => trainItem.id === id);
+
+          if (currentPhase === 'return') {
+            selectedReturnTrain = chosen;
+            selectedReturnSeats = [];
+            activeReturnCoach = 'A';
+          } else {
+            selectedTrain = chosen;
+            selectedSeats = [];
+            activeCoach = 'A';
+          }
+
+          updateSidebarDetails();
+
+          // Move to Step 2
+          goToStep(2);
+        });
+      });
+    }
+
+    // Render step 2 seat selector
+    function renderSeatMap() {
+      const grid = document.getElementById('train-seat-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      const phaseCoach = currentPhase === 'return' ? activeReturnCoach : activeCoach;
+      const phaseSeats = currentPhase === 'return' ? selectedReturnSeats : selectedSeats;
+
+      const isSingleCoach = (phaseCoach === 'A');
+      if (isSingleCoach) {
+        grid.classList.add('single-layout');
+      } else {
+        grid.classList.remove('single-layout');
+      }
+
+      const train = currentPhase === 'return' ? selectedReturnTrain : selectedTrain;
+      const date = currentPhase === 'return' ? searchQuery.returnDate : searchQuery.departDate;
+      const isETS = train ? isETSTrain(train.name) : false;
+      const currentLang = localStorage.getItem('kits_lang') || 'en';
+
+      // Sync the coach tabs UI
+      document.querySelectorAll('.coach-tab').forEach(tab => {
+        const coach = tab.getAttribute('data-coach');
+        if (tab.getAttribute('data-coach') === phaseCoach) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+
+        // KTM Coach E and F are ladies coaches
+        if (!isETS && (coach === 'E' || coach === 'F')) {
+          tab.classList.add('ladies-coach-tab');
+          tab.innerHTML = `${currentLang === 'bm' ? 'Koc' : 'Coach'} ${coach} <span style="font-size: 14px;">🚺</span>`;
+        } else {
+          tab.classList.remove('ladies-coach-tab');
+          tab.innerHTML = `${currentLang === 'bm' ? 'Koc' : 'Coach'} ${coach}`;
+        }
+      });
+
+      // Toggle warning/info banner
+      let banner = document.getElementById('coach-info-banner');
+      const isLadiesCoach = !isETS && (phaseCoach === 'E' || phaseCoach === 'F');
+
+      if (isLadiesCoach || isETS) {
+        if (!banner) {
+          banner = document.createElement('div');
+          banner.id = 'coach-info-banner';
+          grid.parentNode.insertBefore(banner, grid);
+        }
+        banner.className = 'coach-info-banner ' + (isLadiesCoach ? 'ladies-banner' : 'ets-banner');
+        if (isLadiesCoach) {
+          banner.innerHTML = currentLang === 'bm'
+            ? `<span>🚺 Koc Perempuan (Ladies Coach) - Khas untuk penumpang wanita sahaja.</span>`
+            : `<span>🚺 Ladies Coach (Koc Perempuan) - Exclusively for female passengers only.</span>`;
+        } else {
+          banner.innerHTML = currentLang === 'bm'
+            ? `<span>ℹ️ Tren ETS: Susunan tempat duduk tertentu dikhaskan untuk Lelaki (L) atau Perempuan (P).</span>`
+            : `<span>ℹ️ ETS Train: Specific seats are designated for Male (M) or Female (F) passengers.</span>`;
+        }
+      } else {
+        if (banner) {
+          banner.remove();
+        }
+      }
+
+      // Add dynamic legends for ETS gender seats
+      const header = document.querySelector('.seat-map-header');
+      if (header) {
+        const existingGenderLegends = header.querySelectorAll('.legend-item-gender');
+        existingGenderLegends.forEach(el => el.remove());
+
+        if (isETS) {
+          const maleLegend = document.createElement('div');
+          maleLegend.className = 'legend-item legend-item-gender';
+          maleLegend.innerHTML = `<span class="legend-box seat-avail male-seat-legend" style="border: 1px solid #93c5fd; background: #eff6ff;"></span> <span>${currentLang === 'bm' ? 'Lelaki ♂' : 'Male ♂'}</span>`;
+
+          const femaleLegend = document.createElement('div');
+          femaleLegend.className = 'legend-item legend-item-gender';
+          femaleLegend.innerHTML = `<span class="legend-box seat-avail female-seat-legend" style="border: 1px solid #fbcfe8; background: #fdf2f8;"></span> <span>${currentLang === 'bm' ? 'Perempuan ♀' : 'Female ♀'}</span>`;
+
+          header.appendChild(maleLegend);
+          header.appendChild(femaleLegend);
+        }
+      }
+
+      // Generate 10 rows of seats
+      // Get dynamically occupied seats from local storage
+      if (train && date) {
+        seedDefaultBookings(train.name, formatDateString(date));
+      }
+      const occupiedSeats = getOccupiedSeats(train ? train.name : '', date ? formatDateString(date) : '', phaseCoach);
+
+      for (let r = 1; r <= 10; r++) {
+        const letters = isSingleCoach ? ['A', 'B', 'C'] : ['A', 'B', 'C', 'D'];
+
+        letters.forEach((l, index) => {
+          if (index === 2) {
+            // Aisle spacer
+            const aisle = document.createElement('div');
+            aisle.className = 'seat-aisle';
+            grid.appendChild(aisle);
+          }
+
+          const seatId = `${l}${r}`;
+          const isOccupied = occupiedSeats.includes(seatId);
+          const isSelected = phaseSeats.includes(seatId);
+
+          const seatDiv = document.createElement('div');
+          let classNames = 'seat-node';
+          let displayId = seatId;
+
+          if (isETS) {
+            const gender = getETSSeatGender(seatId);
+            if (gender === 'male') {
+              classNames += ' male-seat';
+              displayId = `${seatId} <span style="font-size:9px; vertical-align:middle; margin-left:1px;">♂</span>`;
+            } else if (gender === 'female') {
+              classNames += ' female-seat';
+              displayId = `${seatId} <span style="font-size:9px; vertical-align:middle; margin-left:1px;">♀</span>`;
+            }
+          }
+
+          classNames += ` ${isOccupied ? 'occupied' : 'available'} ${isSelected ? 'selected' : ''}`;
+          seatDiv.className = classNames;
+          seatDiv.innerHTML = displayId;
+
+          if (!isOccupied) {
+            seatDiv.addEventListener('click', () => toggleSeatSelection(seatId));
+          }
+
+          grid.appendChild(seatDiv);
+        });
+      }
+    }
+
+    function toggleSeatSelection(seatId) {
+      // Check if seat violates gender restrictions for logged-in user
+      if (isLoggedIn && currentUser) {
+        const train = currentPhase === 'return' ? selectedReturnTrain : selectedTrain;
+        const coach = currentPhase === 'return' ? activeReturnCoach : activeCoach;
+        const isETS = train ? isETSTrain(train.name) : false;
+        const gender = currentUser.gender;
+        const currentLang = localStorage.getItem('kits_lang') || 'en';
+
+        // KTM Ladies Coach restriction
+        if (!isETS && (coach === 'E' || coach === 'F') && gender === 'Male') {
+          const msgEn = "You cannot select a seat in a Ladies Coach.";
+          const msgBm = "Anda tidak boleh memilih tempat duduk di Koc Perempuan.";
+          showToast(currentLang === 'bm' ? msgBm : msgEn, 'error');
+          return;
+        }
+
+        // ETS gender seat restriction
+        if (isETS) {
+          const seatGender = getETSSeatGender(seatId);
+          if (seatGender === 'male' && gender === 'Female') {
+            const msgEn = "This seat is reserved for male passengers.";
+            const msgBm = "Tempat duduk ini dikhaskan untuk penumpang lelaki.";
+            showToast(currentLang === 'bm' ? msgBm : msgEn, 'error');
+            return;
+          }
+          if (seatGender === 'female' && gender === 'Male') {
+            const msgEn = "This seat is reserved for female passengers.";
+            const msgBm = "Tempat duduk ini dikhaskan untuk penumpang wanita.";
+            showToast(currentLang === 'bm' ? msgBm : msgEn, 'error');
+            return;
+          }
+        }
+      }
+
+      const maxSeats = getPassengerCount();
+      const seatsArr = currentPhase === 'return' ? selectedReturnSeats : selectedSeats;
+      const index = seatsArr.indexOf(seatId);
+
+      if (index > -1) {
+        seatsArr.splice(index, 1);
+      } else {
+        const requiredSeats = currentPhase === 'return' ? selectedReturnSeats : selectedSeats;
+        if (requiredSeats.length >= maxSeats) {
+          showToast(t('alert-max-seats', 'You can only select up to {count} seat(s) for this booking.').replace('{count}', maxSeats), 'error');
+          return;
+        }
+        seatsArr.push(seatId);
+      }
+
+      // Re-render Seat Map
+      renderSeatMap();
+
+      // Update active locks in localStorage
+      updateActiveLocks();
+
+      // Update Sidebar details
+      updateSidebarDetails();
+
+      updatePricingSummary();
+    }
+
+    // Coach tabs selection
+    document.querySelectorAll('.coach-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.coach-tab').forEach(el => el.classList.remove('active'));
+        tab.classList.add('active');
+        const coach = tab.getAttribute('data-coach');
+
+        if (currentPhase === 'return') {
+          activeReturnCoach = coach;
+          selectedReturnSeats = [];
+        } else {
+          activeCoach = coach;
+          selectedSeats = [];
+        }
+
+        // Update active locks in localStorage
+        updateActiveLocks();
+
+        renderSeatMap();
+        updateSidebarDetails();
+        updatePricingSummary();
+      });
+    });
+
+    const btnConfirmSeats = document.getElementById('btn-confirm-seats');
+    if (btnConfirmSeats) {
+      btnConfirmSeats.addEventListener('click', () => {
+        goToStep(3);
+      });
+    }
+
+    function updateSidebarDetails() {
+      // Outbound details
+      const sideOutboundBlock = document.getElementById('side-outbound-details');
+      if (selectedTrain) {
+        if (sideOutboundBlock) sideOutboundBlock.style.display = 'block';
+        const trainNameEl = document.getElementById('side-train-name');
+        const trainTimeEl = document.getElementById('side-train-time');
+        const seatsListEl = document.getElementById('side-seats-list');
+
+        if (trainNameEl) trainNameEl.textContent = selectedTrain.name;
+
+        let timeText = `${selectedTrain.dep} - ${selectedTrain.arr} (${selectedTrain.duration})`;
+        if (selectedTrain.status === 'delayed' && selectedTrain.delayText) {
+          timeText += ` - ${t('status-delayed', 'Delayed')} (${selectedTrain.delayText})`;
+        }
+        if (trainTimeEl) trainTimeEl.textContent = timeText;
+
+        if (seatsListEl) {
+          if (selectedSeats.length > 0) {
+            seatsListEl.textContent = `${activeCoach} - ${selectedSeats.join(`, ${activeCoach} - `)}`;
+          } else {
+            seatsListEl.textContent = t('bookings-empty', 'None');
+          }
+        }
+      } else {
+        if (sideOutboundBlock) sideOutboundBlock.style.display = 'none';
+      }
+
+      // Return details
+      const sideReturnBlock = document.getElementById('side-return-details');
+      if (searchQuery && searchQuery.tripType === 'roundtrip' && selectedReturnTrain) {
+        if (sideReturnBlock) sideReturnBlock.style.display = 'block';
+        const trainNameEl = document.getElementById('side-return-train-name');
+        const trainTimeEl = document.getElementById('side-return-train-time');
+        const seatsListEl = document.getElementById('side-return-seats-list');
+
+        if (trainNameEl) trainNameEl.textContent = selectedReturnTrain.name;
+
+        let timeText = `${selectedReturnTrain.dep} - ${selectedReturnTrain.arr} (${selectedReturnTrain.duration})`;
+        if (selectedReturnTrain.status === 'delayed' && selectedReturnTrain.delayText) {
+          timeText += ` - ${t('status-delayed', 'Delayed')} (${selectedReturnTrain.delayText})`;
+        }
+        if (trainTimeEl) trainTimeEl.textContent = timeText;
+
+        if (seatsListEl) {
+          if (selectedReturnSeats.length > 0) {
+            seatsListEl.textContent = `${activeReturnCoach} - ${selectedReturnSeats.join(`, ${activeReturnCoach} - `)}`;
+          } else {
+            seatsListEl.textContent = t('bookings-empty', 'None');
+          }
+        }
+      } else {
+        if (sideReturnBlock) sideReturnBlock.style.display = 'none';
+      }
+    }
+
+    // Update Pricing Breakdown details
+    function updatePricingSummary() {
+      const priceBlock = document.getElementById('side-price-breakdown');
+      if (!selectedTrain && !selectedReturnTrain) {
+        // Hide the price block if no train selected yet
+        if (priceBlock) priceBlock.style.display = 'none';
+        return;
+      }
+
+      // Read adults and children count from searchQuery
+      const query = searchQuery || { adults: 1, children: 0 };
+      const adults = query.adults !== undefined ? parseInt(query.adults) : (parseInt(query.passengersVal) || 1);
+      const children = query.children !== undefined ? parseInt(query.children) : 0;
+
+      let adultOutboundFare = selectedTrain ? selectedTrain.basePrice : 0;
+      let childOutboundFare = selectedTrain ? selectedTrain.basePrice * 0.5 : 0;
+
+      let adultReturnFare = (selectedReturnTrain && query.tripType === 'roundtrip') ? selectedReturnTrain.basePrice : 0;
+      let childReturnFare = (selectedReturnTrain && query.tripType === 'roundtrip') ? selectedReturnTrain.basePrice * 0.5 : 0;
+
+      const totalAdultFare = (adultOutboundFare + adultReturnFare) * adults;
+      const totalChildFare = (childOutboundFare + childReturnFare) * children;
+
+      const baseFare = totalAdultFare + totalChildFare;
+      const tax = baseFare * 0.06;
+      const total = baseFare + tax;
+
+      // Show and update Sidebar fields
+      if (priceBlock) {
+        priceBlock.style.display = 'block';
+
+        let breakdownHTML = '';
+        const adultLabel = adults > 1 ? t('pax-adults-label', 'Adults') : t('passenger-singular-label', 'Adult');
+        const childLabel = children > 1 ? t('pax-children-label', 'Children') : t('pax-type-child', 'Child');
+
+        breakdownHTML += `
+          <div class="price-row">
+            <span>${adults} x ${adultLabel}</span>
+            <span>RM ${totalAdultFare.toFixed(2)}</span>
+          </div>
+        `;
+
+        if (children > 0) {
+          breakdownHTML += `
+            <div class="price-row">
+              <span>${children} x ${childLabel} (50% Off)</span>
+              <span>RM ${totalChildFare.toFixed(2)}</span>
+            </div>
+          `;
+        }
+
+        breakdownHTML += `
+          <div class="price-row">
+            <span data-translate="booking-sidebar-sst">${t('booking-sidebar-sst', 'SST (6%)')}</span>
+            <span>RM ${tax.toFixed(2)}</span>
+          </div>
+          <hr class="dropdown-divider" style="margin: 8px 0; border-color: rgba(255,255,255,0.1);">
+          <div class="price-row total">
+            <span data-translate="booking-sidebar-total">${t('booking-sidebar-total', 'Total Fare')}</span>
+            <span id="side-total-price">RM ${total.toFixed(2)}</span>
+          </div>
+          <!-- Hidden spans to maintain compatibility with DOM readers -->
+          <span id="side-base-price" style="display: none;">RM ${baseFare.toFixed(2)}</span>
+          <span id="side-tax" style="display: none;">RM ${tax.toFixed(2)}</span>
+        `;
+
+        priceBlock.innerHTML = breakdownHTML;
+      }
+
+      // Update Pay button fare
+      const btnTotal = document.getElementById('btn-total-fare');
+      if (btnTotal) btnTotal.textContent = total.toFixed(2);
+    }
+
+    // Render step 3 passenger detail inputs dynamically based on count
+    function renderPassengerInputs() {
+      const container = document.getElementById('dynamic-passenger-fields');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const count = getPassengerCount();
+
+      // Attempt to load current user details
+      const primaryUser = currentUser || null;
+      // Load other saved passengers
+      const savedPassengers = JSON.parse(localStorage.getItem('kits_passengers') || '[]');
+
+      const query = searchQuery || { adults: 1, children: 0 };
+      const adultsCount = query.adults !== undefined ? parseInt(query.adults) : (parseInt(query.passengersVal) || 1);
+
+      for (let i = 1; i <= count; i++) {
+        const isSelf = i === 1;
+        let pNameVal = '';
+        let pIdVal = '';
+        let pIdTypeVal = 'IC';
+
+        // Determine category (Adult for first N, Child for subsequent M)
+        const isChild = i > adultsCount;
+        const pCategoryVal = isChild ? 'Child' : 'Adult';
+
+        if (isSelf && isLoggedIn && primaryUser) {
+          pNameVal = primaryUser.name;
+          pIdVal = primaryUser.idNum || '';
+          pIdTypeVal = primaryUser.idType || 'IC';
+        } else if (!isSelf && savedPassengers[i - 2]) {
+          // Fill from Passenger directory
+          pNameVal = savedPassengers[i - 2].name;
+          pIdVal = savedPassengers[i - 2].idNum;
+          pIdTypeVal = savedPassengers[i - 2].idType;
+        }
+
+        const block = document.createElement('div');
+        block.className = 'passenger-row-input';
+        block.style.marginBottom = '20px';
+        block.innerHTML = `
+          <h4 style="margin-bottom: 10px; color: var(--primary);">${t('passenger-singular-label', 'Passenger')} ${i} ${isSelf ? `(${t('booking-primary-passenger', 'Primary')})` : ''}</h4>
+          
+          <!-- Autofill select if directory has items and this is not primary -->
+          ${(!isSelf && savedPassengers.length > 0) ? `
+            <div class="form-group" style="margin-bottom: 10px;">
+              <label>${t('booking-select-saved', 'Select from Saved Passengers')}</label>
+              <select class="autofill-select" data-index="${i}">
+                <option value="">-- ${t('booking-choose-saved', 'Choose saved passenger')} --</option>
+                ${savedPassengers.map((sp, idx) => {
+          let typeLabel = sp.type;
+          if (sp.type === 'Adult') typeLabel = t('pass-opt-adult', 'Adult (Ages 13+)');
+          else if (sp.type === 'Child') typeLabel = t('pass-opt-child', 'Child (Ages 2-12)');
+          else if (sp.type === 'Senior') typeLabel = t('pass-opt-senior', 'Senior Citizen (Ages 60+)');
+          else if (sp.type === 'OKU') typeLabel = t('pass-opt-oku', 'Disabled / OKU');
+          return `<option value="${idx}">${sp.name} (${typeLabel})</option>`;
+        }).join('')}
+              </select>
+            </div>
+          ` : ''}
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="p-name-${i}">${t('auth-label-name', 'Full Name (As in IC / Passport)')}</label>
+              <input type="text" id="p-name-${i}" class="input-p-name" value="${pNameVal}" placeholder="${t('pass-placeholder-name', 'Enter passenger\'s full name')}" required>
+            </div>
+            <div class="form-group">
+              <label for="p-id-type-${i}">${t('auth-label-idtype', 'ID Document Type')}</label>
+              <select id="p-id-type-${i}" class="input-p-id-type">
+                <option value="IC" ${pIdTypeVal === 'IC' ? 'selected' : ''}>${t('auth-opt-ic', 'Malaysian NRIC (MyKad)')}</option>
+                <option value="Passport" ${pIdTypeVal === 'Passport' ? 'selected' : ''}>${t('auth-opt-passport', 'International Passport')}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-grid" style="margin-top: 10px;">
+            <div class="form-group">
+              <label for="p-id-num-${i}">${t('pass-label-idnum', 'Document / IC Number')}</label>
+              <input type="text" id="p-id-num-${i}" class="input-p-id-num" value="${pIdVal}" placeholder="${t('pass-placeholder-idnum', 'e.g. 950812-14-5678 or A12345678')}" required>
+            </div>
+            <div class="form-group">
+              <label for="p-category-${i}">${t('pass-label-category', 'Passenger Category')}</label>
+              <select id="p-category-${i}" class="input-p-category" disabled style="background-color: var(--gray-50); color: var(--gray-600); cursor: not-allowed;">
+                <option value="Adult" ${pCategoryVal === 'Adult' ? 'selected' : ''}>${t('pass-opt-adult', 'Adult (Ages 13+)')}</option>
+                <option value="Child" ${pCategoryVal === 'Child' ? 'selected' : ''}>${t('pass-opt-child', 'Child (Ages 2-12)')}</option>
+              </select>
+            </div>
+          </div>
+        `;
+        container.appendChild(block);
+      }
+
+      // Add auto-fill select handlers
+      container.querySelectorAll('.autofill-select').forEach(select => {
+        select.addEventListener('change', () => {
+          const idx = select.value;
+          const pIndex = select.getAttribute('data-index');
+          if (idx !== '') {
+            const passenger = savedPassengers[parseInt(idx)];
+            // Verify if passenger category matches the locked category
+            const isChild = parseInt(pIndex) > adultsCount;
+            const expectedCat = isChild ? 'Child' : 'Adult';
+
+            if (passenger.type !== expectedCat) {
+              const currentLang = localStorage.getItem('kits_lang') || 'en';
+              const msgEn = `Cannot select ${passenger.name}. This slot is locked for a ${expectedCat} ticket.`;
+              const msgBm = `Tidak boleh memilih ${passenger.name}. Slot ini dikhaskan untuk tiket ${expectedCat === 'Adult' ? 'Dewasa' : 'Kanak-kanak'}.`;
+              showToast(currentLang === 'bm' ? msgBm : msgEn, 'warning');
+              select.value = '';
+              return;
+            }
+
+            document.getElementById(`p-name-${pIndex}`).value = passenger.name;
+            document.getElementById(`p-id-type-${pIndex}`).value = passenger.idType;
+            document.getElementById(`p-id-num-${pIndex}`).value = passenger.idNum;
+          }
+        });
+      });
+    }
+
+    // Toggle Payment Forms View
+    document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        document.querySelectorAll('.payment-option-label').forEach(lbl => lbl.classList.remove('active'));
+        radio.closest('.payment-option-label').classList.add('active');
+
+        const cardForm = document.getElementById('card-payment-form');
+        if (radio.value === 'card') {
+          cardForm.style.display = 'flex';
+          cardForm.querySelectorAll('input').forEach(i => i.required = true);
+        } else {
+          cardForm.style.display = 'none';
+          cardForm.querySelectorAll('input').forEach(i => i.required = false);
+        }
+      });
+    });
+
+    // Form Submission & Checkout Mock
+    const btnPayNow = document.getElementById('btn-pay-now');
+    if (btnPayNow) {
+      btnPayNow.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // 1. Ensure user is logged in
+        checkUserSession();
+        if (!isLoggedIn) {
+          showToast(t('alert-login-payment', 'Please log in to complete payment.'), 'error');
+          openAuthModal('signin');
+          return;
+        }
+
+        // 1.5 Double-check gender restrictions
+        if (!checkGenderRestrictions()) {
+          const currentLang = localStorage.getItem('kits_lang') || 'en';
+          const msgEn = "Checkout failed: selected seats/coaches violate gender restrictions.";
+          const msgBm = "Pembayaran gagal: tempat duduk/koc terpilih melanggar sekatan jantina.";
+          showToast(currentLang === 'bm' ? msgBm : msgEn, 'error');
+
+          // Clear selections and redirect to step 2
+          selectedSeats = [];
+          selectedReturnSeats = [];
+          updateActiveLocks();
+          renderSeatMap();
+          updateSidebarDetails();
+          updatePricingSummary();
+          goToStep(2);
+          return;
+        }
+
+        // 2. Validate Passenger Inputs
+        const pNames = document.querySelectorAll('.input-p-name');
+        const pIdTypes = document.querySelectorAll('.input-p-id-type');
+        const pIdNums = document.querySelectorAll('.input-p-id-num');
+
+        let valid = true;
+        pNames.forEach(input => {
+          if (!input.value.trim()) valid = false;
+        });
+        pIdNums.forEach(input => {
+          if (!input.value.trim()) valid = false;
+        });
+
+        if (!valid) {
+          showToast(t('booking-fill-details-alert', 'Please fill in all passenger details.'), 'error');
+          return;
+        }
+
+        // 3. Validate Card inputs if card selected
+        const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+        if (paymentMethod === 'card') {
+          const cardNum = document.getElementById('card-num').value.trim();
+          const cardExpiry = document.getElementById('card-expiry').value.trim();
+          const cardCvv = document.getElementById('card-cvv').value.trim();
+
+          if (!cardNum || !cardExpiry || !cardCvv) {
+            showToast(t('booking-fill-card-alert', 'Please fill in card payment details.'), 'error');
+            return;
+          }
+        }
+
+        // 3.5 Pre-Check Seat Occupancy
+        const outboundOccupied = getOccupiedSeats(selectedTrain.name, formatDateString(searchQuery.departDate), activeCoach);
+        const outboundConflict = selectedSeats.filter(seat => outboundOccupied.includes(seat));
+
+        let returnConflict = [];
+        if (searchQuery && searchQuery.tripType === 'roundtrip' && selectedReturnTrain) {
+          const returnOccupied = getOccupiedSeats(selectedReturnTrain.name, formatDateString(searchQuery.returnDate), activeReturnCoach);
+          returnConflict = selectedReturnSeats.filter(seat => returnOccupied.includes(seat));
+        }
+
+        if (outboundConflict.length > 0 || returnConflict.length > 0) {
+          const takenText = [
+            ...outboundConflict.map(s => `Outbound ${activeCoach}-${s}`),
+            ...returnConflict.map(s => `Return ${activeReturnCoach}-${s}`)
+          ].join(', ');
+
+          const currentLang = localStorage.getItem('kits_lang') || 'en';
+          const msgEn = `Checkout failed: Seat(s) ${takenText} have just been booked by another user. Please go back to select new seats.`;
+          const msgBm = `Pembayaran gagal: Tempat duduk ${takenText} baru sahaja ditempah oleh pengguna lain. Sila kembali untuk memilih tempat duduk baharu.`;
+          showToast(currentLang === 'bm' ? msgBm : msgEn, 'error');
+          return;
+        }
+
+        // 4. Start Loading spinner
+        btnPayNow.disabled = true;
+        btnPayNow.innerHTML = `
+          <svg class="spinner" width="16" height="16" viewBox="0 0 50 50" style="animation: rotate 1.5s linear infinite;">
+            <circle class="path" cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="80, 200" stroke-dashoffset="0" stroke-linecap="round"></circle>
+          </svg>
+          <span>${t('booking-processing-payment', 'Processing Payment...')}</span>
+        `;
+
+        setTimeout(() => {
+          // Final Double-Check Seat Occupancy and Gender Restrictions
+          checkUserSession();
+          if (!isLoggedIn || !checkGenderRestrictions()) {
+            const baseFare = parseFloat(document.getElementById('side-base-price').textContent.replace('RM ', ''));
+            const tax = parseFloat(document.getElementById('side-tax').textContent.replace('RM ', ''));
+            const total = baseFare + tax;
+
+            btnPayNow.disabled = false;
+            btnPayNow.innerHTML = `
+              <span data-translate="booking-btn-pay">${t('booking-btn-pay', 'Pay RM')}</span> <span id="btn-total-fare">${total.toFixed(2)}</span>
+            `;
+
+            const currentLang = localStorage.getItem('kits_lang') || 'en';
+            const msgEn = "Payment failed: selected seats/coaches violate gender restrictions.";
+            const msgBm = "Pembayaran gagal: tempat duduk/koc terpilih melanggar sekatan jantina.";
+            showToast(currentLang === 'bm' ? msgBm : msgEn, 'error');
+
+            // Clear selections and redirect to step 2
+            selectedSeats = [];
+            selectedReturnSeats = [];
+            updateActiveLocks();
+            renderSeatMap();
+            updateSidebarDetails();
+            updatePricingSummary();
+            goToStep(2);
+            return;
+          }
+
+          const finalOutboundOccupied = getOccupiedSeats(selectedTrain.name, formatDateString(searchQuery.departDate), activeCoach);
+          const finalOutboundConflict = selectedSeats.filter(seat => finalOutboundOccupied.includes(seat));
+
+          let finalReturnConflict = [];
+          if (searchQuery && searchQuery.tripType === 'roundtrip' && selectedReturnTrain) {
+            const finalReturnOccupied = getOccupiedSeats(selectedReturnTrain.name, formatDateString(searchQuery.returnDate), activeReturnCoach);
+            finalReturnConflict = selectedReturnSeats.filter(seat => finalReturnOccupied.includes(seat));
+          }
+
+          if (finalOutboundConflict.length > 0 || finalReturnConflict.length > 0) {
+            const baseFare = parseFloat(document.getElementById('side-base-price').textContent.replace('RM ', ''));
+            const tax = parseFloat(document.getElementById('side-tax').textContent.replace('RM ', ''));
+            const total = baseFare + tax;
+
+            btnPayNow.disabled = false;
+            btnPayNow.innerHTML = `
+              <span data-translate="booking-btn-pay">${t('booking-btn-pay', 'Pay RM')}</span> <span id="btn-total-fare">${total.toFixed(2)}</span>
+            `;
+
+            const takenText = [
+              ...finalOutboundConflict.map(s => `Outbound ${activeCoach}-${s}`),
+              ...finalReturnConflict.map(s => `Return ${activeReturnCoach}-${s}`)
+            ].join(', ');
+
+            const currentLang = localStorage.getItem('kits_lang') || 'en';
+            const msgEn = `Payment failed: Seat(s) ${takenText} was booked just now by another user.`;
+            const msgBm = `Pembayaran gagal: Tempat duduk ${takenText} baru sahaja ditempah oleh pengguna lain.`;
+            showToast(currentLang === 'bm' ? msgBm : msgEn, 'error');
+            return;
+          }
+
+          // Complete booking
+          const ref = 'KTMB-' + Math.floor(100000 + Math.random() * 900000);
+          const baseFare = parseFloat(document.getElementById('side-base-price').textContent.replace('RM ', ''));
+          const tax = parseFloat(document.getElementById('side-tax').textContent.replace('RM ', ''));
+          const total = baseFare + tax;
+
+          const bookingData = {
+            bookingRef: ref,
+            userEmail: currentUser.email,
+            originText: searchQuery.originText.split(' (')[0],
+            destText: searchQuery.destText.split(' (')[0],
+            departDate: formatDateString(searchQuery.departDate),
+            trainName: selectedTrain.name,
+            depTime: selectedTrain.dep,
+            coach: activeCoach,
+            seats: selectedSeats.map(s => `${activeCoach}-${s}`),
+            passengerName: pNames[0].value.trim(),
+            passengerId: `${pIdTypes[0].value}: ${pIdNums[0].value.trim()}`,
+            totalPrice: total,
+            tripType: searchQuery.tripType,
+            returnDate: searchQuery.returnDate ? formatDateString(searchQuery.returnDate) : '',
+            returnTrainName: selectedReturnTrain ? selectedReturnTrain.name : '',
+            returnDepTime: selectedReturnTrain ? selectedReturnTrain.dep : '',
+            returnCoach: selectedReturnTrain ? activeReturnCoach : '',
+            returnSeats: selectedReturnSeats.map(s => `${activeReturnCoach}-${s}`)
+          };
+
+          // Save to LocalStorage
+          const bookings = JSON.parse(localStorage.getItem('kits_bookings') || '[]');
+          bookings.push(bookingData);
+          localStorage.setItem('kits_bookings', JSON.stringify(bookings));
+
+          // Clear active locks since booking is complete
+          clearActiveLocks();
+
+          // Hide booking steps & show Success/Ticket screen
+          document.getElementById('main-booking-grid').style.display = 'none';
+          document.getElementById('progress-container').style.display = 'none';
+          document.querySelector('.search-summary-bar').style.display = 'none';
+
+          const successSec = document.getElementById('success-section');
+          successSec.style.display = 'block';
+
+          // Bind details to e-Ticket
+          document.getElementById('success-booking-ref').textContent = ref;
+          document.getElementById('ticket-ref').textContent = ref;
+          document.getElementById('ticket-origin').textContent = bookingData.originText;
+          document.getElementById('ticket-dest').textContent = bookingData.destText;
+          const depTimeVal = bookingData.depTime || findTrainDepTime(bookingData.trainName) || '';
+          document.getElementById('ticket-date-time').textContent = bookingData.departDate + (depTimeVal ? `, ${depTimeVal}` : '');
+          document.getElementById('ticket-train').textContent = bookingData.trainName;
+          document.getElementById('ticket-coach').textContent = `${t('booking-coach-label', 'Coach')} ${bookingData.coach}`;
+          document.getElementById('ticket-seats').textContent = selectedSeats.map(s => `${activeCoach}-${s}`).join(', ');
+          document.getElementById('ticket-passenger-name').textContent = bookingData.passengerName;
+          document.getElementById('ticket-passenger-id').textContent = bookingData.passengerId;
+          document.getElementById('ticket-price').textContent = `RM ${total.toFixed(2)}`;
+
+          // Bind return journey ticket fields
+          if (bookingData.tripType === 'roundtrip') {
+            document.getElementById('ticket-outbound-header-container').style.display = 'block';
+            document.getElementById('ticket-return-stub-container').style.display = 'block';
+            document.getElementById('ticket-return-origin').textContent = bookingData.destText;
+            document.getElementById('ticket-return-dest').textContent = bookingData.originText;
+            const retTimeVal = bookingData.returnDepTime || findTrainDepTime(bookingData.returnTrainName) || '';
+            document.getElementById('ticket-return-date-time').textContent = bookingData.returnDate + (retTimeVal ? `, ${retTimeVal}` : '');
+            document.getElementById('ticket-return-train').textContent = bookingData.returnTrainName;
+            document.getElementById('ticket-return-coach').textContent = `${t('booking-coach-label', 'Coach')} ${bookingData.returnCoach}`;
+            document.getElementById('ticket-return-seats').textContent = bookingData.returnSeats.join(', ');
+          } else {
+            document.getElementById('ticket-outbound-header-container').style.display = 'none';
+            document.getElementById('ticket-return-stub-container').style.display = 'none';
+          }
+
+          showToast(t('booking-payment-success-alert', 'Payment Successful!'), 'success');
+        }, 2000);
+      });
+    }
+
+    // Helper to find departure time if missing from older localStorage bookings
+    function findTrainDepTime(trainName) {
+      if (!trainName) return '';
+      for (const category in trainFares) {
+        const found = trainFares[category].find(t => t.name === trainName);
+        if (found) return found.dep;
+      }
+      return '';
+    }
+
+    // --- CHECK DIRECT TICKET VIEW URL PARAMETER ---
+    function checkDirectTicketView() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const ticketRef = urlParams.get('view_ticket');
+
+      if (ticketRef) {
+        const bookings = JSON.parse(localStorage.getItem('kits_bookings') || '[]');
+        const booking = bookings.find(b => b.bookingRef === ticketRef);
+
+        if (booking) {
+          // Hide booking UI, show e-Ticket only
+          document.getElementById('main-booking-grid').style.display = 'none';
+          document.getElementById('progress-container').style.display = 'none';
+          document.querySelector('.search-summary-bar').style.display = 'none';
+
+          const successSec = document.getElementById('success-section');
+          successSec.style.display = 'block';
+
+          // Hide success banner since it's just history viewing
+          if (successSec.querySelector('.success-banner')) {
+            successSec.querySelector('.success-banner').style.display = 'none';
+          }
+          const checkTitle = successSec.querySelector('h2');
+          if (checkTitle && checkTitle.parentNode && checkTitle.parentNode.className !== 'success-banner') {
+            checkTitle.style.display = 'none';
+          }
+
+          document.getElementById('ticket-ref').textContent = booking.bookingRef;
+          document.getElementById('ticket-origin').textContent = booking.originText;
+          document.getElementById('ticket-dest').textContent = booking.destText;
+          const depTimeVal = booking.depTime || findTrainDepTime(booking.trainName) || '';
+          document.getElementById('ticket-date-time').textContent = booking.departDate + (depTimeVal ? `, ${depTimeVal}` : '');
+          document.getElementById('ticket-train').textContent = booking.trainName;
+          document.getElementById('ticket-coach').textContent = `${t('booking-coach-label', 'Coach')} ${booking.coach}`;
+          document.getElementById('ticket-seats').textContent = booking.seats.join(', ');
+          document.getElementById('ticket-passenger-name').textContent = booking.passengerName;
+          document.getElementById('ticket-passenger-id').textContent = booking.passengerId;
+          document.getElementById('ticket-price').textContent = `RM ${parseFloat(booking.totalPrice).toFixed(2)}`;
+
+          // Bind return ticket details if roundtrip
+          if (booking.tripType === 'roundtrip') {
+            document.getElementById('ticket-outbound-header-container').style.display = 'block';
+            document.getElementById('ticket-return-stub-container').style.display = 'block';
+            document.getElementById('ticket-return-origin').textContent = booking.destText;
+            document.getElementById('ticket-return-dest').textContent = booking.originText;
+            const retTimeVal = booking.returnDepTime || findTrainDepTime(booking.returnTrainName) || '';
+            document.getElementById('ticket-return-date-time').textContent = booking.returnDate + (retTimeVal ? `, ${retTimeVal}` : '');
+            document.getElementById('ticket-return-train').textContent = booking.returnTrainName;
+            document.getElementById('ticket-return-coach').textContent = `${t('booking-coach-label', 'Coach')} ${booking.returnCoach}`;
+            document.getElementById('ticket-return-seats').textContent = booking.returnSeats.join(', ');
+          } else {
+            document.getElementById('ticket-outbound-header-container').style.display = 'none';
+            document.getElementById('ticket-return-stub-container').style.display = 'none';
+          }
+        }
+      }
+    }
+
+
+    // --- MY BOOKINGS MODAL (DUPLICATE LOGIC FROM INDEX.HTML) ---
+    const bookingsModal = document.getElementById('bookings-modal');
+    const bookingsModalClose = document.getElementById('bookings-modal-close');
+
+    function openBookingsModal() {
+      if (!isLoggedIn) {
+        showToast(t('alert-signin-required', 'Please sign in to view your bookings.'), 'error');
+        openAuthModal('signin');
+        return;
+      }
+      if (bookingsModal) {
+        bookingsModal.classList.add('open');
+        renderBookings();
+      }
+    }
+
+    function closeBookingsModal() {
+      if (bookingsModal) {
+        bookingsModal.classList.remove('open');
+      }
+    }
+
+    if (bookingsModalClose) bookingsModalClose.addEventListener('click', closeBookingsModal);
+    if (bookingsModal) {
+      bookingsModal.addEventListener('click', (e) => {
+        if (e.target === bookingsModal) closeBookingsModal();
+      });
+    }
+
+    const menuMyBookings = document.getElementById('menu-my-bookings');
+    if (menuMyBookings) {
+      menuMyBookings.addEventListener('click', (e) => {
+        if (userDropdownMenu) userDropdownMenu.classList.remove('show');
+      });
+    }
+
+    function getMalaysiaTime() {
+      const now = new Date();
+      const utc = now.getTime();
+      const localOffset = now.getTimezoneOffset() * 60000;
+      return new Date(utc + (3600000 * 8) + localOffset);
+    }
+
+    function findTrainDepTime(trainName) {
+      const fallbackTimes = {
+        'ETS Platinum 9123': '06:00',
+        'KTM Intercity 40': '06:00',
+        'ETS Gold 9026': '06:00',
+        'KTM Intercity 47': '06:15',
+        'ETS Gold 9025': '07:30',
+        'ETS Platinum 9122': '08:00',
+        'KTM Intercity 45': '08:45',
+        'ETS Platinum 9130': '09:30',
+        'KTM Intercity 42': '10:15',
+        'ETS Platinum 9121': '10:45',
+        'ETS Gold 9024': '11:30',
+        'ETS Platinum 9127': '13:00',
+        'ETS Gold 9032': '13:45',
+        'ETS Gold 9023': '14:20',
+        'KTM Intercity 49': '14:30',
+        'ETS Platinum 9128': '15:15',
+        'KTM Intercity 46': '15:30',
+        'ETS Platinum 9125': '16:50',
+        'ETS Platinum 9134': '17:30',
+        'ETS Gold 9029': '18:30',
+        'ETS Gold 9028': '19:00',
+        'KTM Intercity 48': '19:30',
+        'KTM Intercity 51': '20:00',
+        'ETS Platinum 9131': '20:45',
+        'ETS Gold 9036': '21:30',
+        'ETS Gold 9035': '22:15',
+        'ETS Gold 9040': '00:30',
+        'ETS Gold 9039': '00:30',
+        'KTM Intercity 53': '00:30',
+        'KTM Intercity 50': '00:30',
+        'Komuter Service 2007': '06:00',
+        'Komuter Service 2008': '06:00',
+        'Komuter Service 2009': '06:30',
+        'Komuter Service 2011': '07:15',
+        'Komuter Service 2012': '08:00',
+        'Komuter Service 2013': '08:30',
+        'Komuter Service 2015': '09:45',
+        'Komuter Service 2016': '10:30',
+        'Komuter Service 2017': '11:15',
+        'Komuter Service 2019': '12:45',
+        'Komuter Service 2020': '13:00',
+        'Komuter Service 2021': '14:20',
+        'Komuter Service 2024': '15:30',
+        'Komuter Service 2023': '16:00',
+        'Komuter Service 2025': '17:30',
+        'Komuter Service 2028': '18:00',
+        'Komuter Service 2027': '19:00',
+        'Komuter Service 2029': '20:30',
+        'Komuter Service 2032': '20:45',
+        'Komuter Service 2031': '22:00',
+        'Komuter Service 2034': '23:00',
+        'Komuter Service 2033': '23:30',
+        'Komuter Service 2035': '00:30',
+        'Komuter Service 2036': '00:30',
+        'KTM Northern Express 3104': '06:00',
+        'KTM Northern Express 3103': '06:00',
+        'KTM Northern Express 3102': '06:30',
+        'KTM Northern Express 3101': '08:15',
+        'KTM Northern Express 3106': '09:30',
+        'KTM Northern Express 3105': '11:00',
+        'KTM Northern Express 3108': '13:00',
+        'KTM Northern Express 3107': '14:30',
+        'KTM Northern Express 3110': '16:00',
+        'KTM Northern Express 3109': '17:45',
+        'KTM Northern Express 3112': '19:30',
+        'KTM Northern Express 3111': '20:45',
+        'KTM Northern Express 3118': '22:00',
+        'KTM Northern Express 3113': '23:30',
+        'KTM Northern Express 3116': '00:30',
+        'KTM Northern Express 3115': '00:30'
+      };
+      return fallbackTimes[trainName] || '08:00';
+    }
+
+    function isBookingDatePast(booking) {
+      const dateStr = (booking.tripType === 'roundtrip' && booking.returnDate) ? booking.returnDate : booking.departDate;
+      if (!dateStr) return false;
+      const bookingDate = new Date(dateStr);
+      if (isNaN(bookingDate.getTime())) return false;
+
+      let depTimeStr = '23:59';
+      if (booking.tripType === 'roundtrip' && booking.returnDate) {
+        depTimeStr = booking.returnDepTime || findTrainDepTime(booking.returnTrainName) || '23:59';
+      } else {
+        depTimeStr = booking.depTime || findTrainDepTime(booking.trainName) || '23:59';
+      }
+      const [hours, minutes] = depTimeStr.split(':').map(Number);
+      bookingDate.setHours(hours || 0, minutes || 0, 0, 0);
+
+      const now = getMalaysiaTime();
+      return bookingDate < now;
+    }
+
+    function renderBookings() {
+      const bookingsListContainer = document.getElementById('bookings-list-container');
+      if (!bookingsListContainer) return;
+
+      const bookings = JSON.parse(localStorage.getItem('kits_bookings') || '[]');
+      const userBookings = bookings.filter(b => b.userEmail && currentUser && b.userEmail.toLowerCase() === currentUser.email.toLowerCase());
+
+      bookingsListContainer.innerHTML = '';
+
+      if (userBookings.length === 0) {
+        bookingsListContainer.innerHTML = `
+          <div class="empty-passenger-state" style="padding: 30px 10px;">
+            <div class="empty-icon" style="font-size: 36px; margin-bottom: 8px;">🎫</div>
+            <p style="font-size: 14px; color: var(--gray-600);">${t('bookings-empty', 'You have no bookings yet.')}</p>
+          </div>
+        `;
+        return;
+      }
+
+      userBookings.forEach(booking => {
+        const card = document.createElement('div');
+        card.className = 'my-booking-card';
+
+        const isPast = isBookingDatePast(booking);
+        const statusText = isPast ? t('bookings-past', 'Past') : t('bookings-confirmed', 'Confirmed');
+        const statusClass = isPast ? 'past' : 'success';
+
+        let tripDetailsHTML = `
+          <div class="my-booking-route">
+            <strong>${booking.originText}</strong> ${t('route-to', 'to')} <strong>${booking.destText}</strong>
+            ${booking.tripType === 'roundtrip'
+            ? ` <span class="badge-trip-type" style="font-size:10px; padding:2px 6px; background:var(--primary-light); color:var(--dark-900); border-radius:4px; font-weight:700; margin-left:8px; display:inline-block; vertical-align:middle;">${t('widget-trip-roundtrip', 'Round Trip')}</span>`
+            : ` <span class="badge-trip-type" style="font-size:10px; padding:2px 6px; background:var(--gray-200); color:var(--dark-900); border-radius:4px; font-weight:700; margin-left:8px; display:inline-block; vertical-align:middle;">${t('widget-trip-oneway', 'One Way')}</span>`
+          }
+          </div>
+          <div class="my-booking-time" style="font-size: 13px; color: var(--gray-600); margin-top: 4px;">
+            <strong>${t('booking-outbound-label', 'Outbound Journey')}:</strong> <span>${booking.trainName}</span> | <span>${booking.departDate}, ${booking.depTime || findTrainDepTime(booking.trainName)}</span> | <span>${t('bookings-seats', 'Seats')}: ${booking.seats.join(', ')}</span>
+          </div>
+        `;
+
+        if (booking.tripType === 'roundtrip') {
+          tripDetailsHTML += `
+            <div class="my-booking-time" style="font-size: 13px; color: var(--gray-600); margin-top: 4px; border-top: 1px dashed rgba(0,0,0,0.1); padding-top: 4px;">
+              <strong>${t('booking-return-label', 'Return Journey')}:</strong> <span>${booking.returnTrainName}</span> | <span>${booking.returnDate}, ${booking.returnDepTime || findTrainDepTime(booking.returnTrainName)}</span> | <span>${t('bookings-seats', 'Seats')}: ${booking.returnSeats.join(', ')}</span>
+            </div>
+          `;
+        }
+
+        tripDetailsHTML += `
+          <div class="my-booking-passengers" style="font-size: 13px; color: var(--gray-600); margin-top: 6px;">
+            <strong>${t('bookings-name', 'Name')}:</strong> <span>${booking.passengerName}</span>
+          </div>
+        `;
+
+        card.innerHTML = `
+          <div class="my-booking-header">
+            <span class="my-booking-ref">${t('bookings-ref', 'Ref')}: ${booking.bookingRef}</span>
+            <span class="my-booking-status ${statusClass}">${statusText}</span>
+          </div>
+          <div class="my-booking-details">
+            ${tripDetailsHTML}
+            <div class="my-booking-footer" style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+              <span class="my-booking-price" style="font-weight: 700; color: var(--primary); font-size: 16px; white-space: nowrap;">RM ${parseFloat(booking.totalPrice).toFixed(2)}</span>
+              <button class="btn-card show-ticket-btn" data-ref="${booking.bookingRef}" style="padding: 6px 12px; font-size: 12px;">${t('bookings-btn-ticket', 'View E-Ticket')}</button>
+            </div>
+          </div>
+        `;
+        bookingsListContainer.appendChild(card);
+      });
+
+      // Set up E-Ticket button clicks
+      bookingsListContainer.querySelectorAll('.show-ticket-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const ref = btn.getAttribute('data-ref');
+          closeBookingsModal();
+          window.location.href = `booking.html?view_ticket=${ref}`;
+        });
+      });
+    }
+
+    // --- ON PAGE LOAD ---
+    window.addEventListener('load', () => {
+      updateAuthUI();
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('view_ticket')) {
+        checkDirectTicketView();
+      } else {
+        loadSearchParameters();
+        initFiltersAndSort();
+      }
+    });
+
+    // --- INLINE MODIFY SEARCH PANEL ---
+    (function initModifySearchPanel() {
+      const btnModify = document.getElementById('btn-modify-search');
+      const panel = document.getElementById('modify-search-panel');
+      const summaryBar = document.querySelector('.search-summary-bar');
+      const modService = document.getElementById('modify-service');
+      const modOrigin = document.getElementById('modify-origin');
+      const modDest = document.getElementById('modify-dest');
+      const modDate = document.getElementById('modify-date');
+      const modReturnDate = document.getElementById('modify-return-date');
+      const modReturnField = document.getElementById('modify-return-field');
+      const swapBtn = document.getElementById('modify-swap-btn');
+      const applyBtn = document.getElementById('btn-modify-apply');
+      const tripBtns = document.querySelectorAll('.modify-trip-btn');
+
+      if (!btnModify || !panel) return;
+
+      let modTripType = 'oneway';
+
+      // --- Custom Passenger Dropdown Widget Logic ---
+      const trigger = document.getElementById('passenger-dropdown-trigger');
+      const paxPanel = document.getElementById('passenger-dropdown-panel');
+      const text = document.getElementById('passenger-dropdown-text');
+
+      const adultCountEl = document.getElementById('adult-count');
+      const childCountEl = document.getElementById('child-count');
+      const adultMinus = document.getElementById('adult-minus');
+      const adultPlus = document.getElementById('adult-plus');
+      const childMinus = document.getElementById('child-minus');
+      const childPlus = document.getElementById('child-plus');
+      const limitNote = document.getElementById('pax-limit-note');
+      const btnApply = document.getElementById('btn-pax-apply');
+
+      let adults = 1;
+      let children = 0;
+      const maxPax = 8;
+
+      function updateCounters() {
+        if (!adultCountEl) return;
+        adultCountEl.textContent = adults;
+        childCountEl.textContent = children;
+
+        adultMinus.disabled = (adults <= 1);
+        childMinus.disabled = (children <= 0);
+
+        const total = adults + children;
+        const limitReached = (total >= maxPax);
+
+        adultPlus.disabled = limitReached;
+        childPlus.disabled = limitReached;
+
+        if (limitReached) {
+          if (limitNote) limitNote.classList.add('limit-reached');
+        } else {
+          if (limitNote) limitNote.classList.remove('limit-reached');
+        }
+
+        // Update text display
+        let display = '';
+        const adultLabel = adults > 1 ? t('pax-adults-label', 'Adults') : t('passenger-singular-label', 'Adult');
+        const childLabel = children > 1 ? t('pax-children-label', 'Children') : t('pax-type-child', 'Child');
+
+        display = `${total} Pax (${adults} ${adultLabel}${children > 0 ? `, ${children} ${childLabel}` : ''})`;
+        if (text) text.textContent = display;
+      }
+
+      if (trigger && paxPanel) {
+        // Toggle panel
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const open = paxPanel.classList.toggle('open');
+          const chevron = trigger.querySelector('svg');
+          if (chevron) {
+            chevron.style.transform = open ? 'rotate(180deg)' : 'rotate(0)';
+          }
+        });
+
+        // Close on click outside
+        document.addEventListener('click', (e) => {
+          if (!trigger.contains(e.target) && !paxPanel.contains(e.target)) {
+            paxPanel.classList.remove('open');
+            const chevron = trigger.querySelector('svg');
+            if (chevron) chevron.style.transform = 'rotate(0)';
+          }
+        });
+
+        adultMinus.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (adults > 1) {
+            adults--;
+            updateCounters();
+          }
+        });
+
+        adultPlus.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (adults + children < maxPax) {
+            adults++;
+            updateCounters();
+          }
+        });
+
+        childMinus.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (children > 0) {
+            children--;
+            updateCounters();
+          }
+        });
+
+        childPlus.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (adults + children < maxPax) {
+            children++;
+            updateCounters();
+          }
+        });
+
+        if (btnApply) {
+          btnApply.addEventListener('click', (e) => {
+            e.stopPropagation();
+            paxPanel.classList.remove('open');
+            const chevron = trigger.querySelector('svg');
+            if (chevron) chevron.style.transform = 'rotate(0)';
+          });
+        }
+      }
+
+      // --- Trip Type Toggle ---
+      tripBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tripBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          modTripType = btn.dataset.trip;
+          if (modReturnField) {
+            if (modTripType === 'roundtrip') {
+              modReturnField.style.display = 'flex';
+              if (modDate.value) modReturnDate.min = modDate.value;
+            } else {
+              modReturnField.style.display = 'none';
+              modReturnDate.value = '';
+            }
+          }
+        });
+      });
+
+      // Keep return date min in sync with depart date
+      if (modDate) {
+        modDate.addEventListener('change', () => {
+          if (modReturnDate && modDate.value) {
+            modReturnDate.min = modDate.value;
+            if (modReturnDate.value && modReturnDate.value < modDate.value) {
+              modReturnDate.value = '';
+            }
+          }
+        });
+      }
+
+      const stationsByService = {
+        'ETS & Intercity': [
+          { value: 'KLS', text: 'KL Sentral (Kuala Lumpur)' },
+          { value: 'TML', text: 'Tanjung Malim (Perak)' },
+          { value: 'TPR', text: 'Tapah Road (Perak)' },
+          { value: 'IPH', text: 'Ipoh (Perak)' },
+          { value: 'SPI', text: 'Sungai Petani (Kedah)' },
+          { value: 'BTW', text: 'Butterworth (Penang)' },
+          { value: 'ARS', text: 'Arau (Perlis)' },
+          { value: 'PDB', text: 'Padang Besar (Perlis)' },
+          { value: 'SBN', text: 'Seremban (N. Sembilan)' },
+          { value: 'GMS', text: 'Gemas (N. Sembilan)' },
+          { value: 'KLG', text: 'Kluang (Johor)' },
+          { value: 'JBS', text: 'JB Sentral (Johor Bahru)' }
+        ],
+        'Komuter Klang Valley': [
+          { value: 'BTC', text: 'Batu Caves (Selangor)' },
+          { value: 'STL', text: 'Sentul (KL)' },
+          { value: 'PTR', text: 'Putra (KL)' },
+          { value: 'BNR', text: 'Bank Negara (KL)' },
+          { value: 'KLS', text: 'KL Sentral (Kuala Lumpur)' },
+          { value: 'MDV', text: 'Midvalley (KL)' },
+          { value: 'SPT', text: 'Seputeh (KL)' },
+          { value: 'SSN', text: 'Salak Selatan (KL)' },
+          { value: 'BTS', text: 'Bandar Tasik Selatan (KL)' },
+          { value: 'SDG', text: 'Serdang (Selangor)' },
+          { value: 'KJG', text: 'Kajang (Selangor)' },
+          { value: 'UKM', text: 'UKM (Selangor)' },
+          { value: 'NLI', text: 'Nilai (N. Sembilan)' },
+          { value: 'LBU', text: 'Labu (N. Sembilan)' },
+          { value: 'TRI', text: 'Tiroi (N. Sembilan)' },
+          { value: 'PSM', text: 'Pulau Sebang (N. Sembilan)' }
+        ],
+        'Komuter Northern': [
+          { value: 'BTW', text: 'Butterworth (Penang)' },
+          { value: 'BTG', text: 'Bukit Tengah (Pulau Pinang)' },
+          { value: 'BMT', text: 'Bukit Mertajam (Pulau Pinang)' },
+          { value: 'ARS', text: 'Arau (Perlis)' },
+          { value: 'PDB', text: 'Padang Besar (Perlis)' }
+        ]
+      };
+
+      // Map of station values to their text labels (built dynamically from the service station lists)
+      const stationLabels = {};
+      Object.values(stationsByService).forEach(stations => {
+        stations.forEach(s => {
+          stationLabels[s.value] = s.text;
+        });
+      });
+
+      function populateModifyStations(serviceType) {
+        const stations = stationsByService[serviceType] || [];
+        const prevOrig = modOrigin.value;
+        const prevDest = modDest.value;
+
+        [modOrigin, modDest].forEach(sel => {
+          sel.innerHTML = '';
+          stations.forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s.value;
+            opt.textContent = s.text;
+            sel.appendChild(opt);
+          });
+        });
+
+        // Restore previous selections if they are still valid in the new service
+        const validVals = stations.map(s => s.value);
+        if (validVals.includes(prevOrig)) {
+          modOrigin.value = prevOrig;
+        } else {
+          modOrigin.value = stations[0] ? stations[0].value : '';
+        }
+
+        if (validVals.includes(prevDest)) {
+          modDest.value = prevDest;
+        } else {
+          modDest.value = stations[1] ? stations[1].value : (stations[0] ? stations[0].value : '');
+        }
+      }
+
+      if (modService) {
+        modService.addEventListener('change', () => {
+          populateModifyStations(modService.value);
+        });
+      }
+
+      function openPanel() {
+        // Pre-fill service type
+        if (searchQuery && modService) {
+          modService.value = searchQuery.serviceType || 'ETS & Intercity';
+        }
+
+        // Dynamically populate options based on current service type
+        const service = modService ? modService.value : 'ETS & Intercity';
+        populateModifyStations(service);
+
+        // Pre-fill with current search values
+        if (searchQuery) {
+          const stations = stationsByService[modService.value] || [];
+          const hasOrigin = stations.some(s => s.value === searchQuery.originVal);
+          const hasDest = stations.some(s => s.value === searchQuery.destVal);
+          if (hasOrigin) modOrigin.value = searchQuery.originVal;
+          if (hasDest) modDest.value = searchQuery.destVal;
+          modDate.value = searchQuery.departDate || '';
+
+          adults = searchQuery.adults !== undefined ? parseInt(searchQuery.adults) : (parseInt(searchQuery.passengersVal) || 1);
+          children = searchQuery.children !== undefined ? parseInt(searchQuery.children) : 0;
+          updateCounters();
+
+          // Restore trip type toggle
+          const storedTrip = searchQuery.tripType || 'oneway';
+          modTripType = storedTrip;
+          tripBtns.forEach(b => {
+            b.classList.toggle('active', b.dataset.trip === storedTrip);
+          });
+          if (modReturnField) {
+            if (storedTrip === 'roundtrip') {
+              modReturnField.style.display = 'flex';
+              modReturnDate.value = searchQuery.returnDate || '';
+              if (modDate.value) modReturnDate.min = modDate.value;
+            } else {
+              modReturnField.style.display = 'none';
+              modReturnDate.value = '';
+            }
+          }
+        }
+
+        // Set min date to today (Malaysia time)
+        const msiaNow = getMalaysiaTime();
+        const todayStr = `${msiaNow.getFullYear()}-${String(msiaNow.getMonth() + 1).padStart(2, '0')}-${String(msiaNow.getDate()).padStart(2, '0')}`;
+        modDate.min = todayStr;
+        if (modReturnDate) modReturnDate.min = modDate.value || todayStr;
+
+        panel.style.display = 'block';
+        summaryBar.classList.add('panel-open');
+        btnModify.classList.add('active');
+        btnModify.textContent = t('booking-btn-close', 'Close');
+      }
+
+      function closePanel() {
+        panel.style.display = 'none';
+        summaryBar.classList.remove('panel-open');
+        btnModify.classList.remove('active');
+        btnModify.textContent = t('booking-btn-modify', 'Modify Search');
+      }
+
+      btnModify.addEventListener('click', () => {
+        if (panel.style.display === 'none' || panel.style.display === '') {
+          openPanel();
+        } else {
+          closePanel();
+        }
+      });
+
+      // Swap origin ↔ destination
+      swapBtn.addEventListener('click', () => {
+        const tmp = modOrigin.value;
+        modOrigin.value = modDest.value;
+        modDest.value = tmp;
+      });
+
+      // Apply new search
+      applyBtn.addEventListener('click', () => {
+        const newOriginVal = modOrigin.value;
+        const newDestVal = modDest.value;
+        const newDate = modDate.value;
+        const newReturnDate = (modTripType === 'roundtrip') ? modReturnDate.value : '';
+        const newPax = String(adults + children);
+        const newService = modService ? modService.value : (searchQuery ? searchQuery.serviceType : 'ETS & Intercity');
+
+        if (!newOriginVal || !newDestVal || !newDate) {
+          showToast(t('alert-fill-fields', 'Please fill in all fields.'), 'error');
+          return;
+        }
+        if (newOriginVal === newDestVal) {
+          showToast(t('alert-same-station', 'Origin and destination cannot be the same.'), 'error');
+          return;
+        }
+        // Round trip requires a return date
+        if (modTripType === 'roundtrip' && !newReturnDate) {
+          showToast(t('alert-select-return-date', 'Please select a return date for your round trip.'), 'error');
+          if (modReturnDate) modReturnDate.focus();
+          return;
+        }
+
+        // Build updated search query and save
+        const updatedQuery = {
+          originVal: newOriginVal,
+          originText: stationLabels[newOriginVal] || newOriginVal,
+          destVal: newDestVal,
+          destText: stationLabels[newDestVal] || newDestVal,
+          departDate: newDate,
+          passengersVal: newPax,
+          adults: adults,
+          children: children,
+          passengersText: text ? text.textContent : `${newPax} Pax`,
+          tripType: modTripType,
+          returnDate: newReturnDate,
+          serviceType: newService
+        };
+        localStorage.setItem('kits_search_query', JSON.stringify(updatedQuery));
+
+        // Reset ALL booking state (outbound + return)
+        selectedTrain = null;
+        selectedSeats = [];
+        selectedReturnTrain = null;
+        selectedReturnSeats = [];
+        currentPhase = 'outbound';  // Always restart from outbound phase
+        activeCoach = 'A';
+        activeReturnCoach = 'A';
+        activeTimeFilter = 'all';
+        // Reset filter button UI
+        document.querySelectorAll('.time-filter-btn').forEach(b => b.classList.remove('active'));
+        const allBtn = document.querySelector('.time-filter-btn[data-time="all"]');
+        if (allBtn) allBtn.classList.add('active');
+
+        const sideOutbound = document.getElementById('side-outbound-details');
+        const sideReturn = document.getElementById('side-return-details');
+        const sidePriceBlock = document.getElementById('side-price-breakdown');
+        if (sideOutbound) sideOutbound.style.display = 'none';
+        if (sideReturn) sideReturn.style.display = 'none';
+        if (sidePriceBlock) sidePriceBlock.style.display = 'none';
+
+        goToStep(1);
+
+        // Reload with new params
+        loadSearchParameters();
+        initFiltersAndSort();
+        closePanel();
+
+        showToast(t('booking-search-updated', 'Search updated!'), 'success');
+      });
+    })();
+
+  </script>
+
+  <!-- KAI AI Assistant Chatbot -->
+  <script src="assets/chatbot.js"></script>
+
+  <!-- PAGE TRANSITION -->
+  <div id="page-transition-overlay"></div>
+  <script>
+    document.querySelectorAll('a[href]').forEach(function (link) {
+      var href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var overlay = document.getElementById('page-transition-overlay');
+        overlay.classList.add('fade-out');
+        var dest = href;
+        setTimeout(function () { window.location.href = dest; }, 350);
+      });
+    });
+  </script>
+</body>
+
+</html>

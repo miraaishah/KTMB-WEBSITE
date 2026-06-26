@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Report & Feedback - KTMB KITS</title>
+  <meta name="description"
+    content="Submit feedback or report issues regarding KTMB train services, delays, cleanliness, or ticketing systems.">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <svg style="display: none;">
+    <!-- Globe -->
+    <symbol id="icon-globe" viewBox="0 0 24 24">
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.4z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Upload Cloud -->
+    <symbol id="icon-upload" viewBox="0 0 24 24">
+      <path
+        d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Check Circle -->
+    <symbol id="icon-check-circle" viewBox="0 0 24 24">
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+        fill="currentColor" />
+    </symbol>
+  </svg>
+
+  <!-- HEADER -->
+  <header id="site-header" class="scrolled">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="color: var(--accent);">
+            <path
+              d="M4 15.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4s-8 .5-8 4v9.5z"
+              stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            <circle cx="7.5" cy="15.5" r="1.5" fill="currentColor" />
+            <circle cx="16.5" cy="15.5" r="1.5" fill="currentColor" />
+            <path d="M6 7h12v5H6V7z" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">KTMB</span>
+          <span class="logo-sub">KITS PORTAL</span>
+        </div>
+      </a>
+
+      <!-- Menu links -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link" data-translate="nav-book">Book Tickets</a>
+        <a href="status.html" class="nav-link" data-translate="nav-status">Live Status</a>
+        <a href="schedule.html" class="nav-link" data-translate="nav-schedule">Train Schedule</a>
+        <a href="reports.html" class="nav-link active" data-translate="nav-reports">Service Report</a>
+      </nav>
+
+      <!-- Nav CTA / Language -->
+      <div class="nav-actions">
+        <div class="lang-dropdown-wrapper">
+          <button class="btn-lang" aria-label="Select Language">
+            <svg width="16" height="16">
+              <use href="#icon-globe"></use>
+            </svg>
+            <span>EN</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              style="margin-left: 2px; transition: transform 0.2s; vertical-align: middle;">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="lang-dropdown-menu">
+            <button class="lang-option active" data-lang="en">
+              <span>English (EN)</span>
+            </button>
+            <button class="lang-option" data-lang="bm">
+              <span>Bahasa Malaysia (BM)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- User auth container -->
+        <div class="auth-container" id="auth-container">
+          <div class="logged-out-actions" id="logged-out-actions">
+            <button class="btn-signup-nav" id="btn-signup-desktop" data-translate="nav-signup">Sign Up</button>
+            <button class="btn-signin" id="btn-signin-desktop" data-translate="nav-login">Log In</button>
+          </div>
+
+          <div class="user-dropdown-wrapper" id="user-dropdown-wrapper" style="display:none;">
+            <button class="btn-user-profile" id="btn-user-profile" aria-expanded="false" aria-haspopup="true">
+              <span class="user-avatar" id="nav-user-avatar">U</span>
+              <span class="user-name" id="nav-user-name">User</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="user-dropdown-menu" id="user-dropdown-menu">
+              <a href="mybookings.html" id="menu-my-bookings">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="margin-right: 8px; vertical-align: middle;">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <span data-translate="nav-mybookings">My Bookings</span>
+              </a>
+              <hr class="dropdown-divider">
+              <a href="#" id="menu-signout" class="text-danger">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="margin-right: 8px; vertical-align: middle;">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span data-translate="nav-signout">Sign Out</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main class="booking-page-layout" style="padding-top: 110px; max-width: 1200px; margin: 0 auto 60px auto;">
+    <div style="margin-bottom: 24px;">
+      <h1 class="section-title" data-translate="report-title" style="font-size: 26px;">Service Report & Feedback Portal
+      </h1>
+      <p class="section-subtitle" data-translate="report-subtitle">Submit reports, share feedback, and track your
+        service tickets.</p>
+    </div>
+
+    <div class="reports-layout-grid">
+      <!-- Left Column: Report Submission Form -->
+      <section class="report-form-card">
+        <h2 data-translate="report-form-title"
+          style="font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 20px;">Submit Service Report
+        </h2>
+        <form id="service-report-form" class="modal-form">
+          <div class="form-grid">
+            <!-- Category -->
+            <div class="form-group">
+              <label for="report-category" data-translate="report-label-category">Report Category</label>
+              <select id="report-category" required>
+                <option value="Delay" data-translate="report-opt-delay">Delay / Schedule Issue</option>
+                <option value="Cleanliness" data-translate="report-opt-clean">Onboard Cleanliness & Amenities</option>
+                <option value="Staff" data-translate="report-opt-staff">Staff Behavior & Service</option>
+                <option value="System" data-translate="report-opt-ticket">Ticketing & App Issue</option>
+                <option value="Others" data-translate="report-opt-other">Other Feedback</option>
+              </select>
+            </div>
+            <!-- Rating -->
+            <div class="form-group">
+              <label data-translate="report-label-rating">Service Rating</label>
+              <div class="rating-stars-container" id="rating-stars-container">
+                <button type="button" class="star-btn" data-star="1" aria-label="1 Star">★</button>
+                <button type="button" class="star-btn" data-star="2" aria-label="2 Stars">★</button>
+                <button type="button" class="star-btn" data-star="3" aria-label="3 Stars">★</button>
+                <button type="button" class="star-btn" data-star="4" aria-label="4 Stars">★</button>
+                <button type="button" class="star-btn" data-star="5" aria-label="5 Stars">★</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <!-- Ticket Reference (Optional) -->
+            <div class="form-group">
+              <label for="report-ticket-ref" data-translate="report-label-ref">Ticket Reference Number
+                (Optional)</label>
+              <input type="text" id="report-ticket-ref" data-translate-placeholder="report-placeholder-ref"
+                placeholder="e.g., KTMB-123456">
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group">
+            <label for="report-desc" data-translate="report-label-desc">Describe the Issue</label>
+            <textarea id="report-desc" rows="5" data-translate-placeholder="report-placeholder-desc"
+              placeholder="Please provide details about what happened..." required
+              style="padding: 12px; border: 1px solid var(--gray-300); border-radius: var(--radius-md); font-size: 14px; font-family: inherit; resize: vertical;"></textarea>
+          </div>
+
+          <!-- Photo upload simulator -->
+          <div class="form-group">
+            <label data-translate="report-label-photo">Attach Photo / Screenshot (Optional)</label>
+            <div class="file-drop-zone" id="file-drop-zone">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              <p data-translate="report-photo-note">Drag and drop your image here, or click to upload</p>
+              <span>Max size: 5MB (PNG, JPG)</span>
+            </div>
+            <input type="file" id="report-file-input" style="display: none;" accept="image/*">
+            <div id="upload-preview" style="display: none;"></div>
+          </div>
+
+          <!-- Contact Fields (Autofilled if logged in) -->
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="report-name" data-translate="auth-label-name">Full Name</label>
+              <input type="text" id="report-name" required>
+            </div>
+            <div class="form-group">
+              <label for="report-email" data-translate="auth-label-email">Email Address</label>
+              <input type="email" id="report-email" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-save" style="width: 100%; margin-top: 12px; padding: 14px;"
+            data-translate="report-btn-submit">Submit Report</button>
+        </form>
+      </section>
+
+      <!-- Right Column: Submission History Tracking -->
+      <section class="report-history-card">
+        <h2 data-translate="report-history-title"
+          style="font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 10px;">Track Report Status
+        </h2>
+        <p data-translate="report-track-desc" style="font-size: 13px; color: var(--gray-600); margin-bottom: 16px;">
+          Enter your Report Tracking ID to check status and official updates.</p>
+
+        <!-- Track Search Box -->
+        <div class="track-search-group" style="display: flex; gap: 8px; margin-bottom: 20px;">
+          <input type="text" id="track-report-id" data-translate-placeholder="report-track-placeholder"
+            placeholder="e.g. RPT-2026-XXXX"
+            style="flex: 1; padding: 10px 12px; border: 1px solid var(--gray-300); border-radius: var(--radius-md); font-size: 14px;">
+          <button type="button" id="btn-track-submit" class="btn-save"
+            style="padding: 10px 16px; margin: 0; font-size: 14px;" data-translate="report-track-btn">Track</button>
+        </div>
+
+        <!-- Tracked Report Result Container -->
+        <div id="tracked-report-result" class="report-history-list">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Logged-in User Submissions List Shortcuts -->
+        <div id="your-submissions-panel"
+          style="display: none; margin-top: 24px; border-top: 1px solid var(--gray-200); padding-top: 20px;">
+          <h3 data-translate="report-your-list-title"
+            style="font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 10px;">Your Submissions:
+          </h3>
+          <div id="your-submissions-list" style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <!-- Short badges populated dynamically -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="support">
+    <div class="footer-container">
+      <!-- Col 1: Brand Info -->
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">
+          <div class="footer-logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color: var(--primary);">
+              <path
+                d="M4 15.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4s-8 .5-8 4v9.5z"
+                stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <circle cx="7.5" cy="15.5" r="1.5" fill="currentColor" />
+              <circle cx="16.5" cy="15.5" r="1.5" fill="currentColor" />
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="footer-logo-title">KTMB</span>
+            <span class="footer-logo-sub">MALAYSIA RAILWAY</span>
+          </div>
+        </a>
+        <p data-translate="footer-desc">Keretapi Tanah Melayu Berhad (KTMB) is the main rail operator in Peninsular Malaysia. We deliver safe, sustainable, and reliable transport solutions for the nation.</p>
+      </div>
+
+      <!-- Col 2: Services -->
+      <div class="footer-links-col">
+        <h4 data-translate="footer-networks">Our Networks</h4>
+        <ul>
+          <li><a href="ets-intercity.html">Electric Train Service (ETS) & Intercity</a></li>
+          <li><a href="ktm-komuter.html">KTM Komuter Klang Valley</a></li>
+          <li><a href="ktm-northern.html">KTM Komuter Northern</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Quick Links -->
+      <div class="footer-links-col">
+        <h4 data-translate="footer-support">Help & Support</h4>
+        <ul>
+          <li><a href="support.html#faq" data-translate="support-tab-faq">Frequently Asked Questions</a></li>
+          <li><a href="support.html#refund" data-translate="support-tab-refund">Ticket Refund & Cancellation</a></li>
+          <li><a href="support.html#facilities" data-translate="support-tab-facilities">Train Station Facilities</a></li>
+          <li><a href="support.html#contact" data-translate="support-tab-contact">Contact Support</a></li>
+          <li><a href="support.html#careers" data-translate="support-tab-careers">Career Opportunities</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Newsletter -->
+      <div class="footer-newsletter">
+        <h4 data-translate="footer-update">Stay Updated</h4>
+        <p data-translate="footer-update-desc">Subscribe to our monthly newsletter to receive exclusive travel discounts and operational updates.</p>
+        <form class="newsletter-form" action="#" method="POST"
+          onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+          <input type="email" placeholder="Your email address" data-translate-placeholder="footer-placeholder-email"
+            required aria-label="Email Address">
+          <button type="submit" class="btn-subscribe" data-translate="footer-btn-join">Join</button>
+        </form>
+        <div class="social-links">
+          <a href="#" class="social-icon" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1V12h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.388.555a3.002 3.002 0 0 0-2.11 2.108C0 8.03 0 12 0 12s0 3.97.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.48 20.5 12 20.5 12 20.5s7.52 0 9.388-.555a3.002 3.002 0 0 0 2.11-2.108C24 15.97 24 12 24 12s0-3.97-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        &copy; 2026 Keretapi Tanah Melayu Berhad. All rights reserved.
+      </div>
+      <div class="footer-policy-links">
+        <a href="#" data-translate="footer-policy-privacy">Privacy Policy</a>
+        <a href="#" data-translate="footer-policy-terms">Terms of Service</a>
+        <a href="#" data-translate="footer-policy-antibribery">Anti-Bribery Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="auth-modal"
+    style="display: none; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000;">
+    <div class="modal-card"
+      style="background: var(--white); border-radius: var(--radius-md); max-width: 420px; width: 90%; padding: 24px; box-shadow: var(--shadow-lg);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3 id="auth-modal-title" style="font-size: 18px; font-weight: 700; color: var(--primary);">Log In</h3>
+        <button type="button" id="auth-modal-close"
+          style="background: none; border: none; font-size: 20px; cursor: pointer; color: var(--gray-500); font-weight: 700;">&times;</button>
+      </div>
+
+      <!-- Login form -->
+      <form id="auth-signin-form" class="modal-form">
+        <div class="form-group">
+          <label for="auth-email" data-translate="auth-label-email">Email Address</label>
+          <input type="email" id="auth-email" required placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+          <label for="auth-pass" data-translate="auth-label-password">Password</label>
+          <input type="password" id="auth-pass" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-save" style="width:100%; padding:12px; margin-top:10px;"
+          data-translate="nav-login">Log In</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="assets/translations.js"></script>
+  <script src="assets/notifications.js"></script>
+  <script>
+    // Global State
+    let isLoggedIn = false;
+    let currentUser = null;
+    let reportRating = 5;
+    let attachedFile = null;
+    let activeTrackedReportId = '';
+
+    // Toast Notification helper
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:8px; vertical-align:middle;">
+          <use href="#icon-check-circle"></use>
+        </svg>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+
+      // Auto-remove
+      setTimeout(() => {
+        toast.style.animation = 'slideOutRight 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // Refresh Session state
+    function updateAuthUI() {
+      const sessionStr = localStorage.getItem('kits_user_session');
+      const userDropdown = document.getElementById('user-dropdown-wrapper');
+      const loggedOutActions = document.getElementById('logged-out-actions');
+
+      if (sessionStr) {
+        isLoggedIn = true;
+        currentUser = JSON.parse(sessionStr);
+        if (userDropdown) userDropdown.style.display = 'block';
+        if (loggedOutActions) loggedOutActions.style.display = 'none';
+
+        document.getElementById('nav-user-avatar').textContent = currentUser.name.charAt(0).toUpperCase();
+        document.getElementById('nav-user-name').textContent = currentUser.name.split(' ')[0];
+
+        // Fill form fields
+        document.getElementById('report-name').value = currentUser.name;
+        document.getElementById('report-email').value = currentUser.email;
+      } else {
+        isLoggedIn = false;
+        currentUser = null;
+        if (userDropdown) userDropdown.style.display = 'none';
+        if (loggedOutActions) loggedOutActions.style.display = 'block';
+
+        // Clear form fields
+        document.getElementById('report-name').value = '';
+        document.getElementById('report-email').value = '';
+      }
+
+      // Seed mock reports & re-render
+      seedMockReports();
+      renderReportsList();
+    }
+
+    // Modal helpers
+    function openAuthModal() {
+      document.getElementById('auth-modal').style.display = 'flex';
+    }
+    function closeAuthModal() {
+      document.getElementById('auth-modal').style.display = 'none';
+    }
+
+    // Seed mock database reports for demonstration
+    function seedMockReports() {
+      const activeEmail = currentUser ? currentUser.email : 'guest@example.com';
+      const stored = localStorage.getItem('kits_reports');
+
+      // If we don't have reports stored at all, seed some realistic defaults
+      if (!stored) {
+        const mockData = [
+          {
+            id: 'RPT-2026-F981',
+            email: 'amirah@example.com',
+            category: 'Delay',
+            rating: 2,
+            refNum: 'KTMB-980124',
+            desc: 'ETS Platinum 9123 departed 25 minutes later than scheduled timetable. Cleanliness was good but schedule adherence needs improvement.',
+            date: '24 Jun 2026',
+            status: 'resolved',
+            officer: 'Officer Assigned: Khairul Azhar',
+            response: 'We sincerely apologize for the delay. The train encountered a signaling check. Operation team has been notified.'
+          },
+          {
+            id: 'RPT-2026-B812',
+            email: 'amirah@example.com',
+            category: 'Cleanliness',
+            rating: 3,
+            refNum: '',
+            desc: 'A/C in Coach C was set too cold and there was litter on the floor near seat C14.',
+            date: '25 Jun 2026',
+            status: 'pending',
+            officer: 'Officer Assigned: Nur Shuhada',
+            response: ''
+          }
+        ];
+        localStorage.setItem('kits_reports', JSON.stringify(mockData));
+      }
+    }
+
+    // Render Past Submissions
+    function renderReportsList() {
+      const resultContainer = document.getElementById('tracked-report-result');
+      if (!resultContainer) return;
+
+      resultContainer.innerHTML = '';
+      const allReports = JSON.parse(localStorage.getItem('kits_reports') || '[]');
+
+      // 1. Render tracked report if activeTrackedReportId is set
+      if (!activeTrackedReportId) {
+        resultContainer.innerHTML = `
+          <div style="text-align: center; padding: 40px 20px; color: var(--gray-500); border: 1px dashed var(--gray-200); border-radius: var(--radius-md); background: var(--gray-50);">
+            <p data-translate="report-track-prompt" style="margin: 0; font-size: 14px;">${t('report-track-prompt', 'Enter a Report ID above to track status.')}</p>
+          </div>
+        `;
+      } else {
+        const report = allReports.find(r => r.id.trim().toUpperCase() === activeTrackedReportId.trim().toUpperCase());
+        if (!report) {
+          resultContainer.innerHTML = `
+            <div style="text-align: center; padding: 40px 20px; color: #ef4444; border: 1px dashed #fca5a5; border-radius: var(--radius-md); background: #fef2f2;">
+              <p data-translate="report-track-not-found" style="margin: 0; font-size: 14px; font-weight: 600;">${t('report-track-not-found', 'Report not found. Please verify the ID.')}</p>
+            </div>
+          `;
+        } else {
+          // Found report - render the card
+          const card = document.createElement('div');
+          card.className = 'report-history-item';
+
+          let starsHTML = '';
+          for (let s = 1; s <= 5; s++) {
+            starsHTML += s <= report.rating ? '★' : '☆';
+          }
+
+          const categoryLabel = getCategoryLabel(report.category);
+          const statusLabel = report.status === 'resolved' ? t('report-status-resolved', 'Resolved') : t('report-status-pending', 'Under Review');
+
+          card.innerHTML = `
+            <div class="report-item-header">
+              <div>
+                <span class="report-item-id">${report.id}</span>
+                <span class="report-item-date">${report.date}</span>
+              </div>
+              <span class="report-status-badge ${report.status}">${statusLabel}</span>
+            </div>
+            <div class="report-item-category">${categoryLabel}</div>
+            <div class="report-item-stars">${starsHTML}</div>
+            <div class="report-item-desc">${escapeHtml(report.desc)}</div>
+            ${report.refNum ? `<div style="font-size:11px; margin-bottom:8px; color:var(--gray-600);"><strong>Ref:</strong> ${escapeHtml(report.refNum)}</div>` : ''}
+            <div class="report-item-officer">${report.officer}</div>
+            ${report.response ? `<div class="report-item-response">${escapeHtml(report.response)}</div>` : ''}
+          `;
+          resultContainer.appendChild(card);
+        }
+      }
+
+      // 2. Render shortcuts list for logged-in user
+      const submissionsPanel = document.getElementById('your-submissions-panel');
+      const submissionsList = document.getElementById('your-submissions-list');
+
+      if (submissionsPanel && submissionsList) {
+        if (isLoggedIn && currentUser) {
+          submissionsPanel.style.display = 'block';
+          submissionsList.innerHTML = '';
+
+          const myReports = allReports.filter(r => r.email === currentUser.email);
+          if (myReports.length === 0) {
+            submissionsList.innerHTML = `
+              <span style="font-size: 13px; color: var(--gray-500); font-style: italic;" data-translate="report-empty-state">
+                ${t('report-empty-state', 'You have not submitted any reports yet.')}
+              </span>
+            `;
+          } else {
+            myReports.forEach(r => {
+              const btn = document.createElement('button');
+              btn.type = 'button';
+
+              // Active highlight style if tracked
+              const isActive = activeTrackedReportId.trim().toUpperCase() === r.id.toUpperCase();
+
+              btn.style.cssText = `
+                padding: 6px 12px;
+                border-radius: 20px;
+                background: ${isActive ? 'var(--primary)' : 'rgba(26, 61, 125, 0.06)'};
+                border: 1px solid ${isActive ? 'var(--primary)' : 'rgba(26, 61, 125, 0.15)'};
+                color: ${isActive ? 'var(--white)' : 'var(--primary)'};
+                cursor: pointer;
+                font-size: 12px;
+                font-weight: 600;
+                transition: all 0.2s;
+              `;
+
+              btn.textContent = `${r.id} (${r.date})`;
+
+              // Hover effect
+              btn.addEventListener('mouseenter', () => {
+                if (!isActive) {
+                  btn.style.background = 'rgba(26, 61, 125, 0.12)';
+                }
+              });
+              btn.addEventListener('mouseleave', () => {
+                if (!isActive) {
+                  btn.style.background = 'rgba(26, 61, 125, 0.06)';
+                }
+              });
+
+              btn.addEventListener('click', () => {
+                const trackInput = document.getElementById('track-report-id');
+                if (trackInput) {
+                  trackInput.value = r.id;
+                }
+                activeTrackedReportId = r.id;
+                renderReportsList();
+              });
+
+              submissionsList.appendChild(btn);
+            });
+          }
+        } else {
+          submissionsPanel.style.display = 'none';
+        }
+      }
+    }
+
+    function getCategoryLabel(cat) {
+      if (cat === 'Delay') return t('report-opt-delay', 'Delay / Schedule Issue');
+      if (cat === 'Cleanliness') return t('report-opt-clean', 'Onboard Cleanliness & Amenities');
+      if (cat === 'Staff') return t('report-opt-staff', 'Staff Behavior & Service');
+      if (cat === 'System') return t('report-opt-ticket', 'Ticketing & App Issue');
+      return t('report-opt-other', 'Other Feedback');
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // Set rating stars UI
+    function setRating(rating) {
+      reportRating = rating;
+      const stars = document.querySelectorAll('#rating-stars-container .star-btn');
+      stars.forEach(btn => {
+        const val = parseInt(btn.getAttribute('data-star'));
+        if (val <= rating) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    // Wire Star Hovering
+    function initStarRating() {
+      const container = document.getElementById('rating-stars-container');
+      if (!container) return;
+
+      const stars = container.querySelectorAll('.star-btn');
+      stars.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const val = parseInt(btn.getAttribute('data-star'));
+          setRating(val);
+        });
+
+        btn.addEventListener('mouseenter', () => {
+          const val = parseInt(btn.getAttribute('data-star'));
+          stars.forEach(s => {
+            const sVal = parseInt(s.getAttribute('data-star'));
+            if (sVal <= val) {
+              s.classList.add('hovered');
+            } else {
+              s.classList.remove('hovered');
+            }
+          });
+        });
+      });
+
+      container.addEventListener('mouseleave', () => {
+        stars.forEach(s => s.classList.remove('hovered'));
+      });
+
+      // Default rating
+      setRating(5);
+    }
+
+    // Image Upload drag-and-drop simulator
+    function initImageUpload() {
+      const zone = document.getElementById('file-drop-zone');
+      const input = document.getElementById('report-file-input');
+      const preview = document.getElementById('upload-preview');
+
+      if (!zone || !input) return;
+
+      zone.addEventListener('click', () => input.click());
+
+      zone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        zone.style.borderColor = 'var(--primary)';
+        zone.style.backgroundColor = 'rgba(26, 61, 125, 0.05)';
+      });
+
+      zone.addEventListener('dragleave', () => {
+        zone.style.borderColor = 'var(--gray-300)';
+        zone.style.backgroundColor = 'var(--gray-50)';
+      });
+
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.style.borderColor = 'var(--gray-300)';
+        zone.style.backgroundColor = 'var(--gray-50)';
+
+        if (e.dataTransfer.files.length > 0) {
+          handleFile(e.dataTransfer.files[0]);
+        }
+      });
+
+      input.addEventListener('change', () => {
+        if (input.files.length > 0) {
+          handleFile(input.files[0]);
+        }
+      });
+
+      function handleFile(file) {
+        if (!file.type.startsWith('image/')) {
+          showToast(t('alert-invalid-file', 'Please select an image file.'), 'error');
+          return;
+        }
+        if (file.size > 5 * 1024 * 1024) {
+          showToast(t('alert-file-size', 'File size must be less than 5MB.'), 'error');
+          return;
+        }
+
+        attachedFile = file;
+        preview.style.display = 'flex';
+        preview.className = 'uploaded-preview-container';
+        preview.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+          </svg>
+          <span>${escapeHtml(file.name)} (${(file.size / 1024 / 1024).toFixed(2)} MB)</span>
+          <button type="button" class="btn-remove-upload" id="btn-remove-upload">&times;</button>
+        `;
+
+        document.getElementById('btn-remove-upload').addEventListener('click', () => {
+          attachedFile = null;
+          preview.innerHTML = '';
+          preview.style.display = 'none';
+          input.value = '';
+        });
+      }
+    }
+
+    // Submit Report Handler
+    function initFormSubmit() {
+      const form = document.getElementById('service-report-form');
+      if (!form) return;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const category = document.getElementById('report-category').value;
+        const ticketRef = document.getElementById('report-ticket-ref').value.trim();
+        const desc = document.getElementById('report-desc').value.trim();
+        const contactName = document.getElementById('report-name').value.trim();
+        const contactEmail = document.getElementById('report-email').value.trim();
+
+        if (!desc) {
+          showToast(t('report-alert-desc-required', 'Please describe the issue in detail.'), 'error');
+          return;
+        }
+
+        // Validate ticket reference formatting if entered
+        if (ticketRef !== '') {
+          const refPattern = /^KTMB-\d{6}$/i;
+          if (!refPattern.test(ticketRef)) {
+            showToast(t('report-alert-invalid-ref', 'Invalid Ticket Reference. Format must be KTMB-XXXXXX (6 digits).'), 'error');
+            document.getElementById('report-ticket-ref').focus();
+            return;
+          }
+        }
+
+        // Generate mock tracking details
+        const suffix = Math.random().toString(36).substring(2, 6).toUpperCase();
+        const reportId = `RPT-2026-${suffix}`;
+
+        const now = new Date();
+        const monthNames = ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const dateString = `${now.getDate()} ${monthNames[0]} ${now.getFullYear()}`;
+
+        const reportData = {
+          id: reportId,
+          email: currentUser ? currentUser.email : 'guest@example.com',
+          category: category,
+          rating: reportRating,
+          refNum: ticketRef,
+          desc: desc,
+          date: dateString,
+          status: 'pending',
+          officer: 'Officer Assigned: Nur Shuhada',
+          response: ''
+        };
+
+        // Save to LocalStorage
+        const allReports = JSON.parse(localStorage.getItem('kits_reports') || '[]');
+        allReports.unshift(reportData);
+        localStorage.setItem('kits_reports', JSON.stringify(allReports));
+
+        // Toast Alert & Clean Form
+        showToast(t('report-alert-success', 'Report submitted successfully! Your tracking ID is ') + reportId, 'success');
+
+        form.reset();
+        setRating(5);
+        attachedFile = null;
+        const preview = document.getElementById('upload-preview');
+        preview.innerHTML = '';
+        preview.style.display = 'none';
+
+        // Re-sync name & email if logged in
+        if (currentUser) {
+          document.getElementById('report-name').value = currentUser.name;
+          document.getElementById('report-email').value = currentUser.email;
+        }
+
+        // Set search input to newly generated ID
+        const trackInput = document.getElementById('track-report-id');
+        if (trackInput) {
+          trackInput.value = reportId;
+        }
+        activeTrackedReportId = reportId;
+
+        renderReportsList();
+      });
+    }
+
+    // Header interaction scripts
+    document.addEventListener('DOMContentLoaded', () => {
+      // lang dropdown
+      const btnLang = document.querySelector('.btn-lang');
+      const langMenu = document.querySelector('.lang-dropdown-menu');
+
+      if (btnLang && langMenu) {
+        btnLang.addEventListener('click', (e) => {
+          e.stopPropagation();
+          langMenu.classList.toggle('open');
+        });
+
+        document.addEventListener('click', () => {
+          langMenu.classList.remove('open');
+        });
+
+        langMenu.querySelectorAll('.lang-option').forEach(opt => {
+          opt.addEventListener('click', () => {
+            const lang = opt.getAttribute('data-lang');
+            applyLanguage(lang);
+            renderReportsList(); // Refresh items translation
+          });
+        });
+      }
+
+      // user profile dropdown
+      const btnProfile = document.getElementById('btn-user-profile');
+      const profileMenu = document.getElementById('user-dropdown-menu');
+
+      if (btnProfile && profileMenu) {
+        btnProfile.addEventListener('click', (e) => {
+          e.stopPropagation();
+          profileMenu.classList.toggle('open');
+        });
+
+        document.addEventListener('click', () => {
+          profileMenu.classList.remove('open');
+        });
+      }
+
+      // logout trigger
+      const menuSignout = document.getElementById('menu-signout');
+      if (menuSignout) {
+        menuSignout.addEventListener('click', (e) => {
+          e.preventDefault();
+          localStorage.removeItem('kits_user_session');
+          updateAuthUI();
+          showToast(t('alert-logout-success', 'Logged out successfully!'), 'success');
+        });
+      }
+
+      // login drawer/modal buttons
+      const btnSigninDesktop = document.getElementById('btn-signin-desktop');
+      const btnCloseAuth = document.getElementById('auth-modal-close');
+
+      if (btnSigninDesktop) btnSigninDesktop.addEventListener('click', openAuthModal);
+      if (btnCloseAuth) btnCloseAuth.addEventListener('click', closeAuthModal);
+
+      // handle login submit
+      const signinForm = document.getElementById('auth-signin-form');
+      if (signinForm) {
+        signinForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const emailInput = document.getElementById('auth-email').value.trim();
+
+          // Set mock user session
+          const mockUser = {
+            email: emailInput,
+            name: emailInput.split('@')[0].replace('.', ' ').replace(/\b\w/g, c => c.toUpperCase()),
+            idType: 'IC',
+            idNum: '950812-14-5678',
+            gender: 'Female'
+          };
+          localStorage.setItem('kits_user_session', JSON.stringify(mockUser));
+          updateAuthUI();
+          closeAuthModal();
+          showToast(t('alert-login-success', 'Logged in successfully!'), 'success');
+        });
+      }
+
+      // Cross-tab storage listeners
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'kits_user_session') {
+          updateAuthUI();
+        }
+      });
+
+      // Track input handlers
+      const trackInput = document.getElementById('track-report-id');
+      const trackBtn = document.getElementById('btn-track-submit');
+
+      if (trackInput && trackBtn) {
+        trackBtn.addEventListener('click', () => {
+          activeTrackedReportId = trackInput.value.trim();
+          renderReportsList();
+        });
+
+        trackInput.addEventListener('keyup', (e) => {
+          if (e.key === 'Enter') {
+            activeTrackedReportId = trackInput.value.trim();
+            renderReportsList();
+          }
+        });
+      }
+
+      // Initial page run
+      updateAuthUI();
+      initStarRating();
+      initImageUpload();
+      initFormSubmit();
+    });
+  </script>
+
+  <!-- AI Chatbot Widget -->
+  <script src="assets/chatbot.js"></script>
+</body>
+
+</html>

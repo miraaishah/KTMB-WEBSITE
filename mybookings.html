@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Booking History - KTMB KITS</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Premium Dashboard Styles */
+    .dashboard-container {
+      max-width: 1020px;
+      margin: 110px auto 70px;
+      padding: 0 24px;
+    }
+
+    .dashboard-breadcrumbs {
+      font-size: 13px;
+      color: var(--gray-500);
+      margin-bottom: 20px;
+    }
+
+    .dashboard-breadcrumbs a {
+      color: var(--gray-600);
+      text-decoration: none;
+      transition: var(--transition-fast);
+    }
+
+    .dashboard-breadcrumbs a:hover {
+      color: var(--primary);
+    }
+
+    /* Profile Header Card */
+    .profile-card {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.03);
+      pointer-events: none;
+    }
+
+    .profile-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .profile-avatar-lg {
+      width: 70px;
+      height: 70px;
+      background: var(--accent);
+      color: var(--primary-dark);
+      font-size: 32px;
+      font-weight: 800;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      box-shadow: var(--shadow-md);
+    }
+
+    .profile-details h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 750;
+      letter-spacing: -0.5px;
+    }
+
+    .profile-details p {
+      margin: 4px 0 0;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .profile-stats {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-md);
+      padding: 12px 20px;
+      min-width: 120px;
+      text-align: center;
+      backdrop-filter: blur(5px);
+    }
+
+    .stat-val {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-lbl {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Main Dashboard Layout */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    /* Search and Filter Card */
+    .controls-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      background: var(--gray-100);
+      padding: 4px;
+      border-radius: var(--radius-md);
+      gap: 4px;
+    }
+
+    .filter-tab-btn {
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-600);
+      border-radius: calc(var(--radius-md) - 2px);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .filter-tab-btn:hover {
+      color: var(--primary);
+    }
+
+    .filter-tab-btn.active {
+      background: var(--white);
+      color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-box-wrapper {
+      position: relative;
+      flex: 1;
+      max-width: 400px;
+      min-width: 260px;
+    }
+
+    .search-box-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+      pointer-events: none;
+    }
+
+    .search-box-input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      outline: none;
+      transition: var(--transition-fast);
+      box-sizing: border-box;
+    }
+
+    .search-box-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(11, 44, 91, 0.08);
+    }
+
+    /* Enhanced Booking Cards */
+    .dashboard-bookings-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .booking-card-wrapper {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: var(--transition-medium);
+    }
+
+    .booking-card-wrapper:hover {
+      border-color: var(--primary-light);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .bcard-header {
+      background: var(--gray-50);
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .bcard-ref-area {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bcard-ref-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--gray-500);
+      letter-spacing: 0.5px;
+    }
+
+    .bcard-ref-val {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .bcard-status-badge {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.5px;
+    }
+
+    .bcard-status-badge.confirmed {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .bcard-status-badge.past {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    .bcard-body {
+      padding: 24px;
+    }
+
+    .journey-segment {
+      margin-bottom: 20px;
+    }
+
+    .journey-segment:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .journey-segment-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .route-block {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .station-name {
+      font-size: 18px;
+      font-weight: 750;
+      color: var(--dark-900);
+      line-height: 1.2;
+    }
+
+    .route-arrow {
+      color: var(--gray-400);
+      display: flex;
+      align-items: center;
+    }
+
+    .journey-details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      background: var(--gray-50);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      border: 1px dashed var(--gray-200);
+    }
+
+    .grid-info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .info-lbl {
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 755;
+      color: var(--gray-500);
+      letter-spacing: 0.5px;
+    }
+
+    .info-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark-900);
+    }
+
+    .info-val strong {
+      color: var(--primary);
+    }
+
+    .bcard-footer {
+      border-top: 1px solid var(--gray-100);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      background: linear-gradient(to right, var(--gray-50), var(--white));
+    }
+
+    .bcard-price-area {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .bcard-total-lbl {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .bcard-price-val {
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .bcard-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action-outline {
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
+      color: var(--gray-600);
+      padding: 9px 18px;
+      font-size: 12.5px;
+      font-weight: 700;
+      font-family: var(--font-body);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.18s ease;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .btn-action-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(11, 44, 91, 0.04);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(11, 44, 91, 0.08);
+    }
+
+    .btn-action-outline:active {
+      transform: translateY(0);
+    }
+
+    .btn-action-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border: none;
+      color: var(--white);
+      padding: 9px 20px;
+      font-size: 12.5px;
+      font-weight: 700;
+      font-family: var(--font-body);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.18s ease;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(11, 44, 91, 0.25);
+    }
+
+    .btn-action-primary:hover {
+      background: linear-gradient(135deg, #0d3470 0%, #071c3a 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(11, 44, 91, 0.35);
+    }
+
+    .btn-action-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(11, 44, 91, 0.2);
+    }
+
+    /* Logged Out Access Denied Card */
+    .logged-out-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 56px 40px 48px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      max-width: 520px;
+      margin: 40px auto;
+    }
+
+    .lock-icon-wrapper {
+      width: 86px;
+      height: 86px;
+      background: linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(220, 38, 38, 0.04));
+      color: #dc2626;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      border: 1.5px solid rgba(220, 38, 38, 0.12);
+    }
+
+    .logged-out-card h3 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 755;
+      margin: 0 0 10px;
+      color: var(--primary-dark);
+    }
+
+    .logged-out-card p {
+      font-size: 14px;
+      color: var(--gray-600);
+      margin: 0 0 30px;
+      line-height: 1.6;
+    }
+
+    /* Button Box */
+    .btn-box-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .btn-box-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-login-large {
+      flex: 1;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border: none;
+      color: var(--white);
+      padding: 13px 24px;
+      font-size: 14.5px;
+      font-weight: 755;
+      font-family: var(--font-body);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(11, 44, 91, 0.28);
+      transition: all 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-login-large:hover {
+      background: linear-gradient(135deg, #0d3470 0%, #071c3a 100%);
+      box-shadow: 0 5px 16px rgba(11, 44, 91, 0.38);
+      transform: translateY(-1px);
+    }
+
+    .btn-login-large:active {
+      transform: translateY(0);
+    }
+
+    .btn-signup-large {
+      flex: 1;
+      background: var(--white);
+      border: 1.5px solid var(--gray-300);
+      color: var(--gray-700);
+      padding: 13px 24px;
+      font-size: 14.5px;
+      font-weight: 755;
+      font-family: var(--font-body);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-signup-large:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(11, 44, 91, 0.04);
+      transform: translateY(-1px);
+    }
+
+    .btn-signup-large:active {
+      transform: translateY(0);
+    }
+
+    .btn-box-note {
+      font-size: 12px;
+      color: var(--gray-500);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* Page skeleton loaders */
+    .skeleton-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      animation: pulse 1.5s infinite ease-in-out;
+      margin-bottom: 20px;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.6;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <svg style="display: none;">
+    <!-- Globe -->
+    <symbol id="icon-globe" viewBox="0 0 24 24">
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.4z"
+        fill="currentColor" />
+    </symbol>
+  </svg>
+
+  <!-- HEADER -->
+  <header id="site-header" class="scrolled">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="color: var(--accent);">
+            <path
+              d="M4 15.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4s-8 .5-8 4v9.5z"
+              stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            <circle cx="7.5" cy="15.5" r="1.5" fill="currentColor" />
+            <circle cx="16.5" cy="15.5" r="1.5" fill="currentColor" />
+            <path d="M6 7h12v5H6V7z" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">KTMB</span>
+          <span class="logo-sub">KITS PORTAL</span>
+        </div>
+      </a>
+
+      <!-- Menu links -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link" data-translate="nav-book">Book Tickets</a>
+        <a href="status.html" class="nav-link" data-translate="nav-status">Live Status</a>
+        <a href="schedule.html" class="nav-link" data-translate="nav-schedule">Train Schedule</a>
+        <a href="reports.html" class="nav-link" data-translate="nav-reports">Service Report</a>
+      </nav>
+
+      <!-- Nav CTA / Language -->
+      <div class="nav-actions">
+        <div class="lang-dropdown-wrapper">
+          <button class="btn-lang" aria-label="Select Language">
+            <svg width="16" height="16">
+              <use href="#icon-globe"></use>
+            </svg>
+            <span>EN</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              style="margin-left: 2px; transition: transform 0.2s; vertical-align: middle;">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="lang-dropdown-menu">
+            <button class="lang-option active" data-lang="en">
+              <span>English (EN)</span>
+            </button>
+            <button class="lang-option" data-lang="bm">
+              <span>Bahasa Malaysia (BM)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- User auth container -->
+        <div class="auth-container" id="auth-container">
+          <div class="logged-out-actions" id="logged-out-actions">
+            <button class="btn-signup-nav" id="btn-signup-desktop" data-translate="nav-signup">Sign Up</button>
+            <button class="btn-signin" id="btn-signin-desktop" data-translate="nav-login">Log In</button>
+          </div>
+
+          <div class="user-dropdown-wrapper" id="user-dropdown-wrapper" style="display:none;">
+            <button class="btn-user-profile" id="btn-user-profile" aria-expanded="false" aria-haspopup="true">
+              <span class="user-avatar" id="nav-user-avatar">U</span>
+              <span class="user-name" id="nav-user-name">User</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="user-dropdown-menu" id="user-dropdown-menu">
+              <a href="mybookings.html" id="menu-my-bookings">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="margin-right: 8px; vertical-align: middle;">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <span data-translate="nav-mybookings">My Bookings</span>
+              </a>
+              <hr class="dropdown-divider">
+              <a href="#" id="menu-signout" class="text-danger">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="margin-right: 8px; vertical-align: middle;">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span data-translate="nav-signout">Sign Out</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD CONTAINER -->
+  <main class="dashboard-container">
+    <!-- Breadcrumbs -->
+    <div class="dashboard-breadcrumbs">
+    </div>
+
+    <!-- LOGGED OUT CONTAINER -->
+    <div id="logged-out-dashboard-view" style="display: none;">
+      <div class="logged-out-card">
+        <div class="lock-icon-wrapper">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <h3 data-translate="bookings-login-required">Please log in to view your booking history.</h3>
+        <p data-translate="bookings-dashboard-desc">Manage and track all your train journeys and tickets.</p>
+
+        <!-- Button Box -->
+        <div class="btn-box-wrapper">
+          <div class="btn-box-row">
+            <button class="btn-login-large" id="btn-dashboard-login-now" data-translate="bookings-btn-login">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                <polyline points="10 17 15 12 10 7"></polyline>
+                <line x1="15" y1="12" x2="3" y2="12"></line>
+              </svg>
+              Log In Now
+            </button>
+            <button class="btn-signup-large" id="btn-dashboard-signup-now">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span data-translate="nav-signup">Sign Up</span>
+            </button>
+          </div>
+          <p class="btn-box-note">🔒 Your booking data is saved securely to your account.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOGGED IN CONTAINER -->
+    <div id="logged-in-dashboard-view" style="display: none;">
+      <!-- Profile & Statistics Card -->
+      <div class="profile-card">
+        <div class="profile-info">
+          <div class="profile-avatar-lg" id="dashboard-user-avatar">U</div>
+          <div class="profile-details">
+            <h2 id="dashboard-user-name">Full Name</h2>
+            <p id="dashboard-user-email">email@example.com</p>
+          </div>
+        </div>
+        <div class="profile-stats">
+          <div class="stat-item">
+            <div class="stat-val" id="stat-total-bookings">0</div>
+            <div class="stat-lbl" data-translate="bookings-stat-total">Total Bookings</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val" id="stat-active-bookings">0</div>
+            <div class="stat-lbl" data-translate="bookings-stat-active">Confirmed Journeys</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val" id="stat-past-bookings">0</div>
+            <div class="stat-lbl" data-translate="bookings-stat-past">Past Journeys</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls Row: Tabs & Search -->
+      <div class="controls-card">
+        <div class="filter-tabs" id="booking-filter-tabs">
+          <button class="filter-tab-btn active" data-filter="all" data-translate="bookings-filter-all">All
+            Journeys</button>
+          <button class="filter-tab-btn" data-filter="confirmed"
+            data-translate="bookings-filter-confirmed">Confirmed</button>
+          <button class="filter-tab-btn" data-filter="past" data-translate="bookings-filter-past">Past Journey</button>
+        </div>
+
+        <div class="search-box-wrapper">
+          <svg class="search-box-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" class="search-box-input" id="bookings-search-input"
+            placeholder="Search by destination, train or booking reference..."
+            data-translate-placeholder="bookings-search-placeholder">
+        </div>
+      </div>
+
+      <!-- Dynamic Bookings List -->
+      <div class="dashboard-bookings-list" id="bookings-list-container">
+        <!-- Spinner/Skeleton state -->
+        <div class="skeleton-card" style="height: 160px;"></div>
+        <div class="skeleton-card" style="height: 160px;"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="support">
+    <div class="footer-container">
+      <!-- Col 1: Brand Info -->
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">
+          <div class="footer-logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color: var(--primary);">
+              <path
+                d="M4 15.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4s-8 .5-8 4v9.5z"
+                stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <circle cx="7.5" cy="15.5" r="1.5" fill="currentColor" />
+              <circle cx="16.5" cy="15.5" r="1.5" fill="currentColor" />
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="footer-logo-title">KTMB</span>
+            <span class="footer-logo-sub">MALAYSIA RAILWAY</span>
+          </div>
+        </a>
+        <p data-translate="footer-desc">Keretapi Tanah Melayu Berhad (KTMB) is the main rail operator in Peninsular
+          Malaysia. We deliver safe, sustainable, and reliable transport solutions for the nation.</p>
+      </div>
+
+      <!-- Col 2: Services -->
+      <div class="footer-links-col">
+        <h4 data-translate="footer-networks">Our Networks</h4>
+        <ul>
+          <li><a href="ets-intercity.html">Electric Train Service (ETS) & Intercity</a></li>
+          <li><a href="ktm-komuter.html">KTM Komuter Klang Valley</a></li>
+          <li><a href="ktm-northern.html">KTM Komuter Northern</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Quick Links -->
+      <div class="footer-links-col">
+        <h4 data-translate="footer-support">Help & Support</h4>
+        <ul>
+          <li><a href="support.html#faq" data-translate="support-tab-faq">Frequently Asked Questions</a></li>
+          <li><a href="support.html#refund" data-translate="support-tab-refund">Ticket Refund & Cancellation</a></li>
+          <li><a href="support.html#facilities" data-translate="support-tab-facilities">Train Station Facilities</a>
+          </li>
+          <li><a href="support.html#contact" data-translate="support-tab-contact">Contact Support</a></li>
+          <li><a href="support.html#careers" data-translate="support-tab-careers">Career Opportunities</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Newsletter -->
+      <div class="footer-newsletter">
+        <h4 data-translate="footer-update">Stay Updated</h4>
+        <p data-translate="footer-update-desc">Subscribe to our monthly newsletter to receive exclusive travel discounts
+          and operational updates.</p>
+        <form class="newsletter-form" action="#" method="POST"
+          onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+          <input type="email" placeholder="Your email address" data-translate-placeholder="footer-placeholder-email"
+            required aria-label="Email Address">
+          <button type="submit" class="btn-subscribe" data-translate="footer-btn-join">Join</button>
+        </form>
+        <div class="social-links">
+          <a href="#" class="social-icon" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1V12h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z" />
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.388.555a3.002 3.002 0 0 0-2.11 2.108C0 8.03 0 12 0 12s0 3.97.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.48 20.5 12 20.5 12 20.5s7.52 0 9.388-.555a3.002 3.002 0 0 0 2.11-2.108C24 15.97 24 12 24 12s0-3.97-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        &copy; 2026 Keretapi Tanah Melayu Berhad. All rights reserved.
+      </div>
+      <div class="footer-policy-links">
+        <a href="#" data-translate="footer-policy-privacy">Privacy Policy</a>
+        <a href="#" data-translate="footer-policy-terms">Terms of Service</a>
+        <a href="#" data-translate="footer-policy-antibribery">Anti-Bribery Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AUTH MODALS (SIGN IN / SIGN UP / FORGOT) -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-card" style="max-width: 480px;">
+      <div class="modal-header">
+        <div class="modal-title-area">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            style="color: var(--primary); display: inline-block; vertical-align: middle;">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <h3 id="auth-modal-title" data-translate="auth-title"
+            style="display: inline-block; margin: 0; vertical-align: middle; font-family: var(--font-display); font-weight: 700; color: var(--primary);">
+            KITS Account
+          </h3>
+        </div>
+        <button class="modal-close" id="auth-modal-close" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-tabs" id="auth-modal-tabs">
+        <button class="modal-tab-btn active" id="auth-tab-btn-signin" data-translate="auth-tab-signin">Sign In</button>
+        <button class="modal-tab-btn" id="auth-tab-btn-signup" data-translate="auth-tab-signup">Sign Up</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Sign In Tab -->
+        <div class="tab-content active" id="auth-tab-content-signin">
+          <form class="modal-form" id="auth-signin-form">
+            <div class="form-group">
+              <label for="auth-signin-email" data-translate="auth-label-email">Email Address</label>
+              <input type="email" id="auth-signin-email" required>
+            </div>
+            <div class="form-group">
+              <label for="auth-signin-password" data-translate="auth-label-password">Password</label>
+              <div class="password-input-container">
+                <input type="password" id="auth-signin-password" required>
+                <button type="button" class="btn-toggle-password" aria-label="Toggle Password Visibility">
+                  <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="display: none;">
+                    <path
+                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                    </path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="auth-extra-actions">
+              <label>
+                <input type="checkbox" id="auth-signin-remember">
+                <span data-translate="auth-label-remember">Remember Me</span>
+              </label>
+              <a class="forgot-link" id="auth-forgot-link" data-translate="auth-label-forgot">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn-save" style="width: 100%; margin-top: 10px;"
+              data-translate="auth-btn-signin">Sign In</button>
+            <p class="auth-switch-prompt" data-translate="auth-prompt-noaccount">
+              Don't have an account? <a class="auth-switch-link" id="auth-switch-to-signup">Sign Up</a>
+            </p>
+          </form>
+        </div>
+
+        <!-- Sign Up Tab -->
+        <div class="tab-content" id="auth-tab-content-signup">
+          <form class="modal-form" id="auth-signup-form">
+            <div class="form-group">
+              <label for="auth-signup-name" data-translate="auth-label-name">Full Name (As in IC / Passport)</label>
+              <input type="text" id="auth-signup-name" placeholder="Enter your full name"
+                data-translate-placeholder="auth-placeholder-name" required>
+            </div>
+            <div class="form-group">
+              <label for="auth-signup-email" data-translate="auth-label-email">Email Address</label>
+              <input type="email" id="auth-signup-email" placeholder="e.g. name@example.com"
+                data-translate-placeholder="auth-placeholder-email" required>
+            </div>
+            <div class="form-grid" style="margin-bottom: 0;">
+              <div class="form-group">
+                <label for="auth-signup-password" data-translate="auth-label-password">Password</label>
+                <div class="password-input-container">
+                  <input type="password" id="auth-signup-password" placeholder="Min. 8 characters"
+                    data-translate-placeholder="auth-placeholder-password" minlength="8" required>
+                  <button type="button" class="btn-toggle-password" aria-label="Toggle Password Visibility">
+                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="display: none;">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                      </path>
+                      <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="auth-signup-confirm-password" data-translate="auth-label-confirm">Confirm Password</label>
+                <div class="password-input-container">
+                  <input type="password" id="auth-signup-confirm-password" placeholder="Re-enter password"
+                    data-translate-placeholder="auth-placeholder-confirm" required>
+                  <button type="button" class="btn-toggle-password" aria-label="Toggle Password Visibility">
+                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="display: none;">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                      </path>
+                      <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="form-grid" style="margin-bottom: 0;">
+              <div class="form-group">
+                <label for="auth-signup-id-type" data-translate="auth-label-idtype">ID Document Type</label>
+                <select id="auth-signup-id-type" required>
+                  <option value="IC" data-translate="auth-opt-ic">Malaysian NRIC (MyKad)</option>
+                  <option value="Passport" data-translate="auth-opt-passport">International Passport</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="auth-signup-gender" data-translate="auth-label-gender">Gender</label>
+                <select id="auth-signup-gender" required>
+                  <option value="Female" data-translate="auth-opt-female">Female</option>
+                  <option value="Male" data-translate="auth-opt-male">Male</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="auth-signup-id-num" id="auth-signup-id-num-label" data-translate="auth-label-idnum">NRIC
+                (MyKad) Number</label>
+              <input type="text" id="auth-signup-id-num" placeholder="e.g. 950812-14-5678" required>
+            </div>
+            <button type="submit" class="btn-save" style="width: 100%; margin-top: 10px;"
+              data-translate="auth-btn-signup">Create Account</button>
+            <p class="auth-switch-prompt" data-translate="auth-prompt-hasaccount">
+              Already have an account? <a class="auth-switch-link" id="auth-switch-to-signin">Sign In</a>
+            </p>
+          </form>
+        </div>
+
+        <!-- Forgot Password Tab -->
+        <div class="tab-content" id="auth-tab-content-forgot">
+          <p class="tab-description" data-translate="auth-forgot-desc">Enter your registered email address and we'll
+            send you instructions to reset your password.</p>
+          <form class="modal-form" id="auth-forgot-form">
+            <div class="form-group">
+              <label for="auth-forgot-email" data-translate="auth-label-email">Email Address</label>
+              <input type="email" id="auth-forgot-email" placeholder="e.g. name@example.com"
+                data-translate-placeholder="auth-placeholder-email" required>
+            </div>
+            <button type="submit" class="btn-save" style="width: 100%; margin-top: 10px;"
+              data-translate="auth-btn-reset">Reset Password</button>
+            <p class="auth-switch-prompt">
+              <a class="auth-switch-link" id="auth-forgot-back-to-signin" data-translate="auth-btn-back">Back to Sign
+                In</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- SCRIPTS -->
+  <script src="assets/translations.js"></script>
+  <script src="assets/notifications.js"></script>
+
+  <script>
+    // Global Auth / Session State variables
+    let isLoggedIn = false;
+    let currentUser = null;
+
+    // Toast function
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `
+        <span class="toast-message">${message}</span>
+        <span class="toast-close">&times;</span>
+      `;
+      container.appendChild(toast);
+
+      // Auto dismiss
+      const timer = setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+
+      toast.querySelector('.toast-close').addEventListener('click', () => {
+        clearTimeout(timer);
+        toast.remove();
+      });
+    }
+
+    // Check user session
+    function checkUserSession() {
+      const session = localStorage.getItem('kits_user_session');
+      if (session) {
+        isLoggedIn = true;
+        currentUser = JSON.parse(session);
+      } else {
+        isLoggedIn = false;
+        currentUser = null;
+      }
+    }
+
+    // Update authentication header UI
+    function updateAuthUI() {
+      checkUserSession();
+
+      const loggedOutActions = document.getElementById('logged-out-actions');
+      const userDropdownWrapper = document.getElementById('user-dropdown-wrapper');
+      const navUserName = document.getElementById('nav-user-name');
+      const navUserAvatar = document.getElementById('nav-user-avatar');
+
+      // Dashboard specific views
+      const loggedOutView = document.getElementById('logged-out-dashboard-view');
+      const loggedInView = document.getElementById('logged-in-dashboard-view');
+
+      if (isLoggedIn && currentUser) {
+        if (loggedOutActions) loggedOutActions.style.display = 'none';
+        if (userDropdownWrapper) userDropdownWrapper.style.display = 'block';
+        if (navUserName) navUserName.textContent = currentUser.name.split(' ')[0];
+        if (navUserAvatar) navUserAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+
+        // Show logged in dashboard
+        if (loggedOutView) loggedOutView.style.display = 'none';
+        if (loggedInView) loggedInView.style.display = 'block';
+
+        // Update dashboard details
+        const dbAvatar = document.getElementById('dashboard-user-avatar');
+        const dbName = document.getElementById('dashboard-user-name');
+        const dbEmail = document.getElementById('dashboard-user-email');
+
+        if (dbAvatar) dbAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+        if (dbName) dbName.textContent = currentUser.name;
+        if (dbEmail) dbEmail.textContent = currentUser.email;
+
+        // Render bookings and stats
+        renderDashboardBookings();
+      } else {
+        if (loggedOutActions) loggedOutActions.style.display = 'flex';
+        if (userDropdownWrapper) userDropdownWrapper.style.display = 'none';
+
+        // Show logged out view
+        if (loggedInView) loggedInView.style.display = 'none';
+        if (loggedOutView) loggedOutView.style.display = 'block';
+      }
+
+      // Initialize bell notification if available
+      if (typeof KITSNotify !== 'undefined' && typeof KITSNotify.init === 'function') {
+        KITSNotify.init();
+        if (typeof injectBell === 'function') injectBell();
+      }
+    }
+
+    // Auth modal controls
+    const authModal = document.getElementById('auth-modal');
+    const authModalClose = document.getElementById('auth-modal-close');
+    const authTabBtnSignin = document.getElementById('auth-tab-btn-signin');
+    const authTabBtnSignup = document.getElementById('auth-tab-btn-signup');
+    const authTabContentSignin = document.getElementById('auth-tab-content-signin');
+    const authTabContentSignup = document.getElementById('auth-tab-content-signup');
+    const authTabContentForgot = document.getElementById('auth-tab-content-forgot');
+    const authModalTitle = document.getElementById('auth-modal-title');
+    const authModalTabs = document.getElementById('auth-modal-tabs');
+
+    function openAuthModal(tab = 'signin') {
+      if (authModal) {
+        authModal.classList.add('open');
+        switchAuthTab(tab);
+      }
+    }
+
+    function closeAuthModal() {
+      if (authModal) authModal.classList.remove('open');
+    }
+
+    function prefillRememberMe() {
+      const rememberedEmail = localStorage.getItem('kits_remember_email');
+      const emailInput = document.getElementById('auth-signin-email');
+      if (emailInput) emailInput.value = rememberedEmail || '';
+    }
+
+    function switchAuthTab(tab) {
+      if (tab === 'signin') {
+        if (authTabBtnSignin) authTabBtnSignin.classList.add('active');
+        if (authTabBtnSignup) authTabBtnSignup.classList.remove('active');
+        if (authTabContentSignin) authTabContentSignin.classList.add('active');
+        if (authTabContentSignup) authTabContentSignup.classList.remove('active');
+        if (authTabContentForgot) authTabContentForgot.classList.remove('active');
+        if (authModalTabs) authModalTabs.style.display = 'flex';
+        if (authModalTitle) authModalTitle.textContent = 'KITS Account';
+        prefillRememberMe();
+      } else if (tab === 'signup') {
+        if (authTabBtnSignin) authTabBtnSignin.classList.remove('active');
+        if (authTabBtnSignup) authTabBtnSignup.classList.add('active');
+        if (authTabContentSignin) authTabContentSignin.classList.remove('active');
+        if (authTabContentSignup) authTabContentSignup.classList.add('active');
+        if (authTabContentForgot) authTabContentForgot.classList.remove('active');
+        if (authModalTabs) authModalTabs.style.display = 'flex';
+        if (authModalTitle) authModalTitle.textContent = 'KITS Account';
+      } else if (tab === 'forgot') {
+        if (authTabContentSignin) authTabContentSignin.classList.remove('active');
+        if (authTabContentSignup) authTabContentSignup.classList.remove('active');
+        if (authTabContentForgot) authTabContentForgot.classList.add('active');
+        if (authModalTabs) authModalTabs.style.display = 'none';
+        if (authModalTitle) authModalTitle.textContent = 'Reset Password';
+      }
+    }
+
+    if (authModalClose) authModalClose.addEventListener('click', closeAuthModal);
+    if (authModal) {
+      authModal.addEventListener('click', (e) => {
+        if (e.target === authModal) closeAuthModal();
+      });
+    }
+
+    if (authTabBtnSignin) authTabBtnSignin.addEventListener('click', () => switchAuthTab('signin'));
+    if (authTabBtnSignup) authTabBtnSignup.addEventListener('click', () => switchAuthTab('signup'));
+
+    const btnSigninDesktop = document.getElementById('btn-signin-desktop');
+    const btnSignupDesktop = document.getElementById('btn-signup-desktop');
+    const btnDashboardLogin = document.getElementById('btn-dashboard-login-now');
+
+    if (btnSigninDesktop) btnSigninDesktop.addEventListener('click', () => openAuthModal('signin'));
+    if (btnSignupDesktop) btnSignupDesktop.addEventListener('click', () => openAuthModal('signup'));
+    if (btnDashboardLogin) btnDashboardLogin.addEventListener('click', () => openAuthModal('signin'));
+
+    const btnDashboardSignup = document.getElementById('btn-dashboard-signup-now');
+    if (btnDashboardSignup) btnDashboardSignup.addEventListener('click', () => openAuthModal('signup'));
+
+    // Handle profile dropdown toggle
+    const btnUserProfile = document.getElementById('btn-user-profile');
+    const userDropdownMenu = document.getElementById('user-dropdown-menu');
+
+    if (btnUserProfile && userDropdownMenu) {
+      btnUserProfile.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = userDropdownMenu.classList.toggle('show');
+        btnUserProfile.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!btnUserProfile.contains(e.target) && !userDropdownMenu.contains(e.target)) {
+          userDropdownMenu.classList.remove('show');
+          btnUserProfile.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Sign Out
+    function handleSignOut(e) {
+      if (e) e.preventDefault();
+      localStorage.removeItem('kits_user_session');
+      updateAuthUI();
+      if (userDropdownMenu) userDropdownMenu.classList.remove('show');
+      showToast(t('alert-signed-out', 'You have successfully signed out.'), 'success');
+    }
+    const menuSignout = document.getElementById('menu-signout');
+    if (menuSignout) menuSignout.addEventListener('click', handleSignOut);
+
+    // Sign Up ID selector
+    const authSignupIdType = document.getElementById('auth-signup-id-type');
+    const authSignupIdNumLabel = document.getElementById('auth-signup-id-num-label');
+    const authSignupIdNumInput = document.getElementById('auth-signup-id-num');
+
+    if (authSignupIdType) {
+      authSignupIdType.addEventListener('change', () => {
+        if (authSignupIdType.value === 'IC') {
+          if (authSignupIdNumLabel) authSignupIdNumLabel.textContent = t('auth-label-idnum', 'NRIC (MyKad) Number');
+          if (authSignupIdNumInput) {
+            authSignupIdNumInput.placeholder = 'e.g. 950812-14-5678';
+            authSignupIdNumInput.value = '';
+          }
+        } else {
+          if (authSignupIdNumLabel) authSignupIdNumLabel.textContent = t('auth-label-passport', 'Passport Number');
+          if (authSignupIdNumInput) {
+            authSignupIdNumInput.placeholder = 'e.g. A12345678';
+            authSignupIdNumInput.value = '';
+          }
+        }
+      });
+    }
+
+    // Sign In Submission
+    const authSigninForm = document.getElementById('auth-signin-form');
+    if (authSigninForm) {
+      authSigninForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('auth-signin-email').value.trim();
+        const password = document.getElementById('auth-signin-password').value;
+
+        const users = JSON.parse(localStorage.getItem('kits_registered_users') || '[]');
+        const user = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+
+        if (user) {
+          localStorage.setItem('kits_user_session', JSON.stringify(user));
+          const remember = document.getElementById('auth-signin-remember');
+          if (remember && remember.checked) {
+            localStorage.setItem('kits_remember_email', email);
+          } else {
+            localStorage.removeItem('kits_remember_email');
+          }
+          updateAuthUI();
+          closeAuthModal();
+          authSigninForm.reset();
+          showToast(t('alert-welcome-back', 'Welcome back, {name}!').replace('{name}', user.name), 'success');
+        } else {
+          showToast(t('alert-invalid-login', 'Invalid email or password.'), 'error');
+        }
+      });
+    }
+
+    // Sign Up Submission
+    const authSignupForm = document.getElementById('auth-signup-form');
+    if (authSignupForm) {
+      authSignupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('auth-signup-name').value.trim();
+        const email = document.getElementById('auth-signup-email').value.trim();
+        const password = document.getElementById('auth-signup-password').value;
+        const confirmPassword = document.getElementById('auth-signup-confirm-password').value;
+        const idType = document.getElementById('auth-signup-id-type').value;
+        const gender = document.getElementById('auth-signup-gender').value;
+        const idNum = document.getElementById('auth-signup-id-num').value.trim();
+
+        if (password !== confirmPassword) {
+          showToast(t('alert-password-mismatch', 'Passwords do not match.'), 'error');
+          return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('kits_registered_users') || '[]');
+        const exists = users.some(u => u.email.toLowerCase() === email.toLowerCase());
+
+        if (exists) {
+          showToast(t('alert-email-exists', 'An account with this email already exists.'), 'error');
+          return;
+        }
+
+        const newUser = { name, email, password, idType, gender, idNum };
+        users.push(newUser);
+        localStorage.setItem('kits_registered_users', JSON.stringify(users));
+
+        // Auto log in
+        localStorage.setItem('kits_user_session', JSON.stringify(newUser));
+        updateAuthUI();
+        closeAuthModal();
+        authSignupForm.reset();
+        showToast(t('alert-account-created', 'Account successfully created! Welcome to KITS.'), 'success');
+      });
+    }
+
+    // Password fields toggle
+    document.querySelectorAll('.btn-toggle-password').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const input = btn.parentElement.querySelector('input');
+        const eye = btn.querySelector('.eye-icon');
+        const eyeOff = btn.querySelector('.eye-off-icon');
+
+        if (input.type === 'password') {
+          input.type = 'text';
+          eye.style.display = 'none';
+          eyeOff.style.display = 'block';
+        } else {
+          input.type = 'password';
+          eye.style.display = 'block';
+          eyeOff.style.display = 'none';
+        }
+      });
+    });
+
+    // ─── BOOKINGS RENDERING LOGIC ────────────────────────────────────────────
+
+    let currentFilter = 'all';
+    let currentSearchQuery = '';
+
+    function getMalaysiaTime() {
+      const now = new Date();
+      const utc = now.getTime();
+      const localOffset = now.getTimezoneOffset() * 60000;
+      return new Date(utc + (3600000 * 8) + localOffset);
+    }
+
+    function findTrainDepTime(trainName) {
+      const fallbackTimes = {
+        'ETS Platinum 9123': '06:00',
+        'KTM Intercity 40': '06:00',
+        'ETS Gold 9026': '06:00',
+        'KTM Intercity 47': '06:15',
+        'ETS Gold 9025': '07:30',
+        'ETS Platinum 9122': '08:00',
+        'KTM Intercity 45': '08:45',
+        'ETS Platinum 9130': '09:30',
+        'KTM Intercity 42': '10:15',
+        'ETS Platinum 9121': '10:45',
+        'ETS Gold 9024': '11:30',
+        'ETS Platinum 9127': '13:00',
+        'ETS Gold 9032': '13:45',
+        'ETS Gold 9023': '14:20',
+        'KTM Intercity 49': '14:30',
+        'ETS Platinum 9128': '15:15',
+        'KTM Intercity 46': '15:30',
+        'ETS Platinum 9125': '16:50',
+        'ETS Platinum 9134': '17:30',
+        'ETS Gold 9029': '18:30',
+        'ETS Gold 9028': '19:00',
+        'KTM Intercity 48': '19:30',
+        'KTM Intercity 51': '20:00',
+        'ETS Platinum 9131': '20:45',
+        'ETS Gold 9036': '21:30',
+        'ETS Gold 9035': '22:15',
+        'ETS Gold 9040': '00:30',
+        'ETS Gold 9039': '00:30',
+        'KTM Intercity 53': '00:30',
+        'KTM Intercity 50': '00:30',
+        'Komuter Service 2007': '06:00',
+        'Komuter Service 2008': '06:00'
+      };
+      return fallbackTimes[trainName] || '08:00';
+    }
+
+    function isBookingDatePast(booking) {
+      const dateStr = (booking.tripType === 'roundtrip' && booking.returnDate) ? booking.returnDate : booking.departDate;
+      if (!dateStr) return false;
+      const bookingDate = new Date(dateStr);
+      if (isNaN(bookingDate.getTime())) return false;
+
+      let depTimeStr = '23:59';
+      if (booking.tripType === 'roundtrip' && booking.returnDate) {
+        depTimeStr = booking.returnDepTime || findTrainDepTime(booking.returnTrainName) || '23:59';
+      } else {
+        depTimeStr = booking.depTime || findTrainDepTime(booking.trainName) || '23:59';
+      }
+      const [hours, minutes] = depTimeStr.split(':').map(Number);
+      bookingDate.setHours(hours || 0, minutes || 0, 0, 0);
+
+      const now = getMalaysiaTime();
+      return bookingDate < now;
+    }
+
+    function renderDashboardBookings() {
+      const container = document.getElementById('bookings-list-container');
+      if (!container) return;
+
+      const bookings = JSON.parse(localStorage.getItem('kits_bookings') || '[]');
+      // Filter for the logged-in user
+      const userBookings = bookings.filter(b => b.userEmail && currentUser && b.userEmail.toLowerCase() === currentUser.email.toLowerCase());
+
+      // Update Profile Statistics
+      let total = userBookings.length;
+      let activeCount = 0;
+      let pastCount = 0;
+
+      userBookings.forEach(b => {
+        if (isBookingDatePast(b)) {
+          pastCount++;
+        } else {
+          activeCount++;
+        }
+      });
+
+      const totalVal = document.getElementById('stat-total-bookings');
+      const activeVal = document.getElementById('stat-active-bookings');
+      const pastVal = document.getElementById('stat-past-bookings');
+
+      if (totalVal) totalVal.textContent = total;
+      if (activeVal) activeVal.textContent = activeCount;
+      if (pastVal) pastVal.textContent = pastCount;
+
+      // Filter based on selected tab
+      let filteredBookings = userBookings;
+      if (currentFilter === 'confirmed') {
+        filteredBookings = userBookings.filter(b => !isBookingDatePast(b));
+      } else if (currentFilter === 'past') {
+        filteredBookings = userBookings.filter(b => isBookingDatePast(b));
+      }
+
+      // Filter based on search text
+      if (currentSearchQuery) {
+        const query = currentSearchQuery.toLowerCase();
+        filteredBookings = filteredBookings.filter(b =>
+          b.bookingRef.toLowerCase().includes(query) ||
+          b.originText.toLowerCase().includes(query) ||
+          b.destText.toLowerCase().includes(query) ||
+          b.trainName.toLowerCase().includes(query) ||
+          (b.passengerName && b.passengerName.toLowerCase().includes(query))
+        );
+      }
+
+      // Sort bookings: Confirmed/Upcoming first (newest date first), then Past bookings (newest date first)
+      filteredBookings.sort((a, b) => {
+        const aPast = isBookingDatePast(a);
+        const bPast = isBookingDatePast(b);
+        if (aPast !== bPast) return aPast ? 1 : -1; // Confirmed first
+        return new Date(b.departDate) - new Date(a.departDate); // Newest departure first
+      });
+
+      // Clear container
+      container.innerHTML = '';
+
+      if (filteredBookings.length === 0) {
+        container.innerHTML = `
+          <div class="empty-passenger-state" style="padding: 50px 20px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-sm);">
+            <div class="empty-icon" style="font-size: 54px; margin-bottom: 16px;">🎫</div>
+            <h4 style="font-family: var(--font-display); font-size: 18px; margin: 0 0 8px; color: var(--primary-dark);">${t('bookings-empty', 'You have no bookings yet.')}</h4>
+            <p style="font-size: 14px; color: var(--gray-600); margin: 0 0 20px;">${t('bookings-desc', 'View your active and past train ticket bookings.')}</p>
+            <a href="index.html" class="btn-action-primary" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; max-width: 200px; margin: 0 auto;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 6px;">
+                <path d="M12 5v14M5 12h14"></path>
+              </svg>
+              <span>${t('nav-book', 'Book Tickets')}</span>
+            </a>
+          </div>
+        `;
+        return;
+      }
+
+      filteredBookings.forEach(booking => {
+        const card = document.createElement('div');
+        card.className = 'booking-card-wrapper';
+
+        const isPast = isBookingDatePast(booking);
+        const statusText = isPast ? t('bookings-past', 'Past') : t('bookings-confirmed', 'Confirmed');
+        const statusClass = isPast ? 'past' : 'confirmed';
+
+        // Check the service type to show appropriate badge
+        let serviceType = 'ETS';
+        if (booking.trainName.toLowerCase().includes('komuter')) {
+          serviceType = 'KTM Komuter';
+        } else if (booking.trainName.toLowerCase().includes('intercity') || booking.trainName.toLowerCase().includes('express')) {
+          serviceType = 'KTM Intercity';
+        }
+
+        let segmentsHTML = `
+          <!-- Outbound journey segment -->
+          <div class="journey-segment">
+            <div class="journey-segment-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+              <span>${t('booking-outbound-label', 'Outbound Journey')}</span>
+            </div>
+            
+            <div class="route-block">
+              <div class="station-name">${booking.originText}</div>
+              <div class="route-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </div>
+              <div class="station-name">${booking.destText}</div>
+            </div>
+
+            <div class="journey-details-grid">
+              <div class="grid-info-item">
+                <span class="info-lbl">${t('bookings-train', 'Train')}</span>
+                <span class="info-val"><strong>${booking.trainName}</strong></span>
+              </div>
+              <div class="grid-info-item">
+                <span class="info-lbl">${t('bookings-date', 'Date')}</span>
+                <span class="info-val">${booking.departDate}</span>
+              </div>
+              <div class="grid-info-item">
+                <span class="info-lbl">${t('status-th-scheduled', 'Scheduled')}</span>
+                <span class="info-val">${booking.depTime || findTrainDepTime(booking.trainName)}</span>
+              </div>
+              <div class="grid-info-item">
+                <span class="info-lbl">${t('bookings-seats', 'Seats')}</span>
+                <span class="info-val">${Array.isArray(booking.seats) ? booking.seats.join(', ') : booking.seats}</span>
+              </div>
+            </div>
+          </div>
+        `;
+
+        if (booking.tripType === 'roundtrip') {
+          segmentsHTML += `
+            <!-- Return journey segment -->
+            <div class="journey-segment" style="border-top: 1px dashed var(--gray-200); padding-top: 20px; margin-top: 20px;">
+              <div class="journey-segment-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>${t('booking-return-label', 'Return Journey')}</span>
+              </div>
+              
+              <div class="route-block">
+                <div class="station-name">${booking.destText}</div>
+                <div class="route-arrow">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
+                <div class="station-name">${booking.originText}</div>
+              </div>
+
+              <div class="journey-details-grid">
+                <div class="grid-info-item">
+                  <span class="info-lbl">${t('bookings-train', 'Train')}</span>
+                  <span class="info-val"><strong>${booking.returnTrainName}</strong></span>
+                </div>
+                <div class="grid-info-item">
+                  <span class="info-lbl">${t('bookings-date', 'Date')}</span>
+                  <span class="info-val">${booking.returnDate}</span>
+                </div>
+                <div class="grid-info-item">
+                  <span class="info-lbl">${t('status-th-scheduled', 'Scheduled')}</span>
+                  <span class="info-val">${booking.returnDepTime || findTrainDepTime(booking.returnTrainName)}</span>
+                </div>
+                <div class="grid-info-item">
+                  <span class="info-lbl">${t('bookings-seats', 'Seats')}</span>
+                  <span class="info-val">${Array.isArray(booking.returnSeats) ? booking.returnSeats.join(', ') : booking.returnSeats}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        // Add Passenger Details Row
+        segmentsHTML += `
+          <div class="grid-info-item" style="margin-top: 16px; padding: 0 4px;">
+            <span class="info-lbl">${t('bookings-name', 'Passenger')}</span>
+            <span class="info-val" style="font-weight:600; color:var(--dark-800);">${booking.passengerName} (${booking.passengerId || 'NRIC / Passport'})</span>
+          </div>
+        `;
+
+        card.innerHTML = `
+          <div class="bcard-header">
+            <div class="bcard-ref-area">
+              <span class="bcard-ref-label">${t('bookings-ref', 'Ref')}</span>
+              <span class="bcard-ref-val">${booking.bookingRef}</span>
+              <span style="font-size:10px; font-weight:700; background:var(--primary-light); color:var(--primary); padding:2px 8px; border-radius:4px; margin-left:8px;">${serviceType}</span>
+              ${booking.tripType === 'roundtrip'
+            ? `<span style="font-size:10px; font-weight:700; background:rgba(255, 217, 56, 0.15); color:var(--primary-dark); padding:2px 8px; border-radius:4px; margin-left:6px;">${t('widget-trip-roundtrip', 'Round Trip')}</span>`
+            : `<span style="font-size:10px; font-weight:700; background:var(--gray-100); color:var(--gray-700); padding:2px 8px; border-radius:4px; margin-left:6px;">${t('widget-trip-oneway', 'One Way')}</span>`
+          }
+            </div>
+            <span class="bcard-status-badge ${statusClass}">${statusText}</span>
+          </div>
+          <div class="bcard-body">
+            ${segmentsHTML}
+          </div>
+          <div class="bcard-footer">
+            <div class="bcard-price-area">
+              <span class="bcard-total-lbl">${t('booking-sidebar-total', 'Total Fare')}</span>
+              <span class="bcard-price-val">RM ${parseFloat(booking.totalPrice).toFixed(2)}</span>
+            </div>
+            <div class="bcard-actions">
+              <button class="btn-action-outline btn-print-ticket" data-ref="${booking.bookingRef}">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                  <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                <span data-translate="bookings-btn-print">Print Ticket</span>
+              </button>
+              <button class="btn-action-primary btn-view-eticket" data-ref="${booking.bookingRef}">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <span data-translate="bookings-btn-ticket">View E-Ticket</span>
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      // Bind print ticket
+      container.querySelectorAll('.btn-print-ticket').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const ref = btn.getAttribute('data-ref');
+          showToast(`Opening print dialog for booking ${ref}...`, 'info');
+          setTimeout(() => {
+            window.print();
+          }, 300);
+        });
+      });
+
+      // Bind view eticket
+      container.querySelectorAll('.btn-view-eticket').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const ref = btn.getAttribute('data-ref');
+          // Add transition effect
+          const overlay = document.getElementById('page-transition-overlay');
+          if (overlay) {
+            overlay.classList.add('fade-out');
+            setTimeout(() => {
+              window.location.href = `booking.html?view_ticket=${ref}`;
+            }, 350);
+          } else {
+            window.location.href = `booking.html?view_ticket=${ref}`;
+          }
+        });
+      });
+    }
+
+    // Filter tab selection
+    const filterTabs = document.getElementById('booking-filter-tabs');
+    if (filterTabs) {
+      filterTabs.querySelectorAll('.filter-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterTabs.querySelectorAll('.filter-tab-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.getAttribute('data-filter');
+          renderDashboardBookings();
+        });
+      });
+    }
+
+    // Search input selection
+    const searchInput = document.getElementById('bookings-search-input');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        currentSearchQuery = e.target.value.trim();
+        renderDashboardBookings();
+      });
+    }
+
+    // Listen to localstorage updates (in case user logs in / bookings change in another tab)
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'kits_user_session' || e.key === 'kits_bookings') {
+        updateAuthUI();
+      }
+    });
+
+    // ON PAGE LOAD
+    window.addEventListener('load', () => {
+      updateAuthUI();
+
+      // Apply language translation
+      const savedLang = localStorage.getItem('kits_lang') || 'en';
+      applyLanguage(savedLang);
+    });
+
+  </script>
+
+  <!-- KAI AI Assistant Chatbot -->
+  <script src="assets/chatbot.js"></script>
+
+  <!-- PAGE TRANSITION -->
+  <div id="page-transition-overlay"></div>
+  <script>
+    document.querySelectorAll('a[href]').forEach(function (link) {
+      var href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var overlay = document.getElementById('page-transition-overlay');
+        if (overlay) {
+          overlay.classList.add('fade-out');
+          var dest = href;
+          setTimeout(function () { window.location.href = dest; }, 350);
+        } else {
+          window.location.href = href;
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

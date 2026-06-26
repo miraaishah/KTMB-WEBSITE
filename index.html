@@ -1,0 +1,2410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KTMB MALAYSIA</title>
+  <!-- SEO Metadata -->
+  <meta name="description"
+    content="Official KTMB website mockup. Book ETS, KTM Komuter, and KTM Intercity train tickets across Malaysia. Safe, comfortable, and fast rail transit.">
+  <meta name="keywords"
+    content="KTMB, KTM, Train ticket booking, ETS train, KTM Komuter, Malaysia Rail, KL Sentral, Penang train">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- SVG ICON SYMBOLS FOR HIGHER PERFORMANCE -->
+  <svg style="display: none;">
+    <!-- Brand Logo Icon -->
+    <symbol id="icon-train-logo" viewBox="0 0 24 24">
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
+        fill="currentColor" />
+    </symbol>
+    <!-- General Train Icon -->
+    <symbol id="icon-train" viewBox="0 0 24 24">
+      <path
+        d="M12 2c-4 0-8 .5-8 4v9.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4zM7.5 17c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm4.5-5H6V6h6v6zm6 5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm0-5h-6V6h6v6z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Map Pin -->
+    <symbol id="icon-pin" viewBox="0 0 24 24">
+      <path
+        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Calendar -->
+    <symbol id="icon-calendar" viewBox="0 0 24 24">
+      <path
+        d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Passengers -->
+    <symbol id="icon-users" viewBox="0 0 24 24">
+      <path
+        d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Swap Icon -->
+    <symbol id="icon-swap" viewBox="0 0 24 24">
+      <path d="M16 17.01V10h-2v7.01h-3L15 21l4-3.99h-3zM9 3L5 6.99h3V14h2V6.99h3L9 3z" fill="currentColor" />
+    </symbol>
+    <!-- Info -->
+    <symbol id="icon-info" viewBox="0 0 24 24">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Globe -->
+    <symbol id="icon-globe" viewBox="0 0 24 24">
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.4z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Search / Arrow -->
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+      <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" fill="currentColor" />
+    </symbol>
+    <!-- Bistro / Food -->
+    <symbol id="icon-bistro" viewBox="0 0 24 24">
+      <path d="M2 21h18v-2H2v2zM20 8h-2V5h2v3zM4 19h12v-4H4v4zm14-9h-2V5h2v5zm0 4h-2v-2h2v2zm-4-9H4v8h10V5z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Wi-Fi -->
+    <symbol id="icon-wifi" viewBox="0 0 24 24">
+      <path
+        d="M1 9l2 2c4.97-4.97 13.02-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.86 9.14 5 13z"
+        fill="currentColor" />
+    </symbol>
+    <!-- Power outlet / Charging -->
+    <symbol id="icon-charging" viewBox="0 0 24 24">
+      <path d="M7 2v11h3v9l7-12h-4l4-8H7zm2 2h4.4L11 8.8h3.3L9.6 15l1-4H9V4z" fill="currentColor" />
+    </symbol>
+    <!-- Musolla -->
+    <symbol id="icon-prayer" viewBox="0 0 24 24">
+      <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v11h-2v-6h-2v6H9V9H3V7h18v2z"
+        fill="currentColor" />
+    </symbol>
+  </svg>
+
+  <!-- HEADER -->
+  <header id="site-header">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <!-- Custom SVG Train Outline -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="color: var(--accent);">
+            <path
+              d="M4 15.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4s-8 .5-8 4v9.5z"
+              stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            <circle cx="7.5" cy="15.5" r="1.5" fill="currentColor" />
+            <circle cx="16.5" cy="15.5" r="1.5" fill="currentColor" />
+            <path d="M6 7h12v5H6V7z" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">KTMB</span>
+          <span class="logo-sub">KITS PORTAL</span>
+        </div>
+      </a>
+
+      <!-- Menu links -->
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#" class="nav-link active" data-translate="nav-book">Book Tickets</a>
+        <a href="status.html" class="nav-link" data-translate="nav-status">Live Status</a>
+        <a href="schedule.html" class="nav-link" data-translate="nav-schedule">Train Schedule</a>
+        <a href="reports.html" class="nav-link" data-translate="nav-reports">Service Report</a>
+      </nav>
+
+      <!-- Nav CTA / Language -->
+      <div class="nav-actions">
+        <a href="#support" class="nav-support-link" data-translate="nav-support">Support</a>
+        <div class="lang-dropdown-wrapper">
+          <button class="btn-lang" aria-label="Select Language">
+            <svg width="16" height="16">
+              <use href="#icon-globe"></use>
+            </svg>
+            <span>EN</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              style="margin-left: 2px; transition: transform 0.2s; vertical-align: middle;">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="lang-dropdown-menu">
+            <button class="lang-option active" data-lang="en">
+              <span>English (EN)</span>
+            </button>
+            <button class="lang-option" data-lang="bm">
+              <span>Bahasa Malaysia (BM)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- User auth container -->
+        <div class="auth-container" id="auth-container">
+          <!-- Shown when logged out -->
+          <div class="logged-out-actions" id="logged-out-actions">
+            <button class="btn-signup-nav" id="btn-signup-desktop" data-translate="nav-signup">Sign Up</button>
+            <button class="btn-signin" id="btn-signin-desktop" data-translate="nav-login">Log In</button>
+          </div>
+
+          <!-- Shown when logged in -->
+          <div class="user-dropdown-wrapper" id="user-dropdown-wrapper" style="display:none;">
+            <button class="btn-user-profile" id="btn-user-profile" aria-expanded="false" aria-haspopup="true">
+              <span class="user-avatar" id="nav-user-avatar">A</span>
+              <span class="user-name" id="nav-user-name">User</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="user-dropdown-menu" id="user-dropdown-menu">
+              <a href="mybookings.html" id="menu-my-bookings">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="margin-right: 8px; vertical-align: middle;">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <span data-translate="nav-mybookings">My Bookings</span>
+              </a>
+              <hr class="dropdown-divider">
+              <a href="#" id="menu-signout" class="text-danger">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="margin-right: 8px; vertical-align: middle;">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span data-translate="nav-signout">Sign Out</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hamburger toggle -->
+        <button class="mobile-toggle" id="mobile-toggle-btn" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE SIDE MENU -->
+  <div class="menu-overlay" id="menu-overlay"></div>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-menu-close" id="mobile-menu-close-btn">&times;</button>
+    <div class="mobile-nav-links">
+      <a href="#" class="mobile-nav-link active" data-translate="nav-book">Book Tickets</a>
+      <a href="status.html" class="mobile-nav-link" data-translate="nav-status">Live Status</a>
+      <a href="schedule.html" class="mobile-nav-link" data-translate="nav-schedule">Train Schedule</a>
+      <a href="#services" class="mobile-nav-link" data-translate="nav-fleet">Our Fleet</a>
+      <a href="#routes" class="mobile-nav-link" data-translate="nav-routes">Popular Routes</a>
+      <a href="#amenities" class="mobile-nav-link" data-translate="nav-experience">Onboard Experience</a>
+      <a href="#support" class="mobile-nav-link" data-translate="nav-support">Support</a>
+      <a href="reports.html" class="mobile-nav-link" data-translate="nav-reports">Service Report</a>
+    </div>
+    <div class="mobile-nav-actions">
+      <div class="mobile-lang-selector">
+        <button class="btn-mobile-lang active" data-lang="en">English</button>
+        <button class="btn-mobile-lang" data-lang="bm">Bahasa Malaysia</button>
+      </div>
+
+      <!-- Mobile auth container -->
+      <div id="mobile-auth-container" style="width: 100%;">
+        <!-- Shown when logged out -->
+        <div id="mobile-logged-out-actions" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+          <button class="btn-signup-nav" id="btn-signup-mobile" data-translate="nav-signup"
+            style="width: 100%; text-align: center; justify-content: center;">Sign Up</button>
+          <button class="btn-signin" id="btn-signin-mobile" data-translate="nav-login"
+            style="width: 100%; text-align: center; justify-content: center;">Sign In</button>
+        </div>
+
+        <!-- Shown when logged in -->
+        <div id="mobile-logged-in-actions" style="display: none; flex-direction: column; gap: 12px; width: 100%;">
+          <div
+            style="display: flex; align-items: center; gap: 12px; padding: 10px 8px; border-bottom: 1px solid var(--gray-100);">
+            <div class="user-avatar" id="mobile-user-avatar"
+              style="background: var(--primary); color: var(--white); font-weight: 750; width: 32px; height: 32px;">U
+            </div>
+            <div style="display: flex; flex-direction: column;">
+              <span id="mobile-user-name" style="font-weight: 600; color: var(--dark-900);">User</span>
+              <span style="font-size: 11px; color: var(--gray-600);">Logged in</span>
+            </div>
+          </div>
+          <a href="mybookings.html" id="mobile-menu-my-bookings"
+            style="display: flex; align-items: center; gap: 10px; padding: 10px 8px; font-weight: 500; color: var(--dark-800);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              style="color: var(--gray-600);">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            <span data-translate="nav-mybookings">My Bookings</span>
+          </a>
+          <button id="mobile-menu-signout" class="text-danger"
+            style="display: flex; align-items: center; gap: 10px; padding: 10px 8px; font-weight: 500; background: none; text-align: left; cursor: pointer; width: 100%; border: none; border-radius: var(--radius-sm); transition: var(--transition-fast);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              style="color: #ef4444;">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            <span style="color: #ef4444;" data-translate="nav-signout">Sign Out</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-container">
+      <!-- Headline & Intro -->
+      <div class="hero-content">
+        <div class="hero-badge" data-translate="hero-badge">
+          <span></span>
+          Official KTMB Booking System
+        </div>
+        <h1 class="hero-title" data-translate="hero-title">Connecting States,<br><span>Uniting People.</span></h1>
+        <p class="hero-desc" data-translate="hero-desc">Explore Malaysia with comfort and speed. Book your ETS, KTM
+          Komuter, and Intercity tickets
+          securely in seconds.</p>
+
+        <!-- Features / Stats banner -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">150<span>+</span></span>
+            <span class="stat-lbl" data-translate="hero-stat-stations">Stations</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">140<span>km/h</span></span>
+            <span class="stat-lbl" data-translate="hero-stat-speed">ETS Speed</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">100k<span>+</span></span>
+            <span class="stat-lbl" data-translate="hero-stat-commuters">Daily Commuters</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- KITS Booking Form Widget -->
+      <div class="hero-widget-wrapper">
+        <div class="booking-widget" id="booking-widget">
+          <!-- Service Selector Tabs -->
+          <div class="widget-tabs">
+            <input type="radio" name="service-tab" id="tab-ets-intercity" class="tab-input" checked>
+            <label for="tab-ets-intercity" class="tab-label" data-translate="widget-tab-ets">ETS & Intercity</label>
+
+            <input type="radio" name="service-tab" id="tab-komuter-kl" class="tab-input">
+            <label for="tab-komuter-kl" class="tab-label" data-translate="widget-tab-komuter-kl">Komuter Klang
+              Valley</label>
+
+            <input type="radio" name="service-tab" id="tab-komuter-north" class="tab-input">
+            <label for="tab-komuter-north" class="tab-label" data-translate="widget-tab-komuter-north">Komuter
+              Northern</label>
+
+            <span class="tab-slider"></span>
+          </div>
+
+          <!-- Ticketing Details -->
+          <form class="booking-form" id="main-booking-form">
+            <!-- Trip type radios (One-way / Round-trip) -->
+            <div class="trip-type-container">
+              <label class="radio-label">
+                <input type="radio" name="trip-type" value="oneway" checked id="trip-oneway">
+                <span data-translate="widget-trip-oneway">One Way</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="trip-type" value="roundtrip" id="trip-roundtrip">
+                <span data-translate="widget-trip-roundtrip">Round Trip</span>
+              </label>
+            </div>
+
+            <!-- Origin & Destination Inputs -->
+            <div class="route-inputs">
+              <div class="input-box" style="margin-bottom: 12px;">
+                <label for="origin-station">
+                  <svg width="14" height="14">
+                    <use href="#icon-pin"></use>
+                  </svg>
+                  <span data-translate="widget-label-origin">Origin Station</span>
+                </label>
+                <select id="origin-station" required>
+                  <option value="" disabled selected data-translate="select-origin-placeholder">Select starting station
+                  </option>
+                </select>
+              </div>
+
+              <!-- Swap Button -->
+              <button type="button" class="btn-swap" id="btn-swap" aria-label="Swap Stations">
+                <svg width="18" height="18">
+                  <use href="#icon-swap"></use>
+                </svg>
+              </button>
+
+              <div class="input-box">
+                <label for="destination-station">
+                  <svg width="14" height="14">
+                    <use href="#icon-pin"></use>
+                  </svg>
+                  <span data-translate="widget-label-dest">Destination Station</span>
+                </label>
+                <select id="destination-station" required>
+                  <option value="" disabled selected data-translate="select-dest-placeholder">Select destination station
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Date fields -->
+            <div class="input-grid">
+              <div class="input-box">
+                <label for="depart-date">
+                  <svg width="14" height="14">
+                    <use href="#icon-calendar"></use>
+                  </svg>
+                  <span data-translate="widget-label-depart">Departure Date</span>
+                </label>
+                <input type="date" id="depart-date" required>
+              </div>
+              <div class="input-box" id="return-date-box" style="opacity: 0.5;">
+                <label for="return-date">
+                  <svg width="14" height="14">
+                    <use href="#icon-calendar"></use>
+                  </svg>
+                  <span data-translate="widget-label-return">Return Date</span>
+                </label>
+                <input type="date" id="return-date" disabled>
+              </div>
+            </div>
+
+            <!-- Passengers Dropdown -->
+            <div class="input-box">
+              <label>
+                <svg width="14" height="14">
+                  <use href="#icon-users"></use>
+                </svg>
+                <span data-translate="widget-label-passengers">Passengers</span>
+              </label>
+              <div class="passenger-dropdown-wrapper">
+                <button type="button" class="btn-passenger-dropdown" id="passenger-dropdown-trigger">
+                  <span id="passenger-dropdown-text">1 Pax (1 Adult)</span>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    style="transition: transform 0.2s;">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="passenger-dropdown-panel" id="passenger-dropdown-panel">
+                  <div class="pax-counter-row">
+                    <div class="pax-type-info">
+                      <strong data-translate="pax-type-adult">Adults</strong>
+                      <span data-translate="pax-age-adult">Ages 13+</span>
+                    </div>
+                    <div class="pax-counter-controls">
+                      <button type="button" class="btn-counter-minus" id="adult-minus" disabled>&minus;</button>
+                      <span class="counter-value" id="adult-count">1</span>
+                      <button type="button" class="btn-counter-plus" id="adult-plus">+</button>
+                    </div>
+                  </div>
+                  <div class="pax-counter-row">
+                    <div class="pax-type-info">
+                      <strong data-translate="pax-type-child">Children</strong>
+                      <span data-translate="pax-age-child">Ages 2-12 (50% Off)</span>
+                    </div>
+                    <div class="pax-counter-controls">
+                      <button type="button" class="btn-counter-minus" id="child-minus" disabled>&minus;</button>
+                      <span class="counter-value" id="child-count">0</span>
+                      <button type="button" class="btn-counter-plus" id="child-plus">+</button>
+                    </div>
+                  </div>
+                  <div class="pax-dropdown-footer">
+                    <span class="pax-limit-note" id="pax-limit-note" data-translate="pax-limit-note">Max 8
+                      passengers</span>
+                    <button type="button" class="btn-save btn-pax-apply" id="btn-pax-apply"
+                      data-translate="pass-btn-save">Apply</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA Submit Button -->
+            <button type="submit" class="btn-search">
+              <span data-translate="widget-btn-search">Search Available Trains</span>
+              <svg width="16" height="16">
+                <use href="#icon-arrow-right"></use>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLEET / SERVICES SECTION -->
+  <section class="section" id="services">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag" data-translate="fleet-tag">Our Train Services</span>
+        <h2 class="section-title" data-translate="fleet-title">Explore Our Modern Fleet</h2>
+        <p class="section-desc" data-translate="fleet-desc">We operate diverse train networks that match your lifestyle,
+          speed requirements, and
+          destination preferences.</p>
+      </div>
+
+      <div class="fleet-grid">
+        <!-- ETS -->
+        <div class="fleet-card">
+          <div class="fleet-img-container">
+            <span class="fleet-badge" data-translate="fleet-badge-ets">ETS (ELECTRIC)</span>
+            <img class="fleet-img" src="assets/ets.webp" alt="Electric Train Service ETS Malaysia">
+          </div>
+          <div class="fleet-body">
+            <h3 class="fleet-card-title" data-translate="fleet-title-ets">ETS (Electric Train Service)</h3>
+            <p class="fleet-desc" data-translate="fleet-desc-ets">The fastest electric passenger train service
+              connecting major hubs along the West
+              Coast line. Perfect for business travelers and tourists wanting to beat highway traffic.</p>
+            <div class="fleet-specs">
+              <div class="spec-val">
+                <span data-translate="fleet-spec-speed">Top Speed</span>
+                <span>140 km/h</span>
+              </div>
+              <div class="spec-val">
+                <span data-translate="fleet-spec-coverage">Line Coverage</span>
+                <span>Padang Besar ⇄ Gemas</span>
+              </div>
+            </div>
+            <a href="#booking-widget" class="btn-card" data-translate="fleet-btn-ets">Book ETS Train</a>
+          </div>
+        </div>
+
+        <!-- KTM KOMUTER -->
+        <div class="fleet-card">
+          <div class="fleet-img-container">
+            <span class="fleet-badge" data-translate="fleet-badge-komuter">KTM KOMUTER</span>
+            <img class="fleet-img" src="assets/ktm.jpg" alt="KTM Komuter train">
+          </div>
+          <div class="fleet-body">
+            <h3 class="fleet-card-title" data-translate="fleet-title-komuter">KTM Komuter</h3>
+            <p class="fleet-desc" data-translate="fleet-desc-komuter">Malaysia's staple suburban rail connecting major
+              neighborhoods in the Klang Valley and
+              the Northern states. Affordable, convenient, and reliable daily transit.</p>
+            <div class="fleet-specs">
+              <div class="spec-val">
+                <span data-translate="fleet-spec-freq">Frequency</span>
+                <span data-translate="fleet-spec-freq-val">Every 15-30 mins</span>
+              </div>
+              <div class="spec-val">
+                <span data-translate="fleet-spec-coverage">Line Coverage</span>
+                <span data-translate="fleet-spec-cov-val">Klang Valley / Northern</span>
+              </div>
+            </div>
+            <a href="schedule.html?service=komuter-kl" class="btn-card" data-translate="fleet-btn-komuter">View Komuter
+              Schedule</a>
+          </div>
+        </div>
+
+        <!-- KTM KOMUTER NORTHERN -->
+        <div class="fleet-card">
+          <div class="fleet-img-container">
+            <span class="fleet-badge" data-translate="fleet-badge-intercity">KTM INTERCITY</span>
+            <img class="fleet-img" src="assets/ktmutara.jpg" alt="KTM Komuter Northern train">
+          </div>
+          <div class="fleet-body">
+            <h3 class="fleet-card-title" data-translate="fleet-title-intercity">KTM Intercity</h3>
+            <p class="fleet-desc" data-translate="fleet-desc-intercity">Long-distance classical express lines carrying
+              passengers from town to town,
+              stretching all the way to Singapore. Scenic, slow-paced travel across natural terrain.</p>
+            <div class="fleet-specs">
+              <div class="spec-val">
+                <span data-translate="fleet-spec-freq">Frequency</span>
+                <span data-translate="fleet-spec-freq-val-north">Every 1-2 hours</span>
+              </div>
+              <div class="spec-val">
+                <span data-translate="fleet-spec-coverage">Line Coverage</span>
+                <span data-translate="fleet-spec-cov-north">Northern (Butterworth ⇄ Padang Besar)</span>
+              </div>
+            </div>
+            <a href="schedule.html?service=komuter-north" class="btn-card" data-translate="fleet-btn-intercity">View
+              Komuter Northern Schedule</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POPULAR ROUTES & PROMOTIONS -->
+  <section class="section bg-cream-sec" id="routes">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag" data-translate="routes-tag">Top Destinations</span>
+        <h2 class="section-title" data-translate="routes-title">Popular Rail Journeys</h2>
+        <p class="section-desc" data-translate="routes-desc">Plan your next trip to these favorite Malaysian getaways.
+          Enjoy scenic routes and
+          state-of-the-art train convenience.</p>
+      </div>
+
+      <div class="routes-grid">
+        <!-- Penang Card -->
+        <div class="route-card">
+          <div class="route-img-box">
+            <img class="route-img" src="assets/butterworth.jpeg" alt="Penang Cityscape">
+            <div class="route-price-tag"><span data-translate="route-from">From RM</span> 46</div>
+          </div>
+          <div class="route-body">
+            <span class="route-tag">ETS GOLD</span>
+            <h3 class="route-name">Kuala Lumpur ⇄ Butterworth</h3>
+            <div class="route-meta">
+              <span>
+                <svg width="12" height="12">
+                  <use href="#icon-calendar"></use>
+                </svg>
+                <span data-translate="route-daily">Daily</span>
+              </span>
+              <span data-translate="route-duration-penang">4 hrs 15 mins</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ipoh Card -->
+        <div class="route-card">
+          <div class="route-img-box">
+            <img class="route-img" src="assets/ipoh.jpeg" alt="Ipoh Train Station">
+            <div class="route-price-tag"><span data-translate="route-from">From RM</span> 35</div>
+          </div>
+          <div class="route-body">
+            <span class="route-tag">ETS SILVER/GOLD</span>
+            <h3 class="route-name">Kuala Lumpur ⇄ Ipoh</h3>
+            <div class="route-meta">
+              <span>
+                <svg width="12" height="12">
+                  <use href="#icon-calendar"></use>
+                </svg>
+                <span data-translate="route-daily">Daily</span>
+              </span>
+              <span data-translate="route-duration-ipoh">2 hrs 40 mins</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Padang Besar Card -->
+        <div class="route-card">
+          <div class="route-img-box">
+            <img class="route-img"
+              src="https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?auto=format&fit=crop&w=400&q=80"
+              alt="Perlis Landscape">
+            <div class="route-price-tag"><span data-translate="route-from">From RM</span> 35</div>
+          </div>
+          <div class="route-body">
+            <span class="route-tag">ETS PLATINUM</span>
+            <h3 class="route-name">Kuala Lumpur ⇄ Padang Besar</h3>
+            <div class="route-meta">
+              <span>
+                <svg width="12" height="12">
+                  <use href="#icon-calendar"></use>
+                </svg>
+                <span data-translate="route-daily">Daily</span>
+              </span>
+              <span data-translate="route-duration-pbd">5 hrs 30 mins</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- JB Card -->
+        <div class="route-card">
+          <div class="route-img-box">
+            <img class="route-img"
+              src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=400&q=80"
+              alt="Johor Bahru City">
+            <div class="route-price-tag"><span data-translate="route-from">From RM</span> 22</div>
+          </div>
+          <div class="route-body">
+            <span class="route-tag">INTERCITY</span>
+            <h3 class="route-name">Johor Bahru ⇄ Gemas</h3>
+            <div class="route-meta">
+              <span>
+                <svg width="12" height="12">
+                  <use href="#icon-calendar"></use>
+                </svg>
+                <span data-translate="route-daily">Daily</span>
+              </span>
+              <span data-translate="route-duration-jb">3 hrs 10 mins</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONBOARD AMENITIES / SERVICE -->
+  <section class="section" id="amenities">
+    <div class="section-container">
+      <div class="amenities-layout">
+        <!-- Content Column -->
+        <div class="amenities-content">
+          <span class="section-tag" data-translate="amenities-tag">Travel in Comfort</span>
+          <h2 data-translate="amenities-title">Premium Onboard Amenities</h2>
+          <p data-translate="amenities-desc">Our fleet features state-of-the-art facilities designed to ensure your
+            journey is safe, relaxed, and fully
+            productive.</p>
+
+          <div class="amenities-list">
+            <!-- Food -->
+            <div class="amenity-card">
+              <div class="amenity-icon">
+                <svg width="24" height="24">
+                  <use href="#icon-bistro"></use>
+                </svg>
+              </div>
+              <div class="amenity-info">
+                <h4 data-translate="amenity-title-bistro">KTM Bistro</h4>
+                <p data-translate="amenity-desc-bistro">Enjoy local delights like Nasi Lemak, local tea, coffee, and
+                  fresh snacks onboard.</p>
+              </div>
+            </div>
+
+            <!-- Wifi -->
+            <div class="amenity-card">
+              <div class="amenity-icon">
+                <svg width="24" height="24">
+                  <use href="#icon-wifi"></use>
+                </svg>
+              </div>
+              <div class="amenity-info">
+                <h4 data-translate="amenity-title-wifi">Free Wi-Fi</h4>
+                <p data-translate="amenity-desc-wifi">Stay connected with colleagues or family with our complimentary
+                  onboard Wi-Fi services.</p>
+              </div>
+            </div>
+
+            <!-- Power -->
+            <div class="amenity-card">
+              <div class="amenity-icon">
+                <svg width="24" height="24">
+                  <use href="#icon-charging"></use>
+                </svg>
+              </div>
+              <div class="amenity-info">
+                <h4 data-translate="amenity-title-power">Power Outlets</h4>
+                <p data-translate="amenity-desc-power">Every seat is equipped with individual standard power outlets to
+                  charge devices.</p>
+              </div>
+            </div>
+
+            <!-- Prayer Room -->
+            <div class="amenity-card">
+              <div class="amenity-icon">
+                <svg width="24" height="24">
+                  <use href="#icon-prayer"></use>
+                </svg>
+              </div>
+              <div class="amenity-info">
+                <h4 data-translate="amenity-title-prayer">Musolla (Prayer Room)</h4>
+                <p data-translate="amenity-desc-prayer">Dedicated silent zones and clean prayer areas equipped on all
+                  ETS models.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Graphic Column -->
+        <div class="amenities-graphic">
+          <img src="assets/ets-business-class-interior.jpg" alt="Train Interior Modern Seats">
+          <div class="graphic-overlay">
+            <h3 data-translate="amenity-title-business">Premium Class Suites</h3>
+            <p data-translate="amenity-desc-business">Upgrade to Business Class to experience extra legroom, rotating
+              seating layouts, and a complimentary hot
+              meal box.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="support">
+    <div class="footer-container">
+      <!-- Col 1: Brand Info -->
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">
+          <div class="footer-logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color: var(--primary);">
+              <path
+                d="M4 15.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4s-8 .5-8 4v9.5z"
+                stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <circle cx="7.5" cy="15.5" r="1.5" fill="currentColor" />
+              <circle cx="16.5" cy="15.5" r="1.5" fill="currentColor" />
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="footer-logo-title">KTMB</span>
+            <span class="footer-logo-sub">MALAYSIA RAILWAY</span>
+          </div>
+        </a>
+        <p data-translate="footer-desc">Keretapi Tanah Melayu Berhad (KTMB) is the main rail operator in Peninsular
+          Malaysia. We deliver safe,
+          sustainable, and reliable transport solutions for the nation.</p>
+      </div>
+
+      <!-- Col 2: Services -->
+      <div class="footer-links-col">
+        <h4 data-translate="footer-networks">Our Networks</h4>
+        <ul>
+          <li><a href="ets-intercity.html">Electric Train Service (ETS) & Intercity</a></li>
+          <li><a href="ktm-komuter.html">KTM Komuter Klang Valley</a></li>
+          <li><a href="ktm-northern.html">KTM Komuter Northern</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Quick Links -->
+      <div class="footer-links-col">
+        <h4 data-translate="footer-support">Help & Support</h4>
+        <ul>
+          <li><a href="support.html#faq" data-translate="support-tab-faq">Frequently Asked Questions</a></li>
+          <li><a href="support.html#refund" data-translate="support-tab-refund">Ticket Refund & Cancellation</a></li>
+          <li><a href="support.html#facilities" data-translate="support-tab-facilities">Train Station Facilities</a></li>
+          <li><a href="support.html#contact" data-translate="support-tab-contact">Contact Support</a></li>
+          <li><a href="support.html#careers" data-translate="support-tab-careers">Career Opportunities</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Newsletter -->
+      <div class="footer-newsletter">
+        <h4 data-translate="footer-update">Stay Updated</h4>
+        <p data-translate="footer-update-desc">Subscribe to our monthly newsletter to receive exclusive travel discounts
+          and operational updates.</p>
+        <form class="newsletter-form" action="#" method="POST"
+          onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+          <input type="email" placeholder="Your email address" data-translate-placeholder="footer-placeholder-email"
+            required aria-label="Email Address">
+          <button type="submit" class="btn-subscribe" data-translate="footer-btn-join">Join</button>
+        </form>
+        <div class="social-links">
+          <a href="#" class="social-icon" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1V12h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.388.555a3.002 3.002 0 0 0-2.11 2.108C0 8.03 0 12 0 12s0 3.97.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.48 20.5 12 20.5 12 20.5s7.52 0 9.388-.555a3.002 3.002 0 0 0 2.11-2.108C24 15.97 24 12 24 12s0-3.97-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        &copy; 2026 Keretapi Tanah Melayu Berhad. All rights reserved.
+      </div>
+      <div class="footer-policy-links">
+        <a href="#" data-translate="footer-policy-privacy">Privacy Policy</a>
+        <a href="#" data-translate="footer-policy-terms">Terms of Service</a>
+        <a href="#" data-translate="footer-policy-antibribery">Anti-Bribery Policy</a>
+      </div>
+    </div>
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- AUTH MODAL -->
+    <div class="modal-overlay" id="auth-modal">
+      <div class="modal-card" style="max-width: 480px;">
+        <div class="modal-header">
+          <div class="modal-title-area">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              style="color: var(--primary); display: inline-block; vertical-align: middle;">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <h3 id="auth-modal-title" data-translate="auth-title"
+              style="display: inline-block; margin: 0; vertical-align: middle; font-family: var(--font-display); font-weight: 700; color: var(--primary);">
+              KITS Account</h3>
+          </div>
+          <button class="modal-close" id="auth-modal-close" aria-label="Close modal">&times;</button>
+        </div>
+
+        <div class="modal-tabs" id="auth-modal-tabs">
+          <button class="modal-tab-btn active" id="auth-tab-btn-signin" data-translate="auth-tab-signin">Sign
+            In</button>
+          <button class="modal-tab-btn" id="auth-tab-btn-signup" data-translate="auth-tab-signup">Sign Up</button>
+        </div>
+
+        <div class="modal-body">
+          <!-- Sign In Tab -->
+          <div class="tab-content active" id="auth-tab-content-signin">
+            <form class="modal-form" id="auth-signin-form">
+              <div class="form-group">
+                <label for="auth-signin-email" data-translate="auth-label-email">Email Address</label>
+                <input type="email" id="auth-signin-email" required>
+              </div>
+              <div class="form-group">
+                <label for="auth-signin-password" data-translate="auth-label-password">Password</label>
+                <div class="password-input-container">
+                  <input type="password" id="auth-signin-password" required>
+                  <button type="button" class="btn-toggle-password" aria-label="Toggle Password Visibility">
+                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="display: none;">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                      </path>
+                      <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="auth-extra-actions">
+                <label>
+                  <input type="checkbox" id="auth-signin-remember">
+                  <span data-translate="auth-label-remember">Remember Me</span>
+                </label>
+                <a class="forgot-link" id="auth-forgot-link" data-translate="auth-label-forgot">Forgot Password?</a>
+              </div>
+
+              <button type="submit" class="btn-save" style="width: 100%; margin-top: 10px;"
+                data-translate="auth-btn-signin">Sign In</button>
+
+              <p class="auth-switch-prompt" data-translate="auth-prompt-noaccount">
+                Don't have an account? <a class="auth-switch-link" id="auth-switch-to-signup">Sign Up</a>
+              </p>
+            </form>
+          </div>
+
+          <!-- Sign Up Tab -->
+          <div class="tab-content" id="auth-tab-content-signup">
+            <form class="modal-form" id="auth-signup-form">
+              <div class="form-group">
+                <label for="auth-signup-name" data-translate="auth-label-name">Full Name (As in IC / Passport)</label>
+                <input type="text" id="auth-signup-name" placeholder="Enter your full name"
+                  data-translate-placeholder="auth-placeholder-name" required>
+              </div>
+              <div class="form-group">
+                <label for="auth-signup-email" data-translate="auth-label-email">Email Address</label>
+                <input type="email" id="auth-signup-email" placeholder="e.g. name@example.com"
+                  data-translate-placeholder="auth-placeholder-email" required>
+              </div>
+              <div class="form-grid" style="margin-bottom: 0;">
+                <div class="form-group">
+                  <label for="auth-signup-password" data-translate="auth-label-password">Password</label>
+                  <div class="password-input-container">
+                    <input type="password" id="auth-signup-password" placeholder="Min. 8 characters"
+                      data-translate-placeholder="auth-placeholder-password" minlength="8" required>
+                    <button type="button" class="btn-toggle-password" aria-label="Toggle Password Visibility">
+                      <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                      <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="display: none;">
+                        <path
+                          d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                        </path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="auth-signup-confirm-password" data-translate="auth-label-confirm">Confirm Password</label>
+                  <div class="password-input-container">
+                    <input type="password" id="auth-signup-confirm-password" placeholder="Re-enter password"
+                      data-translate-placeholder="auth-placeholder-confirm" required>
+                    <button type="button" class="btn-toggle-password" aria-label="Toggle Password Visibility">
+                      <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                      <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="display: none;">
+                        <path
+                          d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                        </path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-grid" style="margin-bottom: 0;">
+                <div class="form-group">
+                  <label for="auth-signup-id-type" data-translate="auth-label-idtype">ID Document Type</label>
+                  <select id="auth-signup-id-type" required>
+                    <option value="IC" data-translate="auth-opt-ic">Malaysian NRIC (MyKad)</option>
+                    <option value="Passport" data-translate="auth-opt-passport">International Passport</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="auth-signup-gender" data-translate="auth-label-gender">Gender</label>
+                  <select id="auth-signup-gender" required>
+                    <option value="Female" data-translate="auth-opt-female">Female</option>
+                    <option value="Male" data-translate="auth-opt-male">Male</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="auth-signup-id-num" id="auth-signup-id-num-label">NRIC (MyKad) Number</label>
+                <input type="text" id="auth-signup-id-num" placeholder="e.g. 950812-14-5678" required>
+              </div>
+
+              <button type="submit" class="btn-save" style="width: 100%; margin-top: 10px;"
+                data-translate="auth-btn-signup">Create Account</button>
+
+              <p class="auth-switch-prompt" data-translate="auth-prompt-hasaccount">
+                Already have an account? <a class="auth-switch-link" id="auth-switch-to-signin">Sign In</a>
+              </p>
+            </form>
+          </div>
+
+          <!-- Forgot Password Tab -->
+          <div class="tab-content" id="auth-tab-content-forgot">
+            <p class="tab-description" data-translate="auth-forgot-desc">Enter your registered email address and we'll
+              send you instructions to reset your
+              password.</p>
+            <form class="modal-form" id="auth-forgot-form">
+              <div class="form-group">
+                <label for="auth-forgot-email" data-translate="auth-label-email">Email Address</label>
+                <input type="email" id="auth-forgot-email" placeholder="e.g. name@example.com"
+                  data-translate-placeholder="auth-placeholder-email" required>
+              </div>
+
+              <button type="submit" class="btn-save" style="width: 100%; margin-top: 10px;"
+                data-translate="auth-btn-reset">Reset Password</button>
+
+              <p class="auth-switch-prompt">
+                <a class="auth-switch-link" id="auth-forgot-back-to-signin" data-translate="auth-btn-back">Back to Sign
+                  In</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSENGER DIRECTORY MODAL -->
+    <div class="modal-overlay" id="passenger-modal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title-area">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              style="color: var(--primary); display: inline-block; vertical-align: middle;">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <h3 data-translate="pass-title"
+              style="display: inline-block; margin: 0; vertical-align: middle; font-family: var(--font-display); font-weight: 700; color: var(--primary);">
+              Passenger Directory</h3>
+          </div>
+          <button class="modal-close" id="passenger-modal-close" aria-label="Close modal">&times;</button>
+        </div>
+
+        <div class="modal-tabs">
+          <button class="modal-tab-btn active" id="tab-btn-list" data-translate="pass-tab-saved">Saved
+            Passengers</button>
+          <button class="modal-tab-btn" id="tab-btn-add" data-translate="pass-tab-add">+ Add Passenger</button>
+        </div>
+
+        <div class="modal-body">
+          <!-- View List Tab Content -->
+          <div class="tab-content active" id="tab-content-list">
+            <p class="tab-description" data-translate="pass-desc-list">Manage saved passenger details for quick
+              auto-fill during train bookings.</p>
+            <div class="passenger-list-container">
+              <table class="passenger-table" id="passenger-table">
+                <thead>
+                  <tr>
+                    <th data-translate="pass-th-name">Name</th>
+                    <th data-translate="pass-th-id">ID / Passport</th>
+                    <th data-translate="pass-th-type">Type</th>
+                    <th data-translate="pass-th-gender">Gender</th>
+                    <th style="text-align: right;" data-translate="pass-th-action">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="passenger-table-body">
+                  <!-- Dynamic Content -->
+                </tbody>
+              </table>
+              <div class="empty-passenger-state" id="empty-passenger-state" style="display: none;">
+                <div class="empty-icon">👥</div>
+                <p data-translate="pass-empty">No saved passengers yet.</p>
+                <button class="btn-card" id="btn-add-first-passenger" data-translate="pass-btn-first"
+                  style="margin-top: 12px; display: inline-flex; align-items: center; gap: 8px;">
+                  Add Your First Passenger
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add Passenger Tab Content -->
+          <div class="tab-content" id="tab-content-add">
+            <p class="tab-description" data-translate="pass-desc-add">Add new passenger details to save them to your KTM
+              KITS account.</p>
+            <form class="modal-form" id="add-passenger-form">
+              <div class="form-grid">
+                <div class="form-group full-width">
+                  <label for="p-name" data-translate="pass-label-name">Full Name (As in IC / Passport)</label>
+                  <input type="text" id="p-name" placeholder="Enter passenger's full name"
+                    data-translate-placeholder="pass-placeholder-name" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="p-id-type" data-translate="auth-label-idtype">ID Document Type</label>
+                  <select id="p-id-type" required>
+                    <option value="IC" data-translate="auth-opt-ic">Malaysian NRIC (MyKad)</option>
+                    <option value="Passport" data-translate="auth-opt-passport">International Passport</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="p-id-num" data-translate="pass-label-idnum">Document / IC Number</label>
+                  <input type="text" id="p-id-num" placeholder="e.g. 950812-14-5678 or A12345678"
+                    data-translate-placeholder="pass-placeholder-idnum" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="p-gender" data-translate="auth-label-gender">Gender</label>
+                  <select id="p-gender" required>
+                    <option value="Male" data-translate="auth-opt-male">Male</option>
+                    <option value="Female" data-translate="auth-opt-female">Female</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="p-type" data-translate="pass-label-category">Passenger Category</label>
+                  <select id="p-type" required>
+                    <option value="Adult" data-translate="pass-opt-adult">Adult (Ages 13+)</option>
+                    <option value="Child" data-translate="pass-opt-child">Child (Ages 2-12)</option>
+                    <option value="Senior" data-translate="pass-opt-senior">Senior Citizen (Ages 60+)</option>
+                    <option value="OKU" data-translate="pass-opt-oku">Disabled / OKU</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="modal-form-actions">
+                <button type="button" class="btn-cancel" id="btn-add-cancel"
+                  data-translate="pass-btn-cancel">Cancel</button>
+                <button type="submit" class="btn-save" data-translate="pass-btn-save">Save Passenger</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MY BOOKINGS MODAL -->
+    <div class="modal-overlay" id="bookings-modal">
+      <div class="modal-card" style="max-width: 600px;">
+        <div class="modal-header">
+          <div class="modal-title-area">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              style="color: var(--primary); display: inline-block; vertical-align: middle;">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            <h3 data-translate="bookings-title"
+              style="display: inline-block; margin: 0; vertical-align: middle; font-family: var(--font-display); font-weight: 700; color: var(--primary);">
+              My Booking History
+            </h3>
+          </div>
+          <button class="modal-close" id="bookings-modal-close" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div id="bookings-list-container">
+            <!-- Bookings will be dynamically generated here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DYNAMIC JAVASCRIPT FOR UI BEHAVIORS -->
+    <script src="assets/translations.js"></script>
+    <script src="assets/notifications.js"></script>
+    <script>
+      // Language selector dropdown options interaction
+      document.querySelectorAll('.lang-option').forEach(opt => {
+        opt.addEventListener('click', (e) => {
+          e.preventDefault();
+          const lang = opt.getAttribute('data-lang');
+          applyLanguage(lang);
+        });
+      });
+
+      document.querySelectorAll('.btn-mobile-lang').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const lang = btn.getAttribute('data-lang');
+          applyLanguage(lang);
+        });
+      });
+
+      // Wrap applyLanguage to add index.html specific updates
+      if (typeof applyLanguage === 'function') {
+        const originalApplyLanguage = applyLanguage;
+        applyLanguage = function (lang) {
+          originalApplyLanguage(lang);
+
+          // Custom updates for ID type labels
+          const authSignupIdType = document.getElementById('auth-signup-id-type');
+          const authSignupIdNumLabel = document.getElementById('auth-signup-id-num-label');
+          if (authSignupIdType && authSignupIdNumLabel) {
+            if (authSignupIdType.value === 'IC') {
+              authSignupIdNumLabel.textContent = t('auth-label-idnum', 'NRIC (MyKad) Number');
+            } else {
+              authSignupIdNumLabel.textContent = t('auth-label-passport', 'Passport Number');
+            }
+          }
+
+          // Re-translate the passenger text
+          const triggerText = document.getElementById('passenger-dropdown-text');
+          if (triggerText && window.getPassengerConfig) {
+            const config = window.getPassengerConfig();
+            const total = config.total;
+            const adults = config.adults;
+            const children = config.children;
+
+            const adultLabel = adults > 1 ? t('pax-adults-label', 'Adults') : t('passenger-singular-label', 'Adult');
+            const childLabel = children > 1 ? t('pax-children-label', 'Children') : t('pax-type-child', 'Child');
+
+            triggerText.textContent = `${total} Pax (${adults} ${adultLabel}${children > 0 ? `, ${children} ${childLabel}` : ''})`;
+          }
+        };
+      }
+
+      // Header Scroll Styling Change
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+
+      // Mobile Navbar Sidebar Toggle
+      const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuCloseBtn = document.getElementById('mobile-menu-close-btn');
+      const menuOverlay = document.getElementById('menu-overlay');
+
+      function openMenu() {
+        mobileMenu.classList.add('open');
+        menuOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        mobileMenu.classList.remove('open');
+        menuOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      mobileToggleBtn.addEventListener('click', openMenu);
+      mobileMenuCloseBtn.addEventListener('click', closeMenu);
+      menuOverlay.addEventListener('click', closeMenu);
+
+      // Close menu when clicking links
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+
+      // ── Station lists per service ────────────────────────────────────────
+      const stationsByService = {
+        'ets-intercity': [
+          { value: 'KLS', text: 'KL Sentral (Kuala Lumpur)' },
+          { value: 'TML', text: 'Tanjung Malim (Perak)' },
+          { value: 'TPR', text: 'Tapah Road (Perak)' },
+          { value: 'IPH', text: 'Ipoh (Perak)' },
+          { value: 'SPI', text: 'Sungai Petani (Kedah)' },
+          { value: 'BTW', text: 'Butterworth (Penang)' },
+          { value: 'ARS', text: 'Arau (Perlis)' },
+          { value: 'PDB', text: 'Padang Besar (Perlis)' },
+          { value: 'SBN', text: 'Seremban (N. Sembilan)' },
+          { value: 'GMS', text: 'Gemas (N. Sembilan)' },
+          { value: 'KLG', text: 'Kluang (Johor)' },
+          { value: 'JBS', text: 'JB Sentral (Johor Bahru)' }
+        ],
+        'komuter-kl': [
+          { value: 'BTC', text: 'Batu Caves (Selangor)' },
+          { value: 'STL', text: 'Sentul (KL)' },
+          { value: 'PTR', text: 'Putra (KL)' },
+          { value: 'BNR', text: 'Bank Negara (KL)' },
+          { value: 'KLS', text: 'KL Sentral (Kuala Lumpur)' },
+          { value: 'MDV', text: 'Midvalley (KL)' },
+          { value: 'SPT', text: 'Seputeh (KL)' },
+          { value: 'SSN', text: 'Salak Selatan (KL)' },
+          { value: 'BTS', text: 'Bandar Tasik Selatan (KL)' },
+          { value: 'SDG', text: 'Serdang (Selangor)' },
+          { value: 'KJG', text: 'Kajang (Selangor)' },
+          { value: 'UKM', text: 'UKM (Selangor)' },
+          { value: 'NLI', text: 'Nilai (N. Sembilan)' },
+          { value: 'LBU', text: 'Labu (N. Sembilan)' },
+          { value: 'TRI', text: 'Tiroi (N. Sembilan)' },
+          { value: 'PSM', text: 'Pulau Sebang (N. Sembilan)' }
+        ],
+        'komuter-north': [
+          { value: 'BTW', text: 'Butterworth (Penang)' },
+          { value: 'BTG', text: 'Bukit Tengah (Pulau Pinang)' },
+          { value: 'BMT', text: 'Bukit Mertajam (Pulau Pinang)' },
+          { value: 'ARS', text: 'Arau (Perlis)' },
+          { value: 'PDB', text: 'Padang Besar (Perlis)' }
+        ]
+      };
+
+      function populateStations(serviceKey) {
+        const stations = stationsByService[serviceKey] || [];
+        const originSel = document.getElementById('origin-station');
+        const destSel = document.getElementById('destination-station');
+
+        // Remember selected values so we can try to keep them
+        const prevOrig = originSel.value;
+        const prevDest = destSel.value;
+
+        // Rebuild both dropdowns
+        [originSel, destSel].forEach((sel, idx) => {
+          const placeholder = idx === 0
+            ? (sel.options[0] ? sel.options[0].text : 'Select starting station')
+            : (sel.options[0] ? sel.options[0].text : 'Select destination station');
+          sel.innerHTML = `<option value="" disabled selected>${placeholder}</option>`;
+          stations.forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s.value;
+            opt.textContent = s.text;
+            sel.appendChild(opt);
+          });
+        });
+
+        // Restore previous selection if still valid in the new list
+        const validVals = stations.map(s => s.value);
+        if (validVals.includes(prevOrig)) originSel.value = prevOrig;
+        if (validVals.includes(prevDest)) destSel.value = prevDest;
+      }
+
+      // Wire up tab radio buttons to repopulate stations
+      const tabETS = document.getElementById('tab-ets-intercity');
+      const tabKKL = document.getElementById('tab-komuter-kl');
+      const tabKNth = document.getElementById('tab-komuter-north');
+
+      tabETS.addEventListener('change', () => populateStations('ets-intercity'));
+      tabKKL.addEventListener('change', () => populateStations('komuter-kl'));
+      tabKNth.addEventListener('change', () => populateStations('komuter-north'));
+
+      // Initial population (ETS is checked by default)
+      populateStations('ets-intercity');
+
+      // Handle One Way vs Round Trip Input State
+      const tripOneway = document.getElementById('trip-oneway');
+      const tripRoundtrip = document.getElementById('trip-roundtrip');
+      const returnDateInput = document.getElementById('return-date');
+      const returnDateBox = document.getElementById('return-date-box');
+
+      tripOneway.addEventListener('change', () => {
+        if (tripOneway.checked) {
+          returnDateInput.disabled = true;
+          returnDateInput.value = '';
+          returnDateBox.style.opacity = '0.5';
+        }
+      });
+
+      tripRoundtrip.addEventListener('change', () => {
+        if (tripRoundtrip.checked) {
+          returnDateInput.disabled = false;
+          returnDateBox.style.opacity = '1';
+        }
+      });
+
+      // Swap Origin and Destination Stations
+      const originStation = document.getElementById('origin-station');
+      const destinationStation = document.getElementById('destination-station');
+      const btnSwap = document.getElementById('btn-swap');
+
+      btnSwap.addEventListener('click', () => {
+        const origVal = originStation.value;
+        const destVal = destinationStation.value;
+
+        // Perform Swap
+        originStation.value = destVal;
+        destinationStation.value = origVal;
+      });
+
+      // Prevent past dates in date inputs (aligned with Malaysia Time)
+      function getMalaysiaTodayStr() {
+        const now = new Date();
+        const utc = now.getTime();
+        const localOffset = now.getTimezoneOffset() * 60000;
+        const d = new Date(utc + (3600000 * 8) + localOffset);
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, '0');
+        const date = String(d.getDate()).padStart(2, '0');
+        return `${y}-${m}-${date}`;
+      }
+      const today = getMalaysiaTodayStr();
+      document.getElementById('depart-date').min = today;
+      document.getElementById('return-date').min = today;
+      document.getElementById('depart-date').value = today;
+
+      // Search Train Form Submission
+      const mainBookingForm = document.getElementById('main-booking-form');
+      if (mainBookingForm) {
+        mainBookingForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const originSelect = document.getElementById('origin-station');
+          const destinationSelect = document.getElementById('destination-station');
+
+          if (!originSelect.value || !destinationSelect.value) {
+            showToast(t('alert-select-stations', 'Please select origin and destination stations.'), 'error');
+            return;
+          }
+
+          if (originSelect.value === destinationSelect.value) {
+            showToast(t('alert-same-stations', 'Origin and destination stations cannot be the same.'), 'error');
+            return;
+          }
+
+          const originVal = originSelect.value;
+          const originText = originSelect.options[originSelect.selectedIndex].text;
+
+          const destVal = destinationSelect.value;
+          const destText = destinationSelect.options[destinationSelect.selectedIndex].text;
+
+          const departDate = document.getElementById('depart-date').value;
+          const returnDate = document.getElementById('return-date').value;
+
+          const tripType = document.querySelector('input[name="trip-type"]:checked').value;
+
+          if (tripType === 'roundtrip') {
+            if (!returnDate) {
+              showToast(t('alert-select-return-date', 'Please select a return date for your round trip.'), 'error');
+              return;
+            }
+            if (new Date(returnDate) < new Date(departDate)) {
+              showToast(t('alert-invalid-return-date', 'Return date cannot be earlier than departure date.'), 'error');
+              return;
+            }
+          }
+
+          const paxConfig = window.getPassengerConfig ? window.getPassengerConfig() : { adults: 1, children: 0, total: 1, text: '1 Pax (1 Adult)' };
+          const passengersVal = String(paxConfig.total);
+          const passengersText = paxConfig.text;
+          const adultsCount = paxConfig.adults;
+          const childrenCount = paxConfig.children;
+
+          // Get service tab
+          let serviceType = 'ETS & Intercity';
+          if (document.getElementById('tab-komuter-kl').checked) {
+            serviceType = 'Komuter Klang Valley';
+          } else if (document.getElementById('tab-komuter-north').checked) {
+            serviceType = 'Komuter Northern';
+          }
+
+          const searchQuery = {
+            originVal,
+            originText,
+            destVal,
+            destText,
+            departDate,
+            returnDate,
+            tripType,
+            passengersVal,
+            passengersText,
+            adults: adultsCount,
+            children: childrenCount,
+            serviceType
+          };
+
+          localStorage.setItem('kits_search_query', JSON.stringify(searchQuery));
+          window.location.href = 'booking.html';
+        });
+      }
+
+      // --- AUTHENTICATION & SESSION LOGIC ---
+
+      // Seed registered users in localStorage if not existing
+      const defaultUsers = [
+        {
+          email: 'amirah@example.com',
+          password: 'password',
+          name: 'Amirah Binti Ahmad',
+          idType: 'IC',
+          idNum: '940812-14-5234',
+          gender: 'Female'
+        }
+      ];
+
+      function initUserData() {
+        if (!localStorage.getItem('kits_registered_users')) {
+          localStorage.setItem('kits_registered_users', JSON.stringify(defaultUsers));
+        }
+      }
+      initUserData();
+
+      let isLoggedIn = false;
+      let currentUser = null;
+
+      function checkUserSession() {
+        const session = localStorage.getItem('kits_user_session');
+        if (session) {
+          isLoggedIn = true;
+          currentUser = JSON.parse(session);
+        } else {
+          isLoggedIn = false;
+          currentUser = null;
+        }
+      }
+
+      function updateAuthUI() {
+        checkUserSession();
+
+        const loggedOutActions = document.getElementById('logged-out-actions');
+        const userDropdownWrapper = document.getElementById('user-dropdown-wrapper');
+        const mobileLoggedOutActions = document.getElementById('mobile-logged-out-actions');
+        const mobileLoggedInActions = document.getElementById('mobile-logged-in-actions');
+
+        const navUserName = document.getElementById('nav-user-name');
+        const navUserAvatar = document.getElementById('nav-user-avatar');
+        const mobileUserName = document.getElementById('mobile-user-name');
+        const mobileUserAvatar = document.getElementById('mobile-user-avatar');
+
+        if (isLoggedIn && currentUser) {
+          // Desktop updates
+          if (loggedOutActions) loggedOutActions.style.display = 'none';
+          if (userDropdownWrapper) userDropdownWrapper.style.display = 'block';
+          if (navUserName) navUserName.textContent = currentUser.name.split(' ')[0]; // First name
+          if (navUserAvatar) navUserAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+
+          // Mobile updates
+          if (mobileLoggedOutActions) mobileLoggedOutActions.style.display = 'none';
+          if (mobileLoggedInActions) mobileLoggedInActions.style.display = 'flex';
+          if (mobileUserName) mobileUserName.textContent = currentUser.name;
+          if (mobileUserAvatar) mobileUserAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+        } else {
+          // Desktop updates
+          if (loggedOutActions) loggedOutActions.style.display = 'flex';
+          if (userDropdownWrapper) userDropdownWrapper.style.display = 'none';
+
+          // Mobile updates
+          if (mobileLoggedOutActions) mobileLoggedOutActions.style.display = 'flex';
+          if (mobileLoggedInActions) mobileLoggedInActions.style.display = 'none';
+
+          // Remove notification bell on logout
+          const bellWrap = document.getElementById('notif-bell-wrapper');
+          if (bellWrap) bellWrap.remove();
+        }
+
+        // Refresh notification bell after auth state change
+        if (isLoggedIn && typeof KITSNotify !== 'undefined') {
+          if (!document.getElementById('notif-bell-wrapper')) {
+            KITSNotify.init();
+            if (typeof injectBell === 'function') injectBell();
+          }
+        }
+      }
+
+      const authModal = document.getElementById('auth-modal');
+      const authModalClose = document.getElementById('auth-modal-close');
+      const authTabBtnSignin = document.getElementById('auth-tab-btn-signin');
+      const authTabBtnSignup = document.getElementById('auth-tab-btn-signup');
+      const authTabContentSignin = document.getElementById('auth-tab-content-signin');
+      const authTabContentSignup = document.getElementById('auth-tab-content-signup');
+      const authTabContentForgot = document.getElementById('auth-tab-content-forgot');
+      const authModalTitle = document.getElementById('auth-modal-title');
+      const authModalTabs = document.getElementById('auth-modal-tabs');
+
+      function openAuthModal(tab = 'signin') {
+        if (authModal) {
+          authModal.classList.add('open');
+          switchAuthTab(tab);
+        }
+      }
+
+      function closeAuthModal() {
+        if (authModal) {
+          authModal.classList.remove('open');
+        }
+      }
+
+      function prefillRememberMe() {
+        const rememberedEmail = localStorage.getItem('kits_remember_email');
+        const emailInput = document.getElementById('auth-signin-email');
+        const rememberCheckbox = document.getElementById('auth-signin-remember');
+
+        if (emailInput && rememberCheckbox) {
+          rememberCheckbox.checked = false; // Always start unchecked by default
+          if (rememberedEmail) {
+            emailInput.value = rememberedEmail;
+          } else {
+            emailInput.value = '';
+          }
+        }
+      }
+
+      function switchAuthTab(tab) {
+        if (tab === 'signin') {
+          if (authTabBtnSignin) authTabBtnSignin.classList.add('active');
+          if (authTabBtnSignup) authTabBtnSignup.classList.remove('active');
+          if (authTabContentSignin) authTabContentSignin.classList.add('active');
+          if (authTabContentSignup) authTabContentSignup.classList.remove('active');
+          if (authTabContentForgot) authTabContentForgot.classList.remove('active');
+          if (authModalTabs) authModalTabs.style.display = 'flex';
+          if (authModalTitle) authModalTitle.textContent = 'KITS Account';
+          prefillRememberMe();
+        } else if (tab === 'signup') {
+          if (authTabBtnSignin) authTabBtnSignin.classList.remove('active');
+          if (authTabBtnSignup) authTabBtnSignup.classList.add('active');
+          if (authTabContentSignin) authTabContentSignin.classList.remove('active');
+          if (authTabContentSignup) authTabContentSignup.classList.add('active');
+          if (authTabContentForgot) authTabContentForgot.classList.remove('active');
+          if (authModalTabs) authModalTabs.style.display = 'flex';
+          if (authModalTitle) authModalTitle.textContent = 'KITS Account';
+        } else if (tab === 'forgot') {
+          if (authTabContentSignin) authTabContentSignin.classList.remove('active');
+          if (authTabContentSignup) authTabContentSignup.classList.remove('active');
+          if (authTabContentForgot) authTabContentForgot.classList.add('active');
+          if (authModalTabs) authModalTabs.style.display = 'none';
+          if (authModalTitle) authModalTitle.textContent = 'Reset Password';
+        }
+      }
+
+      if (authModalClose) authModalClose.addEventListener('click', closeAuthModal);
+      if (authModal) {
+        authModal.addEventListener('click', (e) => {
+          if (e.target === authModal) {
+            closeAuthModal();
+          }
+        });
+      }
+
+      if (authTabBtnSignin) authTabBtnSignin.addEventListener('click', () => switchAuthTab('signin'));
+      if (authTabBtnSignup) authTabBtnSignup.addEventListener('click', () => switchAuthTab('signup'));
+
+      // Desktop nav actions
+      const btnSigninDesktop = document.getElementById('btn-signin-desktop');
+      const btnSignupDesktop = document.getElementById('btn-signup-desktop');
+      if (btnSigninDesktop) btnSigninDesktop.addEventListener('click', () => openAuthModal('signin'));
+      if (btnSignupDesktop) btnSignupDesktop.addEventListener('click', () => openAuthModal('signup'));
+
+      // Mobile nav actions
+      const btnSigninMobile = document.getElementById('btn-signin-mobile');
+      const btnSignupMobile = document.getElementById('btn-signup-mobile');
+      if (btnSigninMobile) btnSigninMobile.addEventListener('click', () => {
+        closeMenu();
+        openAuthModal('signin');
+      });
+      if (btnSignupMobile) btnSignupMobile.addEventListener('click', () => {
+        closeMenu();
+        openAuthModal('signup');
+      });
+
+      // Switch links inside modal
+      const authSwitchToSignup = document.getElementById('auth-switch-to-signup');
+      const authSwitchToSignin = document.getElementById('auth-switch-to-signin');
+      const authForgotLink = document.getElementById('auth-forgot-link');
+      const authForgotBackToSignin = document.getElementById('auth-forgot-back-to-signin');
+
+      if (authSwitchToSignup) authSwitchToSignup.addEventListener('click', () => switchAuthTab('signup'));
+      if (authSwitchToSignin) authSwitchToSignin.addEventListener('click', () => switchAuthTab('signin'));
+      if (authForgotLink) authForgotLink.addEventListener('click', () => switchAuthTab('forgot'));
+      if (authForgotBackToSignin) authForgotBackToSignin.addEventListener('click', () => switchAuthTab('signin'));
+
+      // Registration doc type listener
+      const authSignupIdType = document.getElementById('auth-signup-id-type');
+      const authSignupIdNumLabel = document.getElementById('auth-signup-id-num-label');
+      const authSignupIdNumInput = document.getElementById('auth-signup-id-num');
+
+      if (authSignupIdType) {
+        authSignupIdType.addEventListener('change', () => {
+          if (authSignupIdType.value === 'IC') {
+            if (authSignupIdNumLabel) authSignupIdNumLabel.textContent = t('auth-label-idnum', 'NRIC (MyKad) Number');
+            if (authSignupIdNumInput) {
+              authSignupIdNumInput.placeholder = 'e.g. 950812-14-5678';
+              authSignupIdNumInput.value = '';
+            }
+          } else {
+            if (authSignupIdNumLabel) authSignupIdNumLabel.textContent = t('auth-label-passport', 'Passport Number');
+            if (authSignupIdNumInput) {
+              authSignupIdNumInput.placeholder = 'e.g. A12345678';
+              authSignupIdNumInput.value = '';
+            }
+          }
+        });
+      }
+
+      // Forms submission handlers
+      const authSigninForm = document.getElementById('auth-signin-form');
+      if (authSigninForm) {
+        authSigninForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const email = document.getElementById('auth-signin-email').value.trim();
+          const password = document.getElementById('auth-signin-password').value;
+          const rememberCheckbox = document.getElementById('auth-signin-remember');
+          const remember = rememberCheckbox ? rememberCheckbox.checked : false;
+
+          const users = JSON.parse(localStorage.getItem('kits_registered_users') || '[]');
+          const user = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+
+          if (user) {
+            localStorage.setItem('kits_user_session', JSON.stringify(user));
+
+            // Remember Me preference persistence
+            if (remember) {
+              localStorage.setItem('kits_remember_me', 'true');
+              localStorage.setItem('kits_remember_email', email);
+            } else {
+              localStorage.setItem('kits_remember_me', 'false');
+              localStorage.removeItem('kits_remember_email');
+            }
+
+            updateAuthUI();
+            closeAuthModal();
+            authSigninForm.reset();
+            showToast(t('alert-welcome-back', 'Welcome back, {name}!').replace('{name}', user.name), 'success');
+          } else {
+            showToast(t('alert-invalid-login', 'Invalid email or password.'), 'error');
+          }
+        });
+      }
+
+      const authSignupForm = document.getElementById('auth-signup-form');
+      if (authSignupForm) {
+        authSignupForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('auth-signup-name').value.trim();
+          const email = document.getElementById('auth-signup-email').value.trim();
+          const password = document.getElementById('auth-signup-password').value;
+          const confirmPassword = document.getElementById('auth-signup-confirm-password').value;
+          const idType = document.getElementById('auth-signup-id-type').value;
+          const gender = document.getElementById('auth-signup-gender').value;
+          const idNum = document.getElementById('auth-signup-id-num').value.trim();
+
+          if (password !== confirmPassword) {
+            showToast(t('alert-pwd-mismatch', 'Passwords do not match.'), 'error');
+            return;
+          }
+
+          const users = JSON.parse(localStorage.getItem('kits_registered_users') || '[]');
+          const userExists = users.some(u => u.email.toLowerCase() === email.toLowerCase());
+
+          if (userExists) {
+            showToast(t('alert-email-registered', 'Email address already registered.'), 'error');
+            return;
+          }
+
+          const newUser = { name, email, password, idType, gender, idNum };
+          users.push(newUser);
+          localStorage.setItem('kits_registered_users', JSON.stringify(users));
+
+          // Log user in automatically
+          localStorage.setItem('kits_user_session', JSON.stringify(newUser));
+
+          updateAuthUI();
+          closeAuthModal();
+          authSignupForm.reset();
+          showToast(t('alert-account-created', 'Account created! Welcome, {name}!').replace('{name}', name), 'success');
+        });
+      }
+
+      const authForgotForm = document.getElementById('auth-forgot-form');
+      if (authForgotForm) {
+        authForgotForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const email = document.getElementById('auth-forgot-email').value.trim();
+
+          showToast(t('alert-reset-sent', 'Password reset link sent to {email}!').replace('{email}', email), 'success');
+          authForgotForm.reset();
+          switchAuthTab('signin');
+        });
+      }
+
+      // Desktop user profile dropdown toggle
+      const btnUserProfile = document.getElementById('btn-user-profile');
+      const userDropdownMenu = document.getElementById('user-dropdown-menu');
+
+      if (btnUserProfile && userDropdownMenu) {
+        btnUserProfile.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const show = userDropdownMenu.classList.toggle('show');
+          btnUserProfile.setAttribute('aria-expanded', show ? 'true' : 'false');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!btnUserProfile.contains(e.target) && !userDropdownMenu.contains(e.target)) {
+            userDropdownMenu.classList.remove('show');
+            btnUserProfile.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      // My Bookings modal logic
+      const bookingsModal = document.getElementById('bookings-modal');
+      const bookingsModalClose = document.getElementById('bookings-modal-close');
+
+      function openBookingsModal() {
+        if (!isLoggedIn) {
+          showToast(t('alert-signin-required', 'Please sign in to view your bookings.'), 'error');
+          openAuthModal('signin');
+          return;
+        }
+        if (bookingsModal) {
+          bookingsModal.classList.add('open');
+          renderBookings();
+        }
+      }
+
+      function closeBookingsModal() {
+        if (bookingsModal) {
+          bookingsModal.classList.remove('open');
+        }
+      }
+
+      if (bookingsModalClose) bookingsModalClose.addEventListener('click', closeBookingsModal);
+      if (bookingsModal) {
+        bookingsModal.addEventListener('click', (e) => {
+          if (e.target === bookingsModal) {
+            closeBookingsModal();
+          }
+        });
+      }
+
+      // My Bookings links
+      const menuMyBookings = document.getElementById('menu-my-bookings');
+      if (menuMyBookings) {
+        menuMyBookings.addEventListener('click', (e) => {
+          if (userDropdownMenu) userDropdownMenu.classList.remove('show');
+        });
+      }
+
+      const mobileMyBookings = document.getElementById('mobile-menu-my-bookings');
+      if (mobileMyBookings) {
+        mobileMyBookings.addEventListener('click', (e) => {
+          closeMenu();
+        });
+      }
+
+      // Render Bookings List
+      function getMalaysiaTime() {
+        const now = new Date();
+        const utc = now.getTime();
+        const localOffset = now.getTimezoneOffset() * 60000;
+        return new Date(utc + (3600000 * 8) + localOffset);
+      }
+
+      function findTrainDepTime(trainName) {
+        const fallbackTimes = {
+          'ETS Platinum 9123': '06:00',
+          'KTM Intercity 40': '06:00',
+          'ETS Gold 9026': '06:00',
+          'KTM Intercity 47': '06:15',
+          'ETS Gold 9025': '07:30',
+          'ETS Platinum 9122': '08:00',
+          'KTM Intercity 45': '08:45',
+          'ETS Platinum 9130': '09:30',
+          'KTM Intercity 42': '10:15',
+          'ETS Platinum 9121': '10:45',
+          'ETS Gold 9024': '11:30',
+          'ETS Platinum 9127': '13:00',
+          'ETS Gold 9032': '13:45',
+          'ETS Gold 9023': '14:20',
+          'KTM Intercity 49': '14:30',
+          'ETS Platinum 9128': '15:15',
+          'KTM Intercity 46': '15:30',
+          'ETS Platinum 9125': '16:50',
+          'ETS Platinum 9134': '17:30',
+          'ETS Gold 9029': '18:30',
+          'ETS Gold 9028': '19:00',
+          'KTM Intercity 48': '19:30',
+          'KTM Intercity 51': '20:00',
+          'ETS Platinum 9131': '20:45',
+          'ETS Gold 9036': '21:30',
+          'ETS Gold 9035': '22:15',
+          'ETS Gold 9040': '00:30',
+          'ETS Gold 9039': '00:30',
+          'KTM Intercity 53': '00:30',
+          'KTM Intercity 50': '00:30',
+          'Komuter Service 2007': '06:00',
+          'Komuter Service 2008': '06:00',
+          'Komuter Service 2009': '06:30',
+          'Komuter Service 2011': '07:15',
+          'Komuter Service 2012': '08:00',
+          'Komuter Service 2013': '08:30',
+          'Komuter Service 2015': '09:45',
+          'Komuter Service 2016': '10:30',
+          'Komuter Service 2017': '11:15',
+          'Komuter Service 2019': '12:45',
+          'Komuter Service 2020': '13:00',
+          'Komuter Service 2021': '14:20',
+          'Komuter Service 2024': '15:30',
+          'Komuter Service 2023': '16:00',
+          'Komuter Service 2025': '17:30',
+          'Komuter Service 2028': '18:00',
+          'Komuter Service 2027': '19:00',
+          'Komuter Service 2029': '20:30',
+          'Komuter Service 2032': '20:45',
+          'Komuter Service 2031': '22:00',
+          'Komuter Service 2034': '23:00',
+          'Komuter Service 2033': '23:30',
+          'Komuter Service 2035': '00:30',
+          'Komuter Service 2036': '00:30',
+          'KTM Northern Express 3104': '06:00',
+          'KTM Northern Express 3103': '06:00',
+          'KTM Northern Express 3102': '06:30',
+          'KTM Northern Express 3101': '08:15',
+          'KTM Northern Express 3106': '09:30',
+          'KTM Northern Express 3105': '11:00',
+          'KTM Northern Express 3108': '13:00',
+          'KTM Northern Express 3107': '14:30',
+          'KTM Northern Express 3110': '16:00',
+          'KTM Northern Express 3109': '17:45',
+          'KTM Northern Express 3112': '19:30',
+          'KTM Northern Express 3111': '20:45',
+          'KTM Northern Express 3118': '22:00',
+          'KTM Northern Express 3113': '23:30',
+          'KTM Northern Express 3116': '00:30',
+          'KTM Northern Express 3115': '00:30'
+        };
+        return fallbackTimes[trainName] || '08:00';
+      }
+
+      function isBookingDatePast(booking) {
+        const dateStr = (booking.tripType === 'roundtrip' && booking.returnDate) ? booking.returnDate : booking.departDate;
+        if (!dateStr) return false;
+        const bookingDate = new Date(dateStr);
+        if (isNaN(bookingDate.getTime())) return false;
+
+        let depTimeStr = '23:59';
+        if (booking.tripType === 'roundtrip' && booking.returnDate) {
+          depTimeStr = booking.returnDepTime || findTrainDepTime(booking.returnTrainName) || '23:59';
+        } else {
+          depTimeStr = booking.depTime || findTrainDepTime(booking.trainName) || '23:59';
+        }
+        const [hours, minutes] = depTimeStr.split(':').map(Number);
+        bookingDate.setHours(hours || 0, minutes || 0, 0, 0);
+
+        const now = getMalaysiaTime();
+        return bookingDate < now;
+      }
+
+      function renderBookings() {
+        const bookingsListContainer = document.getElementById('bookings-list-container');
+        if (!bookingsListContainer) return;
+
+        const bookings = JSON.parse(localStorage.getItem('kits_bookings') || '[]');
+        // Filter bookings for the current logged-in user email
+        const userBookings = bookings.filter(b => b.userEmail && currentUser && b.userEmail.toLowerCase() === currentUser.email.toLowerCase());
+
+        bookingsListContainer.innerHTML = '';
+
+        if (userBookings.length === 0) {
+          bookingsListContainer.innerHTML = `
+            <div class="empty-passenger-state" style="padding: 30px 10px;">
+              <div class="empty-icon" style="font-size: 36px; margin-bottom: 8px;">🎫</div>
+              <p style="font-size: 14px; color: var(--gray-600);">${t('bookings-empty', 'You have no bookings yet.')}</p>
+            </div>
+          `;
+          return;
+        }
+
+        userBookings.forEach(booking => {
+          const card = document.createElement('div');
+          card.className = 'my-booking-card';
+
+          const isPast = isBookingDatePast(booking);
+          const statusText = isPast ? t('bookings-past', 'Past') : t('bookings-confirmed', 'Confirmed');
+          const statusClass = isPast ? 'past' : 'success';
+
+          let tripDetailsHTML = `
+            <div class="my-booking-route">
+              <strong>${booking.originText}</strong> ${t('route-to', 'to')} <strong>${booking.destText}</strong>
+              ${booking.tripType === 'roundtrip'
+              ? ` <span class="badge-trip-type" style="font-size:10px; padding:2px 6px; background:var(--primary-light); color:var(--dark-900); border-radius:4px; font-weight:700; margin-left:8px; display:inline-block; vertical-align:middle;">${t('widget-trip-roundtrip', 'Round Trip')}</span>`
+              : ` <span class="badge-trip-type" style="font-size:10px; padding:2px 6px; background:var(--gray-200); color:var(--dark-900); border-radius:4px; font-weight:700; margin-left:8px; display:inline-block; vertical-align:middle;">${t('widget-trip-oneway', 'One Way')}</span>`
+            }
+            </div>
+            <div class="my-booking-time" style="font-size: 13px; color: var(--gray-600); margin-top: 4px;">
+              <strong>${t('booking-outbound-label', 'Outbound Journey')}:</strong> <span>${booking.trainName}</span> | <span>${booking.departDate}, ${booking.depTime || findTrainDepTime(booking.trainName)}</span> | <span>${t('bookings-seats', 'Seats')}: ${booking.seats.join(', ')}</span>
+            </div>
+          `;
+
+          if (booking.tripType === 'roundtrip') {
+            tripDetailsHTML += `
+              <div class="my-booking-time" style="font-size: 13px; color: var(--gray-600); margin-top: 4px; border-top: 1px dashed rgba(0,0,0,0.1); padding-top: 4px;">
+                <strong>${t('booking-return-label', 'Return Journey')}:</strong> <span>${booking.returnTrainName}</span> | <span>${booking.returnDate}, ${booking.returnDepTime || findTrainDepTime(booking.returnTrainName)}</span> | <span>${t('bookings-seats', 'Seats')}: ${booking.returnSeats.join(', ')}</span>
+              </div>
+            `;
+          }
+
+          tripDetailsHTML += `
+            <div class="my-booking-passengers" style="font-size: 13px; color: var(--gray-600); margin-top: 6px;">
+              <strong>${t('bookings-name', 'Name')}:</strong> <span>${booking.passengerName}</span>
+            </div>
+          `;
+
+          card.innerHTML = `
+            <div class="my-booking-header">
+              <span class="my-booking-ref">${t('bookings-ref', 'Ref')}: ${booking.bookingRef}</span>
+              <span class="my-booking-status ${statusClass}">${statusText}</span>
+            </div>
+            <div class="my-booking-details">
+              ${tripDetailsHTML}
+              <div class="my-booking-footer" style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+                <span class="my-booking-price" style="font-weight: 700; color: var(--primary); font-size: 16px; white-space: nowrap;">RM ${parseFloat(booking.totalPrice).toFixed(2)}</span>
+                <button class="btn-card show-ticket-btn" data-ref="${booking.bookingRef}" style="padding: 6px 12px; font-size: 12px;">${t('bookings-btn-ticket', 'View E-Ticket')}</button>
+              </div>
+            </div>
+          `;
+          bookingsListContainer.appendChild(card);
+        });
+
+        // Set up "View E-Ticket" buttons
+        const showTicketBtns = bookingsListContainer.querySelectorAll('.show-ticket-btn');
+        showTicketBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const ref = btn.getAttribute('data-ref');
+            // Redirect to booking.html with ticket view parameter
+            window.location.href = `booking.html?view_ticket=${ref}`;
+          });
+        });
+      }
+
+      function handleSignOut(e) {
+        if (e) e.preventDefault();
+        localStorage.removeItem('kits_user_session');
+        updateAuthUI();
+        if (userDropdownMenu) userDropdownMenu.classList.remove('show');
+        showToast(t('alert-signed-out', 'You have successfully signed out.'), 'success');
+      }
+
+      const menuSignout = document.getElementById('menu-signout');
+      if (menuSignout) menuSignout.addEventListener('click', handleSignOut);
+
+      const mobileMenuSignout = document.getElementById('mobile-menu-signout');
+      if (mobileMenuSignout) mobileMenuSignout.addEventListener('click', (e) => {
+        closeMenu();
+        handleSignOut(e);
+      });
+
+      // Password Visibility Toggle Logic
+      const passwordToggles = document.querySelectorAll('.btn-toggle-password');
+      passwordToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const container = toggle.closest('.password-input-container');
+          const input = container.querySelector('input');
+          const eyeIcon = toggle.querySelector('.eye-icon');
+          const eyeOffIcon = toggle.querySelector('.eye-off-icon');
+
+          if (input.type === 'password') {
+            input.type = 'text';
+            if (eyeIcon) eyeIcon.style.display = 'none';
+            if (eyeOffIcon) eyeOffIcon.style.display = 'block';
+          } else {
+            input.type = 'password';
+            if (eyeIcon) eyeIcon.style.display = 'block';
+            if (eyeOffIcon) eyeOffIcon.style.display = 'none';
+          }
+        });
+      });
+
+      // Initialize Auth UI State on page load
+      updateAuthUI();
+
+      // --- PASSENGER LOGIC ---
+
+      // Spinner Keyframes Injection (fallback animation)
+      const styleSheet = document.createElement("style");
+      styleSheet.innerText = `
+      @keyframes rotate {
+        100% { transform: rotate(360deg); }
+      }
+    `;
+      document.head.appendChild(styleSheet);
+
+      // Toast Alert Helper
+      function showToast(message, type = 'success') {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+        <span>${message}</span>
+      `;
+        container.appendChild(toast);
+
+        // Auto remove after 3s
+        setTimeout(() => {
+          toast.style.animation = 'slideInLeft 0.3s reverse';
+          setTimeout(() => {
+            if (toast.parentNode === container) {
+              container.removeChild(toast);
+            }
+          }, 300);
+        }, 3000);
+      }
+
+
+
+      // PASSENGER DIRECTORY MODAL LOGIC
+      const passengerModal = document.getElementById('passenger-modal');
+      const modalCloseBtn = document.getElementById('passenger-modal-close');
+      const tabBtnList = document.getElementById('tab-btn-list');
+      const tabBtnAdd = document.getElementById('tab-btn-add');
+      const tabContentList = document.getElementById('tab-content-list');
+      const tabContentAdd = document.getElementById('tab-content-add');
+
+      function openPassengerModal(e) {
+        if (e) e.preventDefault();
+        passengerModal.classList.add('open');
+        renderPassengers();
+        switchTab('list');
+      }
+
+      function closePassengerModal() {
+        passengerModal.classList.remove('open');
+      }
+
+      const menuPassengerDirectory = document.getElementById('menu-passenger-directory');
+      if (menuPassengerDirectory) {
+        menuPassengerDirectory.addEventListener('click', openPassengerModal);
+      }
+      const mobileMenuPassengerDir = document.getElementById('mobile-menu-passenger-directory');
+      if (mobileMenuPassengerDir) {
+        mobileMenuPassengerDir.addEventListener('click', (e) => {
+          openPassengerModal(e);
+          closeMenu();
+        });
+      }
+
+      if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closePassengerModal);
+      }
+      if (passengerModal) {
+        passengerModal.addEventListener('click', (e) => {
+          if (e.target === passengerModal) {
+            closePassengerModal();
+          }
+        });
+      }
+
+      // Switch Tabs inside Passenger Modal
+      function switchTab(tab) {
+        if (tab === 'list') {
+          tabBtnList.classList.add('active');
+          tabBtnAdd.classList.remove('active');
+          tabContentList.classList.add('active');
+          tabContentAdd.classList.remove('active');
+        } else {
+          tabBtnList.classList.remove('active');
+          tabBtnAdd.classList.add('active');
+          tabContentList.classList.remove('active');
+          tabContentAdd.classList.add('active');
+        }
+      }
+
+      if (tabBtnList) tabBtnList.addEventListener('click', () => switchTab('list'));
+      if (tabBtnAdd) tabBtnAdd.addEventListener('click', () => switchTab('add'));
+
+      const btnAddCancel = document.getElementById('btn-add-cancel');
+      if (btnAddCancel) btnAddCancel.addEventListener('click', () => switchTab('list'));
+
+      const btnAddFirstPassenger = document.getElementById('btn-add-first-passenger');
+      if (btnAddFirstPassenger) btnAddFirstPassenger.addEventListener('click', () => switchTab('add'));
+
+      // PASSENGER DATABASE MANAGEMENT (LOCALSTORAGE)
+      const defaultPassengers = [
+        { id: 'p1', name: 'Amirah Binti Ahmad (Self)', idType: 'IC', idNum: '940812-14-5234', gender: 'Female', type: 'Adult' },
+        { id: 'p2', name: 'Muhammad Bin Ibrahim', idType: 'IC', idNum: '910324-10-5881', gender: 'Male', type: 'Adult' }
+      ];
+
+      function initPassengerData() {
+        if (!localStorage.getItem('kits_passengers')) {
+          localStorage.setItem('kits_passengers', JSON.stringify(defaultPassengers));
+        }
+      }
+
+      function getPassengers() {
+        initPassengerData();
+        return JSON.parse(localStorage.getItem('kits_passengers') || '[]');
+      }
+
+      function savePassengers(passengers) {
+        localStorage.setItem('kits_passengers', JSON.stringify(passengers));
+        renderPassengers();
+      }
+
+      function renderPassengers() {
+        const passengers = getPassengers();
+        const tbody = document.getElementById('passenger-table-body');
+        const table = document.getElementById('passenger-table');
+        const emptyState = document.getElementById('empty-passenger-state');
+
+        if (!tbody) return;
+        tbody.innerHTML = '';
+
+        if (passengers.length === 0) {
+          if (table) table.style.display = 'none';
+          if (emptyState) emptyState.style.display = 'flex';
+        } else {
+          if (table) table.style.display = 'table';
+          if (emptyState) emptyState.style.display = 'none';
+
+          passengers.forEach(p => {
+            const tr = document.createElement('tr');
+
+            const nameCell = document.createElement('td');
+            nameCell.className = 'passenger-name-cell';
+            nameCell.textContent = p.name;
+
+            const idCell = document.createElement('td');
+            idCell.textContent = `${p.idType}: ${p.idNum}`;
+
+            const typeCell = document.createElement('td');
+            const badge = document.createElement('span');
+            badge.className = `p-type-badge ${p.type.toLowerCase()}`;
+            badge.textContent = p.type;
+            typeCell.appendChild(badge);
+
+            const genderCell = document.createElement('td');
+            genderCell.textContent = p.gender;
+
+            const actionCell = document.createElement('td');
+            actionCell.style.textAlign = 'right';
+            const delBtn = document.createElement('button');
+            delBtn.className = 'btn-delete-passenger';
+            delBtn.title = 'Delete passenger';
+            delBtn.innerHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              <line x1="10" y1="11" x2="10" y2="17"></line>
+              <line x1="14" y1="11" x2="14" y2="17"></line>
+            </svg>
+          `;
+            delBtn.addEventListener('click', () => deletePassenger(p.id));
+            actionCell.appendChild(delBtn);
+
+            tr.appendChild(nameCell);
+            tr.appendChild(idCell);
+            tr.appendChild(typeCell);
+            tr.appendChild(genderCell);
+            tr.appendChild(actionCell);
+
+            tbody.appendChild(tr);
+          });
+        }
+      }
+
+      // Add Passenger Form Submission
+      const addForm = document.getElementById('add-passenger-form');
+      if (addForm) {
+        addForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const name = document.getElementById('p-name').value.trim();
+          const idType = document.getElementById('p-id-type').value;
+          const idNum = document.getElementById('p-id-num').value.trim();
+          const gender = document.getElementById('p-gender').value;
+          const type = document.getElementById('p-type').value;
+
+          const newPassenger = {
+            id: 'p_' + Date.now(),
+            name,
+            idType,
+            idNum,
+            gender,
+            type
+          };
+
+          const passengers = getPassengers();
+          passengers.push(newPassenger);
+          savePassengers(passengers);
+
+          // Reset form & Go back
+          addForm.reset();
+          switchTab('list');
+          showToast(t('alert-passenger-added', '{name} added to Passenger Directory!').replace('{name}', name), 'success');
+        });
+      }
+
+      // Delete Passenger
+      function deletePassenger(id) {
+        const passengers = getPassengers();
+        const passenger = passengers.find(p => p.id === id);
+        const name = passenger ? passenger.name : 'Passenger';
+
+        if (confirm(t('alert-confirm-delete-passenger', 'Are you sure you want to delete {name}?').replace('{name}', name))) {
+          const filtered = passengers.filter(p => p.id !== id);
+          savePassengers(filtered);
+          showToast(t('alert-passenger-deleted', '{name} deleted.').replace('{name}', name), 'error');
+        }
+      }
+
+      // Initial load UI configurations
+      initPassengerData();
+
+      // --- CUSTOM PASSENGER DROPDOWN LOGIC ---
+      (function initPassengerDropdown() {
+        const trigger = document.getElementById('passenger-dropdown-trigger');
+        const panel = document.getElementById('passenger-dropdown-panel');
+        const text = document.getElementById('passenger-dropdown-text');
+
+        const adultCountEl = document.getElementById('adult-count');
+        const childCountEl = document.getElementById('child-count');
+        const adultMinus = document.getElementById('adult-minus');
+        const adultPlus = document.getElementById('adult-plus');
+        const childMinus = document.getElementById('child-minus');
+        const childPlus = document.getElementById('child-plus');
+        const limitNote = document.getElementById('pax-limit-note');
+        const btnApply = document.getElementById('btn-pax-apply');
+
+        if (!trigger || !panel) return;
+
+        let adults = 1;
+        let children = 0;
+        const maxPax = 8;
+
+        function updateCounters() {
+          adultCountEl.textContent = adults;
+          childCountEl.textContent = children;
+
+          adultMinus.disabled = (adults <= 1);
+          childMinus.disabled = (children <= 0);
+
+          const total = adults + children;
+          const limitReached = (total >= maxPax);
+
+          adultPlus.disabled = limitReached;
+          childPlus.disabled = limitReached;
+
+          if (limitReached) {
+            limitNote.classList.add('limit-reached');
+          } else {
+            limitNote.classList.remove('limit-reached');
+          }
+
+          // Update text display
+          let display = '';
+          const adultLabel = adults > 1 ? t('pax-adults-label', 'Adults') : t('passenger-singular-label', 'Adult');
+          const childLabel = children > 1 ? t('pax-children-label', 'Children') : t('pax-type-child', 'Child');
+
+          display = `${total} Pax (${adults} ${adultLabel}${children > 0 ? `, ${children} ${childLabel}` : ''})`;
+          text.textContent = display;
+        }
+
+        // Toggle panel
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const open = panel.classList.toggle('open');
+          const chevron = trigger.querySelector('svg');
+          if (chevron) {
+            chevron.style.transform = open ? 'rotate(180deg)' : 'rotate(0)';
+          }
+        });
+
+        // Close on click outside
+        document.addEventListener('click', (e) => {
+          if (!trigger.contains(e.target) && !panel.contains(e.target)) {
+            panel.classList.remove('open');
+            const chevron = trigger.querySelector('svg');
+            if (chevron) chevron.style.transform = 'rotate(0)';
+          }
+        });
+
+        adultMinus.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (adults > 1) {
+            adults--;
+            updateCounters();
+          }
+        });
+
+        adultPlus.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (adults + children < maxPax) {
+            adults++;
+            updateCounters();
+          }
+        });
+
+        childMinus.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (children > 0) {
+            children--;
+            updateCounters();
+          }
+        });
+
+        childPlus.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (adults + children < maxPax) {
+            children++;
+            updateCounters();
+          }
+        });
+
+        btnApply.addEventListener('click', (e) => {
+          e.stopPropagation();
+          panel.classList.remove('open');
+          const chevron = trigger.querySelector('svg');
+          if (chevron) chevron.style.transform = 'rotate(0)';
+        });
+
+        // Expose state for search form
+        window.getPassengerConfig = function () {
+          return { adults, children, total: adults + children, text: text.textContent };
+        };
+
+        updateCounters();
+      })();
+    </script>
+
+    <!-- KAI AI Assistant Chatbot -->
+    <script src="assets/chatbot.js"></script>
+
+    <!-- PAGE TRANSITION -->
+    <div id="page-transition-overlay"></div>
+    <script>
+      document.querySelectorAll('a[href]').forEach(function (link) {
+        var href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var overlay = document.getElementById('page-transition-overlay');
+          overlay.classList.add('fade-out');
+          var dest = href;
+          setTimeout(function () { window.location.href = dest; }, 350);
+        });
+      });
+    </script>
+</body>
+
+</html>

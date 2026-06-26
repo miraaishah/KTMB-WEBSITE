@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Train Status - KTMB KITS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <svg style="display: none;">
+    <!-- Globe -->
+    <symbol id="icon-globe" viewBox="0 0 24 24">
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.4z"
+        fill="currentColor" />
+    </symbol>
+  </svg>
+
+  <!-- HEADER -->
+  <header id="site-header" class="scrolled">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="color: var(--accent);">
+            <path
+              d="M4 15.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4s-8 .5-8 4v9.5z"
+              stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            <circle cx="7.5" cy="15.5" r="1.5" fill="currentColor" />
+            <circle cx="16.5" cy="15.5" r="1.5" fill="currentColor" />
+            <path d="M6 7h12v5H6V7z" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">KTMB</span>
+          <span class="logo-sub">KITS PORTAL</span>
+        </div>
+      </a>
+
+      <!-- Menu links -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link" data-translate="nav-book">Book Tickets</a>
+        <a href="status.html" class="nav-link active" data-translate="nav-status">Live Status</a>
+        <a href="schedule.html" class="nav-link" data-translate="nav-schedule">Train Schedule</a>
+        <a href="reports.html" class="nav-link" data-translate="nav-reports">Service Report</a>
+      </nav>
+
+      <!-- Nav CTA / Language -->
+      <div class="nav-actions">
+        <div class="lang-dropdown-wrapper">
+          <button class="btn-lang" aria-label="Select Language">
+            <svg width="16" height="16">
+              <use href="#icon-globe"></use>
+            </svg>
+            <span>EN</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              style="margin-left: 2px; transition: transform 0.2s; vertical-align: middle;">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="lang-dropdown-menu">
+            <button class="lang-option active" data-lang="en">
+              <span>English (EN)</span>
+            </button>
+            <button class="lang-option" data-lang="bm">
+              <span>Bahasa Malaysia (BM)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- User auth container -->
+        <div class="auth-container" id="auth-container">
+          <div class="logged-out-actions" id="logged-out-actions">
+            <button class="btn-signup-nav" id="btn-signup-desktop" data-translate="nav-signup">Sign Up</button>
+            <button class="btn-signin" id="btn-signin-desktop" data-translate="nav-login">Log In</button>
+          </div>
+
+          <div class="user-dropdown-wrapper" id="user-dropdown-wrapper" style="display:none;">
+            <button class="btn-user-profile" id="btn-user-profile" aria-expanded="false" aria-haspopup="true">
+              <span class="user-avatar" id="nav-user-avatar">U</span>
+              <span class="user-name" id="nav-user-name">User</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="user-dropdown-menu" id="user-dropdown-menu">
+              <a href="mybookings.html" id="menu-my-bookings">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="margin-right: 8px; vertical-align: middle;">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <span data-translate="nav-mybookings">My Bookings</span>
+              </a>
+              <hr class="dropdown-divider">
+              <a href="#" id="menu-signout" class="text-danger">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="margin-right: 8px; vertical-align: middle;">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span data-translate="nav-signout">Sign Out</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LIVE STATUS BOARD CONTAINER -->
+  <main class="status-board-container">
+    <div class="status-header-block">
+      <h1 data-translate="status-board-title">Live Train Board</h1>
+      <p data-translate="status-board-subtitle">Live departure and arrival schedules for all networks.</p>
+    </div>
+
+    <!-- Search & Date Filter Bar -->
+    <div class="status-search-bar"
+      style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; max-width: 800px; margin: 0 auto 30px;">
+      <div class="status-search-input-container" style="flex: 1; min-width: 280px;">
+        <!-- SVG Search Icon -->
+        <svg class="status-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" class="status-search-input" id="status-search-input"
+          placeholder="Search train name, number or station..." data-translate-placeholder="status-search-placeholder">
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <label for="status-date-filter"
+          style="font-weight: 700; color: var(--primary-dark); font-size: 13px; text-transform: uppercase; white-space: nowrap;"
+          data-translate="widget-label-depart">Departure Date</label>
+        <input type="date" id="status-date-filter" class="sort-select"
+          style="padding: 10px 14px; border-radius: var(--radius-md); border: 1px solid var(--gray-300); font-weight: 600; outline: none; transition: var(--transition-fast);">
+      </div>
+    </div>
+
+    <!-- Board Table Card -->
+    <div class="status-board-card">
+      <!-- Service Filter Row -->
+      <div class="status-service-filter-row">
+        <span class="status-service-filter-label" data-translate="status-filter-by">Filter By Service:</span>
+        <div class="service-filter-options">
+          <button type="button" class="service-filter-btn active" data-service="all"
+            data-translate="status-filter-all">All Services</button>
+          <button type="button" class="service-filter-btn" data-service="ETS & Intercity"
+            data-translate="widget-tab-ets">ETS & Intercity</button>
+          <button type="button" class="service-filter-btn" data-service="Komuter Klang Valley"
+            data-translate="widget-tab-komuter-kl">Komuter Klang Valley</button>
+          <button type="button" class="service-filter-btn" data-service="Komuter Northern"
+            data-translate="widget-tab-komuter-north">Komuter Northern</button>
+        </div>
+      </div>
+
+      <div class="status-tabs">
+        <button class="status-tab-btn active" id="btn-departures"
+          data-translate="status-tab-departures">Departures</button>
+        <button class="status-tab-btn" id="btn-arrivals" data-translate="status-tab-arrivals">Arrivals</button>
+      </div>
+
+      <table class="status-table">
+        <thead>
+          <tr>
+            <th data-translate="status-th-train">Train</th>
+            <th data-translate="status-th-route">Route</th>
+            <th data-translate="status-th-scheduled">Scheduled</th>
+            <th data-translate="status-th-actual">Estimated</th>
+            <th data-translate="status-th-platform">Platform</th>
+            <th data-translate="status-th-status">Status</th>
+            <th data-translate="status-th-action" style="text-align: right;">Details</th>
+          </tr>
+        </thead>
+        <tbody id="status-table-body">
+          <!-- Dynamic Live status board loaded here -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="support">
+    <div class="footer-container">
+      <!-- Col 1: Brand Info -->
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">
+          <div class="footer-logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color: var(--primary);">
+              <path
+                d="M4 15.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4s-8 .5-8 4v9.5z"
+                stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <circle cx="7.5" cy="15.5" r="1.5" fill="currentColor" />
+              <circle cx="16.5" cy="15.5" r="1.5" fill="currentColor" />
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="footer-logo-title">KTMB</span>
+            <span class="footer-logo-sub">MALAYSIA RAILWAY</span>
+          </div>
+        </a>
+        <p data-translate="footer-desc">Keretapi Tanah Melayu Berhad (KTMB) is the main rail operator in Peninsular Malaysia. We deliver safe, sustainable, and reliable transport solutions for the nation.</p>
+      </div>
+
+      <!-- Col 2: Services -->
+      <div class="footer-links-col">
+        <h4 data-translate="footer-networks">Our Networks</h4>
+        <ul>
+          <li><a href="ets-intercity.html">Electric Train Service (ETS) & Intercity</a></li>
+          <li><a href="ktm-komuter.html">KTM Komuter Klang Valley</a></li>
+          <li><a href="ktm-northern.html">KTM Komuter Northern</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Quick Links -->
+      <div class="footer-links-col">
+        <h4 data-translate="footer-support">Help & Support</h4>
+        <ul>
+          <li><a href="support.html#faq" data-translate="support-tab-faq">Frequently Asked Questions</a></li>
+          <li><a href="support.html#refund" data-translate="support-tab-refund">Ticket Refund & Cancellation</a></li>
+          <li><a href="support.html#facilities" data-translate="support-tab-facilities">Train Station Facilities</a></li>
+          <li><a href="support.html#contact" data-translate="support-tab-contact">Contact Support</a></li>
+          <li><a href="support.html#careers" data-translate="support-tab-careers">Career Opportunities</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Newsletter -->
+      <div class="footer-newsletter">
+        <h4 data-translate="footer-update">Stay Updated</h4>
+        <p data-translate="footer-update-desc">Subscribe to our monthly newsletter to receive exclusive travel discounts and operational updates.</p>
+        <form class="newsletter-form" action="#" method="POST"
+          onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+          <input type="email" placeholder="Your email address" data-translate-placeholder="footer-placeholder-email"
+            required aria-label="Email Address">
+          <button type="submit" class="btn-subscribe" data-translate="footer-btn-join">Join</button>
+        </form>
+        <div class="social-links">
+          <a href="#" class="social-icon" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1V12h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.388.555a3.002 3.002 0 0 0-2.11 2.108C0 8.03 0 12 0 12s0 3.97.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.48 20.5 12 20.5 12 20.5s7.52 0 9.388-.555a3.002 3.002 0 0 0 2.11-2.108C24 15.97 24 12 24 12s0-3.97-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        &copy; 2026 Keretapi Tanah Melayu Berhad. All rights reserved.
+      </div>
+      <div class="footer-policy-links">
+        <a href="#" data-translate="footer-policy-privacy">Privacy Policy</a>
+        <a href="#" data-translate="footer-policy-terms">Terms of Service</a>
+        <a href="#" data-translate="footer-policy-antibribery">Anti-Bribery Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MY BOOKINGS MODAL -->
+  <div class="modal-overlay" id="bookings-modal">
+    <div class="modal-card" style="max-width: 600px;">
+      <div class="modal-header">
+        <div class="modal-title-area">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            style="color: var(--primary); display: inline-block; vertical-align: middle;">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+          <h3 data-translate="bookings-title"
+            style="display: inline-block; margin: 0; vertical-align: middle; font-family: var(--font-display); font-weight: 700; color: var(--primary);">
+            My Booking History
+          </h3>
+        </div>
+        <button class="modal-close" id="bookings-modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="tab-description" data-translate="bookings-desc">View your active and past train ticket bookings.</p>
+        <div id="bookings-list-container">
+          <!-- Dynamically Generated Bookings list -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH MODALS (SIGN IN / SIGN UP / FORGOT) -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-card" style="max-width: 480px;">
+      <div class="modal-header">
+        <div class="modal-title-area">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            style="color: var(--primary); display: inline-block; vertical-align: middle;">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <h3 id="auth-modal-title" data-translate="auth-title"
+            style="display: inline-block; margin: 0; vertical-align: middle; font-family: var(--font-display); font-weight: 700; color: var(--primary);">
+            KITS Account
+          </h3>
+        </div>
+        <button class="modal-close" id="auth-modal-close" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-tabs" id="auth-modal-tabs">
+        <button class="modal-tab-btn active" id="auth-tab-btn-signin" data-translate="auth-tab-signin">Sign In</button>
+        <button class="modal-tab-btn" id="auth-tab-btn-signup" data-translate="auth-tab-signup">Sign Up</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Sign In Tab -->
+        <div class="tab-content active" id="auth-tab-content-signin">
+          <form class="modal-form" id="auth-signin-form">
+            <div class="form-group">
+              <label for="auth-signin-email" data-translate="auth-label-email">Email Address</label>
+              <input type="email" id="auth-signin-email" required>
+            </div>
+            <div class="form-group">
+              <label for="auth-signin-password" data-translate="auth-label-password">Password</label>
+              <div class="password-input-container">
+                <input type="password" id="auth-signin-password" required>
+                <button type="button" class="btn-toggle-password" aria-label="Toggle Password Visibility">
+                  <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="display: none;">
+                    <path
+                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                    </path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="auth-extra-actions">
+              <label>
+                <input type="checkbox" id="auth-signin-remember">
+                <span data-translate="auth-label-remember">Remember Me</span>
+              </label>
+              <a class="forgot-link" id="auth-forgot-link" data-translate="auth-label-forgot">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn-save" style="width: 100%; margin-top: 10px;"
+              data-translate="auth-btn-signin">Sign In</button>
+            <p class="auth-switch-prompt" data-translate="auth-prompt-noaccount">
+              Don't have an account? <a class="auth-switch-link" id="auth-switch-to-signup">Sign Up</a>
+            </p>
+          </form>
+        </div>
+
+        <!-- Sign Up Tab -->
+        <div class="tab-content" id="auth-tab-content-signup">
+          <form class="modal-form" id="auth-signup-form">
+            <div class="form-group">
+              <label for="auth-signup-name" data-translate="auth-label-name">Full Name (As in IC / Passport)</label>
+              <input type="text" id="auth-signup-name" placeholder="Enter your full name"
+                data-translate-placeholder="auth-placeholder-name" required>
+            </div>
+            <div class="form-group">
+              <label for="auth-signup-email" data-translate="auth-label-email">Email Address</label>
+              <input type="email" id="auth-signup-email" placeholder="e.g. name@example.com"
+                data-translate-placeholder="auth-placeholder-email" required>
+            </div>
+            <div class="form-grid" style="margin-bottom: 0;">
+              <div class="form-group">
+                <label for="auth-signup-password" data-translate="auth-label-password">Password</label>
+                <div class="password-input-container">
+                  <input type="password" id="auth-signup-password" placeholder="Min. 8 characters"
+                    data-translate-placeholder="auth-placeholder-password" minlength="8" required>
+                  <button type="button" class="btn-toggle-password" aria-label="Toggle Password Visibility">
+                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="display: none;">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                      </path>
+                      <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="auth-signup-confirm-password" data-translate="auth-label-confirm">Confirm Password</label>
+                <div class="password-input-container">
+                  <input type="password" id="auth-signup-confirm-password" placeholder="Re-enter password"
+                    data-translate-placeholder="auth-placeholder-confirm" required>
+                  <button type="button" class="btn-toggle-password" aria-label="Toggle Password Visibility">
+                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="display: none;">
+                      <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                      </path>
+                      <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="form-grid" style="margin-bottom: 0;">
+              <div class="form-group">
+                <label for="auth-signup-id-type" data-translate="auth-label-idtype">ID Document Type</label>
+                <select id="auth-signup-id-type" required>
+                  <option value="IC" data-translate="auth-opt-ic">Malaysian NRIC (MyKad)</option>
+                  <option value="Passport" data-translate="auth-opt-passport">International Passport</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="auth-signup-gender" data-translate="auth-label-gender">Gender</label>
+                <select id="auth-signup-gender" required>
+                  <option value="Female" data-translate="auth-opt-female">Female</option>
+                  <option value="Male" data-translate="auth-opt-male">Male</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="auth-signup-id-num" id="auth-signup-id-num-label" data-translate="auth-label-idnum">NRIC
+                (MyKad) Number</label>
+              <input type="text" id="auth-signup-id-num" placeholder="e.g. 950812-14-5678" required>
+            </div>
+            <button type="submit" class="btn-save" style="width: 100%; margin-top: 10px;"
+              data-translate="auth-btn-signup">Create Account</button>
+            <p class="auth-switch-prompt" data-translate="auth-prompt-hasaccount">
+              Already have an account? <a class="auth-switch-link" id="auth-switch-to-signin">Sign In</a>
+            </p>
+          </form>
+        </div>
+
+        <!-- Forgot Password Tab -->
+        <div class="tab-content" id="auth-tab-content-forgot">
+          <p class="tab-description" data-translate="auth-forgot-desc">Enter your registered email address and we'll
+            send you instructions to reset your password.</p>
+          <form class="modal-form" id="auth-forgot-form">
+            <div class="form-group">
+              <label for="auth-forgot-email" data-translate="auth-label-email">Email Address</label>
+              <input type="email" id="auth-forgot-email" placeholder="e.g. name@example.com"
+                data-translate-placeholder="auth-placeholder-email" required>
+            </div>
+            <button type="submit" class="btn-save" style="width: 100%; margin-top: 10px;"
+              data-translate="auth-btn-reset">Reset Password</button>
+            <p class="auth-switch-prompt">
+              <a class="auth-switch-link" id="auth-forgot-back-to-signin" data-translate="auth-btn-back">Back to Sign
+                In</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE ALERT DETAILS MODAL -->
+  <div class="modal-overlay" id="alert-modal">
+    <div class="alert-modal-content" style="max-width: 420px; width: 90%;">
+      <div class="alert-modal-icon" id="alert-icon">⚠️</div>
+      <h3 class="alert-modal-title" id="alert-title">Live Update</h3>
+      <p class="alert-modal-desc" id="alert-desc">Details regarding the delay or status of the selected train service.
+      </p>
+      <!-- Route/Stops Table -->
+      <div id="alert-stops-section" style="display:none; margin: 14px 0;">
+        <div data-translate="status-route-title"
+          style="font-size:12px; font-weight:700; text-transform:uppercase; color:var(--primary); letter-spacing:0.5px; margin-bottom:8px;">
+          🗺️ Travel Route</div>
+        <div id="alert-stops-table"></div>
+      </div>
+      <button class="btn-save" id="btn-close-alert" data-translate="status-alert-close"
+        style="width: 100%;">Close</button>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- BOOKING CONTROLLER SCRIPTS -->
+  <script src="assets/translations.js"></script>
+  <script src="assets/notifications.js"></script>
+  <script>
+    // Helper to get Malaysia Time (UTC+8) components
+    function getMalaysiaTime() {
+      const now = new Date();
+      const utc = now.getTime();
+      const localOffset = now.getTimezoneOffset() * 60000;
+      return new Date(utc + (3600000 * 8) + localOffset);
+    }
+
+    function getMalaysiaTodayStr() {
+      const d = getMalaysiaTime();
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const date = String(d.getDate()).padStart(2, '0');
+      return `${y}-${m}-${date}`;
+    }
+
+    // Dynamic Live Train Generator for a selected date
+    function getLiveBoardData(selectedDateStr) {
+      if (!selectedDateStr) return [];
+
+      const [selYear, selMonth, selDay] = selectedDateStr.split('-').map(Number);
+      const dateObj = new Date(selYear, selMonth - 1, selDay);
+
+      const currentLang = localStorage.getItem('kits_lang') || 'en';
+      const dateStr = dateObj.toLocaleDateString(currentLang === 'bm' ? 'ms-MY' : 'en-MY', { day: 'numeric', month: 'short' });
+      const dateFullStr = dateObj.toLocaleDateString(currentLang === 'bm' ? 'ms-MY' : 'en-MY', { day: 'numeric', month: 'short', year: 'numeric' });
+
+      // Seed calculation based on date string character sum to match booking.html
+      let dateSeed = 0;
+      for (let i = 0; i < selectedDateStr.length; i++) {
+        dateSeed += selectedDateStr.charCodeAt(i);
+      }
+
+      const list = [];
+
+      const baseDepartures = [
+        // ETS & Intercity
+        { name: 'ETS Platinum 9123', origin: 'Butterworth', dest: 'KL Sentral', schedBase: '06:00', arrBase: '08:20', platformBase: 3, service: 'ETS & Intercity', idx: 0, stops: ['Butterworth', 'Ipoh', 'KL Sentral'] },
+        { name: 'KTM Intercity 40', origin: 'JB Sentral', dest: 'KL Sentral', schedBase: '06:00', arrBase: '09:10', platformBase: 2, service: 'ETS & Intercity', idx: 1, stops: ['JB Sentral', 'KL Sentral'] },
+        { name: 'ETS Gold 9026', origin: 'KL Sentral', dest: 'Padang Besar', schedBase: '06:00', arrBase: '08:40', platformBase: 1, service: 'ETS & Intercity', idx: 2, stops: ['KL Sentral', 'Ipoh', 'Butterworth', 'Padang Besar'] },
+        { name: 'KTM Intercity 47', origin: 'KL Sentral', dest: 'JB Sentral', schedBase: '06:15', arrBase: '09:25', platformBase: 1, service: 'ETS & Intercity', idx: 3, stops: ['KL Sentral', 'JB Sentral'] },
+        { name: 'ETS Gold 9025', origin: 'Padang Besar', dest: 'KL Sentral', schedBase: '07:30', arrBase: '10:10', platformBase: 1, service: 'ETS & Intercity', idx: 4, stops: ['Padang Besar', 'Butterworth', 'Ipoh', 'KL Sentral'] },
+        { name: 'ETS Platinum 9122', origin: 'KL Sentral', dest: 'Butterworth', schedBase: '08:00', arrBase: '10:20', platformBase: 2, service: 'ETS & Intercity', idx: 5, stops: ['KL Sentral', 'Ipoh', 'Butterworth'] },
+        { name: 'KTM Intercity 45', origin: 'KL Sentral', dest: 'JB Sentral', schedBase: '08:45', arrBase: '11:55', platformBase: 2, service: 'ETS & Intercity', idx: 6, stops: ['KL Sentral', 'JB Sentral'] },
+        { name: 'ETS Platinum 9130', origin: 'KL Sentral', dest: 'Butterworth', schedBase: '09:30', arrBase: '11:50', platformBase: 3, service: 'ETS & Intercity', idx: 7, stops: ['KL Sentral', 'Ipoh', 'Butterworth'] },
+        { name: 'KTM Intercity 42', origin: 'JB Sentral', dest: 'KL Sentral', schedBase: '10:15', arrBase: '13:25', platformBase: 3, service: 'ETS & Intercity', idx: 8, stops: ['JB Sentral', 'KL Sentral'] },
+        { name: 'ETS Platinum 9121', origin: 'Butterworth', dest: 'KL Sentral', schedBase: '10:45', arrBase: '13:05', platformBase: 2, service: 'ETS & Intercity', idx: 9, stops: ['Butterworth', 'Ipoh', 'KL Sentral'] },
+        { name: 'ETS Gold 9024', origin: 'KL Sentral', dest: 'Padang Besar', schedBase: '11:30', arrBase: '14:10', platformBase: 4, service: 'ETS & Intercity', idx: 10, stops: ['KL Sentral', 'Ipoh', 'Butterworth', 'Padang Besar'] },
+        { name: 'ETS Platinum 9127', origin: 'Butterworth', dest: 'KL Sentral', schedBase: '13:00', arrBase: '15:20', platformBase: 4, service: 'ETS & Intercity', idx: 11, stops: ['Butterworth', 'Ipoh', 'KL Sentral'] },
+        { name: 'ETS Gold 9032', origin: 'KL Sentral', dest: 'Ipoh', schedBase: '13:45', arrBase: '16:25', platformBase: 2, service: 'ETS & Intercity', idx: 12, stops: ['KL Sentral', 'Ipoh'] },
+        { name: 'ETS Gold 9023', origin: 'Padang Besar', dest: 'KL Sentral', schedBase: '14:20', arrBase: '17:00', platformBase: 5, service: 'ETS & Intercity', idx: 13, stops: ['Padang Besar', 'Butterworth', 'Ipoh', 'KL Sentral'] },
+        { name: 'KTM Intercity 49', origin: 'KL Sentral', dest: 'JB Sentral', schedBase: '14:30', arrBase: '17:40', platformBase: 3, service: 'ETS & Intercity', idx: 14, stops: ['KL Sentral', 'JB Sentral'] },
+        { name: 'ETS Platinum 9128', origin: 'KL Sentral', dest: 'Butterworth', schedBase: '15:15', arrBase: '17:35', platformBase: 3, service: 'ETS & Intercity', idx: 15, stops: ['KL Sentral', 'Ipoh', 'Butterworth'] },
+        { name: 'KTM Intercity 46', origin: 'JB Sentral', dest: 'KL Sentral', schedBase: '15:30', arrBase: '18:40', platformBase: 1, service: 'ETS & Intercity', idx: 16, stops: ['JB Sentral', 'KL Sentral'] },
+        { name: 'ETS Platinum 9125', origin: 'Ipoh', dest: 'KL Sentral', schedBase: '16:50', arrBase: '19:10', platformBase: 3, service: 'ETS & Intercity', idx: 17, stops: ['Ipoh', 'KL Sentral'] },
+        { name: 'ETS Platinum 9134', origin: 'KL Sentral', dest: 'Butterworth', schedBase: '17:30', arrBase: '19:50', platformBase: 4, service: 'ETS & Intercity', idx: 18, stops: ['KL Sentral', 'Ipoh', 'Butterworth'] },
+        { name: 'ETS Gold 9029', origin: 'Ipoh', dest: 'KL Sentral', schedBase: '18:30', arrBase: '21:10', platformBase: 2, service: 'ETS & Intercity', idx: 19, stops: ['Ipoh', 'KL Sentral'] },
+        { name: 'ETS Gold 9028', origin: 'KL Sentral', dest: 'Ipoh', schedBase: '19:00', arrBase: '21:40', platformBase: 1, service: 'ETS & Intercity', idx: 20, stops: ['KL Sentral', 'Ipoh'] },
+        { name: 'KTM Intercity 48', origin: 'JB Sentral', dest: 'KL Sentral', schedBase: '19:30', arrBase: '22:40', platformBase: 1, service: 'ETS & Intercity', idx: 21, stops: ['JB Sentral', 'KL Sentral'] },
+        { name: 'KTM Intercity 51', origin: 'KL Sentral', dest: 'JB Sentral', schedBase: '20:00', arrBase: '23:10', platformBase: 2, service: 'ETS & Intercity', idx: 22, stops: ['KL Sentral', 'JB Sentral'] },
+        { name: 'ETS Platinum 9131', origin: 'Butterworth', dest: 'KL Sentral', schedBase: '20:45', arrBase: '23:05', platformBase: 1, service: 'ETS & Intercity', idx: 23, stops: ['Butterworth', 'Ipoh', 'KL Sentral'] },
+        { name: 'ETS Gold 9036', origin: 'KL Sentral', dest: 'Padang Besar', schedBase: '21:30', arrBase: '00:10', platformBase: 2, service: 'ETS & Intercity', idx: 24, stops: ['KL Sentral', 'Ipoh', 'Butterworth', 'Padang Besar'] },
+        { name: 'ETS Gold 9035', origin: 'Padang Besar', dest: 'KL Sentral', schedBase: '22:15', arrBase: '00:55', platformBase: 5, service: 'ETS & Intercity', idx: 25, stops: ['Padang Besar', 'Butterworth', 'Ipoh', 'KL Sentral'] },
+        { name: 'ETS Gold 9040', origin: 'KL Sentral', dest: 'Ipoh', schedBase: '00:30', arrBase: '03:10', platformBase: 3, service: 'ETS & Intercity', idx: 26, stops: ['KL Sentral', 'Ipoh'] },
+        { name: 'ETS Gold 9039', origin: 'Ipoh', dest: 'KL Sentral', schedBase: '00:30', arrBase: '03:10', platformBase: 3, service: 'ETS & Intercity', idx: 27, stops: ['Ipoh', 'KL Sentral'] },
+        { name: 'KTM Intercity 53', origin: 'KL Sentral', dest: 'JB Sentral', schedBase: '00:30', arrBase: '03:40', platformBase: 1, service: 'ETS & Intercity', idx: 28, stops: ['KL Sentral', 'JB Sentral'] },
+        { name: 'KTM Intercity 50', origin: 'JB Sentral', dest: 'KL Sentral', schedBase: '00:30', arrBase: '03:40', platformBase: 2, service: 'ETS & Intercity', idx: 29, stops: ['JB Sentral', 'KL Sentral'] },
+
+        // Komuter Klang Valley
+        { name: 'Komuter Service 2007', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '06:00', arrBase: '07:20', platformBase: 3, service: 'Komuter Klang Valley', idx: 0, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2008', origin: 'Pulau Sebang', dest: 'Batu Caves', schedBase: '06:00', arrBase: '07:20', platformBase: 2, service: 'Komuter Klang Valley', idx: 1, stops: ['Pulau Sebang', 'Batu Caves'] },
+        { name: 'Komuter Service 2009', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '06:30', arrBase: '07:50', platformBase: 1, service: 'Komuter Klang Valley', idx: 2, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2011', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '07:15', arrBase: '08:35', platformBase: 3, service: 'Komuter Klang Valley', idx: 3, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2012', origin: 'Pulau Sebang', dest: 'Batu Caves', schedBase: '08:00', arrBase: '09:20', platformBase: 1, service: 'Komuter Klang Valley', idx: 4, stops: ['Pulau Sebang', 'Batu Caves'] },
+        { name: 'Komuter Service 2013', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '08:30', arrBase: '09:50', platformBase: 2, service: 'Komuter Klang Valley', idx: 5, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2015', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '09:45', arrBase: '11:05', platformBase: 2, service: 'Komuter Klang Valley', idx: 6, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2016', origin: 'Pulau Sebang', dest: 'Batu Caves', schedBase: '10:30', arrBase: '11:50', platformBase: 3, service: 'Komuter Klang Valley', idx: 7, stops: ['Pulau Sebang', 'Batu Caves'] },
+        { name: 'Komuter Service 2017', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '11:15', arrBase: '12:35', platformBase: 1, service: 'Komuter Klang Valley', idx: 8, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2019', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '12:45', arrBase: '14:05', platformBase: 3, service: 'Komuter Klang Valley', idx: 9, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2020', origin: 'Pulau Sebang', dest: 'Batu Caves', schedBase: '13:00', arrBase: '14:20', platformBase: 2, service: 'Komuter Klang Valley', idx: 10, stops: ['Pulau Sebang', 'Batu Caves'] },
+        { name: 'Komuter Service 2021', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '14:20', arrBase: '15:40', platformBase: 3, service: 'Komuter Klang Valley', idx: 11, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2024', origin: 'Pulau Sebang', dest: 'Batu Caves', schedBase: '15:30', arrBase: '16:50', platformBase: 1, service: 'Komuter Klang Valley', idx: 12, stops: ['Pulau Sebang', 'Batu Caves'] },
+        { name: 'Komuter Service 2023', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '16:00', arrBase: '17:20', platformBase: 2, service: 'Komuter Klang Valley', idx: 13, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2025', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '17:30', arrBase: '18:50', platformBase: 3, service: 'Komuter Klang Valley', idx: 14, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2028', origin: 'Pulau Sebang', dest: 'Batu Caves', schedBase: '18:00', arrBase: '19:20', platformBase: 1, service: 'Komuter Klang Valley', idx: 15, stops: ['Pulau Sebang', 'Batu Caves'] },
+        { name: 'Komuter Service 2027', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '19:00', arrBase: '20:20', platformBase: 2, service: 'Komuter Klang Valley', idx: 16, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2029', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '20:30', arrBase: '21:50', platformBase: 3, service: 'Komuter Klang Valley', idx: 17, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2032', origin: 'Pulau Sebang', dest: 'Batu Caves', schedBase: '20:45', arrBase: '22:05', platformBase: 2, service: 'Komuter Klang Valley', idx: 18, stops: ['Pulau Sebang', 'Batu Caves'] },
+        { name: 'Komuter Service 2031', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '22:00', arrBase: '23:20', platformBase: 1, service: 'Komuter Klang Valley', idx: 19, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2034', origin: 'Pulau Sebang', dest: 'Batu Caves', schedBase: '23:00', arrBase: '00:20', platformBase: 3, service: 'Komuter Klang Valley', idx: 20, stops: ['Pulau Sebang', 'Batu Caves'] },
+        { name: 'Komuter Service 2033', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '23:30', arrBase: '00:50', platformBase: 2, service: 'Komuter Klang Valley', idx: 21, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2035', origin: 'Batu Caves', dest: 'Pulau Sebang', schedBase: '00:30', arrBase: '01:50', platformBase: 3, service: 'Komuter Klang Valley', idx: 22, stops: ['Batu Caves', 'Pulau Sebang'] },
+        { name: 'Komuter Service 2036', origin: 'Pulau Sebang', dest: 'Batu Caves', schedBase: '00:30', arrBase: '01:50', platformBase: 1, service: 'Komuter Klang Valley', idx: 23, stops: ['Pulau Sebang', 'Batu Caves'] },
+
+        // Komuter Northern
+        { name: 'KTM Northern Express 3104', origin: 'Butterworth', dest: 'Padang Besar', schedBase: '06:00', arrBase: '07:15', platformBase: 1, service: 'Komuter Northern', idx: 0, stops: ['Butterworth', 'Padang Besar'] },
+        { name: 'KTM Northern Express 3103', origin: 'Padang Besar', dest: 'Butterworth', schedBase: '06:00', arrBase: '07:15', platformBase: 2, service: 'Komuter Northern', idx: 1, stops: ['Padang Besar', 'Butterworth'] },
+        { name: 'KTM Northern Express 3102', origin: 'Butterworth', dest: 'Padang Besar', schedBase: '06:30', arrBase: '07:45', platformBase: 1, service: 'Komuter Northern', idx: 2, stops: ['Butterworth', 'Padang Besar'] },
+        { name: 'KTM Northern Express 3101', origin: 'Padang Besar', dest: 'Butterworth', schedBase: '08:15', arrBase: '09:30', platformBase: 1, service: 'Komuter Northern', idx: 3, stops: ['Padang Besar', 'Butterworth'] },
+        { name: 'KTM Northern Express 3106', origin: 'Butterworth', dest: 'Padang Besar', schedBase: '09:30', arrBase: '10:45', platformBase: 2, service: 'Komuter Northern', idx: 4, stops: ['Butterworth', 'Padang Besar'] },
+        { name: 'KTM Northern Express 3105', origin: 'Padang Besar', dest: 'Butterworth', schedBase: '11:00', arrBase: '12:15', platformBase: 1, service: 'Komuter Northern', idx: 5, stops: ['Padang Besar', 'Butterworth'] },
+        { name: 'KTM Northern Express 3108', origin: 'Butterworth', dest: 'Padang Besar', schedBase: '13:00', arrBase: '14:15', platformBase: 2, service: 'Komuter Northern', idx: 6, stops: ['Butterworth', 'Padang Besar'] },
+        { name: 'KTM Northern Express 3107', origin: 'Padang Besar', dest: 'Butterworth', schedBase: '14:30', arrBase: '15:45', platformBase: 2, service: 'Komuter Northern', idx: 7, stops: ['Padang Besar', 'Butterworth'] },
+        { name: 'KTM Northern Express 3110', origin: 'Butterworth', dest: 'Padang Besar', schedBase: '16:00', arrBase: '17:15', platformBase: 1, service: 'Komuter Northern', idx: 8, stops: ['Butterworth', 'Padang Besar'] },
+        { name: 'KTM Northern Express 3109', origin: 'Padang Besar', dest: 'Butterworth', schedBase: '17:45', arrBase: '19:00', platformBase: 1, service: 'Komuter Northern', idx: 9, stops: ['Padang Besar', 'Butterworth'] },
+        { name: 'KTM Northern Express 3112', origin: 'Butterworth', dest: 'Padang Besar', schedBase: '19:30', arrBase: '20:45', platformBase: 2, service: 'Komuter Northern', idx: 10, stops: ['Butterworth', 'Padang Besar'] },
+        { name: 'KTM Northern Express 3111', origin: 'Padang Besar', dest: 'Butterworth', schedBase: '20:45', arrBase: '22:00', platformBase: 2, service: 'Komuter Northern', idx: 11, stops: ['Padang Besar', 'Butterworth'] },
+        { name: 'KTM Northern Express 3118', origin: 'Butterworth', dest: 'Padang Besar', schedBase: '22:00', arrBase: '23:15', platformBase: 1, service: 'Komuter Northern', idx: 12, stops: ['Butterworth', 'Padang Besar'] },
+        { name: 'KTM Northern Express 3113', origin: 'Padang Besar', dest: 'Butterworth', schedBase: '23:30', arrBase: '00:45', platformBase: 1, service: 'Komuter Northern', idx: 13, stops: ['Padang Besar', 'Butterworth'] },
+        { name: 'KTM Northern Express 3116', origin: 'Butterworth', dest: 'Padang Besar', schedBase: '00:30', arrBase: '01:45', platformBase: 2, service: 'Komuter Northern', idx: 14, stops: ['Butterworth', 'Padang Besar'] },
+        { name: 'KTM Northern Express 3115', origin: 'Padang Besar', dest: 'Butterworth', schedBase: '00:30', arrBase: '01:45', platformBase: 1, service: 'Komuter Northern', idx: 15, stops: ['Padang Besar', 'Butterworth'] }
+      ];
+
+      // Inject weekend departures if selected date falls on a weekend
+      const dayOfWeek = dateObj.getDay(); // 0 = Sun, 5 = Fri, 6 = Sat
+      const isWeekend = (dayOfWeek === 0 || dayOfWeek === 5 || dayOfWeek === 6);
+      if (isWeekend) {
+        baseDepartures.push({
+          name: 'ETS Business Class Extra 9199',
+          origin: 'KL Sentral',
+          dest: 'Butterworth',
+          schedBase: '13:00',
+          arrBase: '15:20',
+          platformBase: 5,
+          service: 'ETS & Intercity',
+          idx: 30,
+          stops: ['KL Sentral', 'Ipoh', 'Butterworth']
+        });
+        baseDepartures.push({
+          name: 'Komuter Weekend Special 2099',
+          origin: 'Batu Caves',
+          dest: 'Pulau Sebang',
+          schedBase: '12:00',
+          arrBase: '13:20',
+          platformBase: 1,
+          service: 'Komuter Klang Valley',
+          idx: 24,
+          stops: ['Batu Caves', 'Pulau Sebang']
+        });
+      }
+
+      // Generate baseArrivals dynamically from baseDepartures!
+      const baseArrivals = baseDepartures.map(train => ({
+        name: train.name,
+        origin: train.origin,
+        dest: train.dest,
+        schedBase: train.arrBase || train.schedBase,
+        platformBase: train.platformBase,
+        service: train.service,
+        idx: train.idx,
+        stops: train.stops
+      }));
+
+      const msiaNow = getMalaysiaTime();
+      const todayYMD = getMalaysiaTodayStr();
+
+      // Departures
+      baseDepartures.forEach((train) => {
+        const uniqueSeed = dateSeed + train.idx;
+
+        const [hour, min] = train.schedBase.split(':').map(Number);
+        const schedTime = `${String(hour).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
+
+        let isDelayed = false;
+        let delayMinutes = 0;
+        const statusSeed = uniqueSeed % 4;
+        if (statusSeed === 0) {
+          isDelayed = true;
+          delayMinutes = ((uniqueSeed % 3) + 1) * 10; // 10m, 20m, 30m to match booking.html
+        }
+
+        let estMin = min + delayMinutes;
+        let estHour = hour;
+        if (estMin >= 60) {
+          estHour += Math.floor(estMin / 60);
+          estMin = estMin % 60;
+        }
+        const estTime = `${String(estHour).padStart(2, '0')}:${String(estMin).padStart(2, '0')}`;
+
+        let status = 'ontime';
+        let delayText = '';
+        let alert = '';
+
+        // Determine status
+        if (selectedDateStr < todayYMD) {
+          status = 'departed';
+          delayText = '';
+        } else if (selectedDateStr > todayYMD) {
+          status = isDelayed ? 'delayed' : 'ontime';
+          delayText = isDelayed ? `${delayMinutes}m` : '';
+        } else {
+          // Today
+          const nowMinutes = msiaNow.getHours() * 60 + msiaNow.getMinutes();
+          const estMinutes = estHour * 60 + estMin;
+
+          if (nowMinutes >= estMinutes) {
+            status = 'departed';
+            const elapsedMinutes = nowMinutes - estMinutes;
+            if (elapsedMinutes <= 60) {
+              delayText = currentLang === 'bm'
+                ? (elapsedMinutes === 0 ? 'baru berlepas' : `${elapsedMinutes}m lalu`)
+                : (elapsedMinutes === 0 ? 'just departed' : `${elapsedMinutes}m ago`);
+            } else {
+              delayText = '';
+            }
+          } else if (estMinutes - nowMinutes <= 15) {
+            status = 'boarding';
+            delayText = '';
+          } else {
+            status = isDelayed ? 'delayed' : 'ontime';
+            delayText = isDelayed ? `${delayMinutes}m` : '';
+          }
+        }
+
+        // Localized Announcements
+        if (status === 'departed') {
+          if (isDelayed) {
+            alert = currentLang === 'bm'
+              ? `Perkhidmatan kereta api ${train.name} telah berlepas pada jam ${estTime} (lewat ${delayMinutes} min).`
+              : `Train service ${train.name} departed at ${estTime} (delayed by ${delayMinutes}m).`;
+          } else {
+            alert = currentLang === 'bm'
+              ? `Perkhidmatan kereta api ${train.name} telah berlepas dari stesen asal mengikut jadual pada jam ${schedTime}.`
+              : `This train service departed origin on schedule at ${schedTime}.`;
+          }
+        } else if (status === 'boarding') {
+          alert = currentLang === 'bm'
+            ? `Pendaftaran naik penumpang sedang dijalankan untuk ${train.name}. Sila pergi ke Platform ${train.platformBase}.`
+            : `Boarding passengers now for ${train.name}. Please proceed to Platform ${train.platformBase}.`;
+        } else if (status === 'delayed') {
+          alert = currentLang === 'bm'
+            ? `Perkhidmatan kereta api ${train.name} pada tarikh ${dateFullStr} mengalami kelewatan sebanyak ${delayMinutes} minit disebabkan oleh kerja-kerja selenggara sistem isyarat. Waktu pelepasan baharu dijangka pada jam ${estTime} dari Platform ${train.platformBase}.`
+            : `Train service ${train.name} on ${dateFullStr} is delayed by ${delayMinutes}m due to signal system maintenance. Estimated departure is now ${estTime} from Platform ${train.platformBase}.`;
+        } else {
+          alert = currentLang === 'bm'
+            ? `Perkhidmatan kereta api ${train.name} pada tarikh ${dateFullStr} berjalan lancar mengikut jadual. Dijangka berlepas pada jam ${schedTime} dari Platform ${train.platformBase}.`
+            : `Train service ${train.name} on ${dateFullStr} is running on schedule. Platform ${train.platformBase}.`;
+        }
+
+        list.push({
+          id: `dep_${train.name.replace(/\s+/g, '_')}`,
+          name: train.name,
+          origin: train.origin,
+          dest: train.dest,
+          stops: train.stops || [train.origin, train.dest],
+          sched: schedTime,
+          est: estTime,
+          type: 'departure',
+          status: status,
+          delayText: delayText,
+          platform: train.platformBase,
+          date: dateStr,
+          alert: alert,
+          service: train.service
+        });
+      });
+
+      // Arrivals
+      baseArrivals.forEach((train) => {
+        const uniqueSeed = dateSeed + train.idx;
+
+        const [hour, min] = train.schedBase.split(':').map(Number);
+        const schedTime = `${String(hour).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
+
+        let isDelayed = false;
+        let delayMinutes = 0;
+        const statusSeed = uniqueSeed % 4;
+        if (statusSeed === 0) {
+          isDelayed = true;
+          delayMinutes = ((uniqueSeed % 3) + 1) * 10; // 10m, 20m, 30m
+        }
+
+        let estMin = min + delayMinutes;
+        let estHour = hour;
+        if (estMin >= 60) {
+          estHour += Math.floor(estMin / 60);
+          estMin = estMin % 60;
+        }
+        const estTime = `${String(estHour).padStart(2, '0')}:${String(estMin).padStart(2, '0')}`;
+
+        let status = 'ontime';
+        let delayText = '';
+        let alert = '';
+
+        // Determine status
+        if (selectedDateStr < todayYMD) {
+          status = 'departed';
+          delayText = '';
+        } else if (selectedDateStr > todayYMD) {
+          status = isDelayed ? 'delayed' : 'ontime';
+          delayText = isDelayed ? `${delayMinutes}m` : '';
+        } else {
+          // Today
+          const nowMinutes = msiaNow.getHours() * 60 + msiaNow.getMinutes();
+          const estMinutes = estHour * 60 + estMin;
+
+          if (nowMinutes >= estMinutes) {
+            status = 'departed';
+            const elapsedMinutes = nowMinutes - estMinutes;
+            if (elapsedMinutes <= 60) {
+              delayText = currentLang === 'bm'
+                ? (elapsedMinutes === 0 ? 'baru tiba' : `${elapsedMinutes}m lalu`)
+                : (elapsedMinutes === 0 ? 'just arrived' : `${elapsedMinutes}m ago`);
+            } else {
+              delayText = '';
+            }
+          } else if (estMinutes - nowMinutes <= 15) {
+            status = 'boarding'; // For arrival, boarding means disembarking/arriving now
+            delayText = '';
+          } else {
+            status = isDelayed ? 'delayed' : 'ontime';
+            delayText = isDelayed ? `${delayMinutes}m` : '';
+          }
+        }
+
+        // Localized Announcements
+        if (status === 'departed') {
+          alert = currentLang === 'bm'
+            ? `Kereta api ${train.name} telah selamat tiba di stesen destinasi pada jam ${estTime}.`
+            : `Train service ${train.name} arrived at destination and completed service at ${estTime}.`;
+        } else if (status === 'boarding') {
+          alert = currentLang === 'bm'
+            ? `Kereta api ${train.name} telah sampai. Penumpang sedang turun dari tren sekarang di Platform ${train.platformBase}.`
+            : `Train service ${train.name} has arrived. Passengers are now disembarking at Platform ${train.platformBase}.`;
+        } else if (status === 'delayed') {
+          alert = currentLang === 'bm'
+            ? `Perkhidmatan kereta api ${train.name} pada tarikh ${dateFullStr} lewat tiba sebanyak ${delayMinutes} minit disebabkan oleh kesesakan lalulintas rel. Anggaran waktu ketibaan di destinasi ialah jam ${estTime} di Platform ${train.platformBase}.`
+            : `Train service ${train.name} on ${dateFullStr} is arriving late by ${delayMinutes}m due to rail traffic congestion. Estimated arrival is ${estTime} at Platform ${train.platformBase}.`;
+        } else {
+          alert = currentLang === 'bm'
+            ? `Perkhidmatan kereta api ${train.name} pada tarikh ${dateFullStr} dianggarkan tiba mengikut jadual pada jam ${schedTime} di Platform ${train.platformBase}.`
+            : `Train service ${train.name} on ${dateFullStr} is running on schedule. Estimated arrival is ${schedTime} at Platform ${train.platformBase}.`;
+        }
+
+        list.push({
+          id: `arr_${train.name.replace(/\s+/g, '_')}`,
+          name: train.name,
+          origin: train.origin,
+          dest: train.dest,
+          stops: train.stops || [train.origin, train.dest],
+          sched: schedTime,
+          est: estTime,
+          type: 'arrival',
+          status: status,
+          delayText: delayText,
+          platform: train.platformBase,
+          date: dateStr,
+          alert: alert,
+          service: train.service
+        });
+      });
+
+      // Sort by scheduled time
+      list.sort((a, b) => a.sched.localeCompare(b.sched));
+
+      return list;
+    }
+
+    let liveTrains = [];
+    let activeTab = 'departure';
+    let searchQuery = '';
+    let activeServiceFilter = 'all';
+
+    function updateLiveTrains() {
+      const datePicker = document.getElementById('status-date-filter');
+      if (datePicker && datePicker.value) {
+        liveTrains = getLiveBoardData(datePicker.value);
+      }
+    }
+
+    // Language selector dropdown options interaction
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.preventDefault();
+        const lang = opt.getAttribute('data-lang');
+        applyLanguage(lang);
+      });
+    });
+
+    // Wrap applyLanguage to add status board updates
+    if (typeof applyLanguage === 'function') {
+      const originalApplyLanguage = applyLanguage;
+      applyLanguage = function (lang) {
+        originalApplyLanguage(lang);
+        updateLiveTrains();
+        renderLiveBoard();
+      };
+    }
+
+    // Tab buttons selectors
+    const btnDepartures = document.getElementById('btn-departures');
+    const btnArrivals = document.getElementById('btn-arrivals');
+
+    if (btnDepartures && btnArrivals) {
+      btnDepartures.addEventListener('click', () => {
+        btnDepartures.classList.add('active');
+        btnArrivals.classList.remove('active');
+        activeTab = 'departure';
+        renderLiveBoard();
+      });
+
+      btnArrivals.addEventListener('click', () => {
+        btnArrivals.classList.add('active');
+        btnDepartures.classList.remove('active');
+        activeTab = 'arrival';
+        renderLiveBoard();
+      });
+    }
+
+    // Search bar filtering
+    const searchInput = document.getElementById('status-search-input');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase().trim();
+        renderLiveBoard();
+      });
+    }
+
+    // Service Filter buttons click handlers
+    document.querySelectorAll('.service-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.service-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeServiceFilter = btn.getAttribute('data-service');
+        renderLiveBoard();
+      });
+    });
+
+    // Render live board list
+    function renderLiveBoard() {
+      const tbody = document.getElementById('status-table-body');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const filtered = liveTrains.filter(t => {
+        // Tab check
+        if (t.type !== activeTab) return false;
+
+        // Service filter check
+        if (activeServiceFilter !== 'all' && t.service !== activeServiceFilter) return false;
+
+        // Search check — also match against all intermediate stops
+        if (searchQuery) {
+          const matchName = t.name.toLowerCase().includes(searchQuery);
+          const matchOrigin = t.origin.toLowerCase().includes(searchQuery);
+          const matchDest = t.dest.toLowerCase().includes(searchQuery);
+          const matchStops = t.stops && t.stops.some(s => s.toLowerCase().includes(searchQuery));
+          return matchName || matchOrigin || matchDest || matchStops;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" style="text-align: center; color: var(--gray-600); padding: 30px;">
+              ${t('booking-no-trains-filtered', 'No trains matching the selected filters.')}
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filtered.forEach(train => {
+        const tr = document.createElement('tr');
+
+        // Train name cell
+        const trainTd = document.createElement('td');
+        trainTd.className = 'status-train-name';
+        trainTd.textContent = train.name;
+        tr.appendChild(trainTd);
+
+        // Route cell — simple origin → dest only (stops shown in Details modal)
+        const routeTd = document.createElement('td');
+        routeTd.innerHTML = `<div class="status-route"><strong>${train.origin}</strong> ➔ <strong>${train.dest}</strong></div>`;
+        tr.appendChild(routeTd);
+
+        // Scheduled cell
+        const schedTd = document.createElement('td');
+        schedTd.textContent = train.sched;
+        tr.appendChild(schedTd);
+
+        // Estimated actual cell
+        const estTd = document.createElement('td');
+        estTd.className = `actual-time ${train.status === 'delayed' ? 'delayed' : 'ontime'}`;
+        estTd.textContent = train.est;
+        tr.appendChild(estTd);
+
+        // Platform cell
+        const platTd = document.createElement('td');
+        platTd.innerHTML = `<div class="platform-num">${train.platform}</div>`;
+        tr.appendChild(platTd);
+
+        // Status badge cell
+        const statusTd = document.createElement('td');
+        const badge = document.createElement('div');
+        badge.className = `live-status-badge ${train.status}`;
+        badge.innerHTML = `
+          <span class="live-status-pulse"></span>
+          <span>${t('status-' + train.status, train.status)} ${train.delayText ? '(' + train.delayText + ')' : ''}</span>
+        `;
+        statusTd.appendChild(badge);
+        tr.appendChild(statusTd);
+
+        // Action button details cell
+        const actionTd = document.createElement('td');
+        actionTd.style.textAlign = 'right';
+        const btn = document.createElement('button');
+        btn.className = 'btn-status-alert';
+        btn.textContent = t('status-th-action', 'Details');
+        btn.addEventListener('click', () => openAlertDetails(train));
+        actionTd.appendChild(btn);
+        tr.appendChild(actionTd);
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Modal Alert controls
+    const alertModal = document.getElementById('alert-modal');
+    const btnCloseAlert = document.getElementById('btn-close-alert');
+
+    function openAlertDetails(train) {
+      if (!alertModal) return;
+      document.getElementById('alert-title').textContent = train.name;
+
+      const baseAlert = train.alert || `${train.name} is running normal schedules. Estimated departure from ${train.origin} at ${train.est}. Platform ${train.platform}.`;
+      document.getElementById('alert-desc').textContent = baseAlert;
+
+      // Build route stops table
+      const stopsSection = document.getElementById('alert-stops-section');
+      const stopsTable = document.getElementById('alert-stops-table');
+      if (stopsSection && stopsTable && train.stops && train.stops.length >= 2) {
+        stopsSection.style.display = 'block';
+        stopsTable.innerHTML = '';
+        train.stops.forEach((stop, idx) => {
+          const isOrigin = idx === 0;
+          const isDest = idx === train.stops.length - 1;
+          const isIntermediate = !isOrigin && !isDest;
+
+          let dotColor = isOrigin ? 'var(--primary)' : isDest ? 'var(--accent)' : 'var(--gray-400)';
+          let label = isOrigin ? 'ORIGIN' : isDest ? 'DESTINATION' : 'STOP';
+          let labelColor = isOrigin ? 'var(--primary)' : isDest ? 'var(--accent)' : 'var(--gray-500)';
+          let fontWeight = (isOrigin || isDest) ? '700' : '500';
+          let fontSize = (isOrigin || isDest) ? '13px' : '12px';
+
+          const row = document.createElement('div');
+          row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:6px 0;position:relative;';
+
+          // Vertical line connector (not for last item)
+          const lineStyle = idx < train.stops.length - 1
+            ? 'position:absolute;left:7px;top:22px;width:2px;height:calc(100% - 4px);background:var(--gray-200);z-index:0;'
+            : '';
+
+          row.innerHTML = `
+            ${idx < train.stops.length - 1 ? `<div style="${lineStyle}"></div>` : ''}
+            <div style="width:16px;height:16px;border-radius:50%;background:${dotColor};flex-shrink:0;z-index:1;box-shadow:0 0 0 3px ${isOrigin || isDest ? dotColor + '22' : 'transparent'};"></div>
+            <div style="flex:1;">
+              <div style="font-size:${fontSize};font-weight:${fontWeight};color:var(--dark-900);">${stop}</div>
+              <div style="font-size:10px;font-weight:700;color:${labelColor};text-transform:uppercase;letter-spacing:0.5px;">${label}</div>
+            </div>
+          `;
+          stopsTable.appendChild(row);
+        });
+      } else if (stopsSection) {
+        stopsSection.style.display = 'none';
+      }
+
+      const icon = document.getElementById('alert-icon');
+      if (train.status === 'delayed') {
+        icon.textContent = '⚠️';
+      } else if (train.status === 'ontime') {
+        icon.textContent = '✅';
+      } else if (train.status === 'boarding') {
+        icon.textContent = '⚡';
+      } else {
+        icon.textContent = 'ℹ️';
+      }
+
+      alertModal.classList.add('open');
+    }
+
+    if (btnCloseAlert) {
+      btnCloseAlert.addEventListener('click', () => {
+        alertModal.classList.remove('open');
+      });
+    }
+    if (alertModal) {
+      alertModal.addEventListener('click', (e) => {
+        if (e.target === alertModal) alertModal.classList.remove('open');
+      });
+    }
+
+    // --- AUTHENTICATION & DROPDOWN MOCK SYNC ---
+    let isLoggedIn = false;
+    let currentUser = null;
+
+    function checkUserSession() {
+      const session = localStorage.getItem('kits_user_session');
+      if (session) {
+        isLoggedIn = true;
+        currentUser = JSON.parse(session);
+      } else {
+        isLoggedIn = false;
+        currentUser = null;
+      }
+    }
+
+    function updateAuthUI() {
+      checkUserSession();
+      const loggedOutActions = document.getElementById('logged-out-actions');
+      const userDropdownWrapper = document.getElementById('user-dropdown-wrapper');
+      const navUserName = document.getElementById('nav-user-name');
+      const navUserAvatar = document.getElementById('nav-user-avatar');
+
+      if (isLoggedIn && currentUser) {
+        if (loggedOutActions) loggedOutActions.style.display = 'none';
+        if (userDropdownWrapper) userDropdownWrapper.style.display = 'block';
+        if (navUserName) navUserName.textContent = currentUser.name.split(' ')[0];
+        if (navUserAvatar) navUserAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+      } else {
+        if (loggedOutActions) loggedOutActions.style.display = 'flex';
+        if (userDropdownWrapper) userDropdownWrapper.style.display = 'none';
+      }
+    }
+
+    const authModal = document.getElementById('auth-modal');
+    const authModalClose = document.getElementById('auth-modal-close');
+    const authTabBtnSignin = document.getElementById('auth-tab-btn-signin');
+    const authTabBtnSignup = document.getElementById('auth-tab-btn-signup');
+    const authTabContentSignin = document.getElementById('auth-tab-content-signin');
+    const authTabContentSignup = document.getElementById('auth-tab-content-signup');
+    const authTabContentForgot = document.getElementById('auth-tab-content-forgot');
+    const authModalTitle = document.getElementById('auth-modal-title');
+    const authModalTabs = document.getElementById('auth-modal-tabs');
+
+    function openAuthModal(tab = 'signin') {
+      if (authModal) {
+        authModal.classList.add('open');
+        switchAuthTab(tab);
+      }
+    }
+
+    function closeAuthModal() {
+      if (authModal) authModal.classList.remove('open');
+    }
+
+    function prefillRememberMe() {
+      const rememberedEmail = localStorage.getItem('kits_remember_email');
+      const emailInput = document.getElementById('auth-signin-email');
+      if (emailInput) emailInput.value = rememberedEmail || '';
+    }
+
+    function switchAuthTab(tab) {
+      if (tab === 'signin') {
+        if (authTabBtnSignin) authTabBtnSignin.classList.add('active');
+        if (authTabBtnSignup) authTabBtnSignup.classList.remove('active');
+        if (authTabContentSignin) authTabContentSignin.classList.add('active');
+        if (authTabContentSignup) authTabContentSignup.classList.remove('active');
+        if (authTabContentForgot) authTabContentForgot.classList.remove('active');
+        if (authModalTabs) authModalTabs.style.display = 'flex';
+        if (authModalTitle) authModalTitle.textContent = 'KITS Account';
+        prefillRememberMe();
+      } else if (tab === 'signup') {
+        if (authTabBtnSignin) authTabBtnSignin.classList.remove('active');
+        if (authTabBtnSignup) authTabBtnSignup.classList.add('active');
+        if (authTabContentSignin) authTabContentSignin.classList.remove('active');
+        if (authTabContentSignup) authTabContentSignup.classList.add('active');
+        if (authTabContentForgot) authTabContentForgot.classList.remove('active');
+        if (authModalTabs) authModalTabs.style.display = 'flex';
+        if (authModalTitle) authModalTitle.textContent = 'KITS Account';
+      } else if (tab === 'forgot') {
+        if (authTabContentSignin) authTabContentSignin.classList.remove('active');
+        if (authTabContentSignup) authTabContentSignup.classList.remove('active');
+        if (authTabContentForgot) authTabContentForgot.classList.add('active');
+        if (authModalTabs) authModalTabs.style.display = 'none';
+        if (authModalTitle) authModalTitle.textContent = 'Reset Password';
+      }
+    }
+
+    if (authModalClose) authModalClose.addEventListener('click', closeAuthModal);
+    if (authModal) {
+      authModal.addEventListener('click', (e) => {
+        if (e.target === authModal) closeAuthModal();
+      });
+    }
+
+    if (authTabBtnSignin) authTabBtnSignin.addEventListener('click', () => switchAuthTab('signin'));
+    if (authTabBtnSignup) authTabBtnSignup.addEventListener('click', () => switchAuthTab('signup'));
+
+    const btnSigninDesktop = document.getElementById('btn-signin-desktop');
+    const btnSignupDesktop = document.getElementById('btn-signup-desktop');
+    if (btnSigninDesktop) btnSigninDesktop.addEventListener('click', () => openAuthModal('signin'));
+    if (btnSignupDesktop) btnSignupDesktop.addEventListener('click', () => openAuthModal('signup'));
+
+    // ID Type listener
+    const authSignupIdType = document.getElementById('auth-signup-id-type');
+    const authSignupIdNumLabel = document.getElementById('auth-signup-id-num-label');
+    const authSignupIdNumInput = document.getElementById('auth-signup-id-num');
+
+    if (authSignupIdType) {
+      authSignupIdType.addEventListener('change', () => {
+        if (authSignupIdType.value === 'IC') {
+          if (authSignupIdNumLabel) authSignupIdNumLabel.textContent = t('auth-label-idnum', 'NRIC (MyKad) Number');
+          if (authSignupIdNumInput) {
+            authSignupIdNumInput.placeholder = 'e.g. 950812-14-5678';
+            authSignupIdNumInput.value = '';
+          }
+        } else {
+          if (authSignupIdNumLabel) authSignupIdNumLabel.textContent = t('auth-label-passport', 'Passport Number');
+          if (authSignupIdNumInput) {
+            authSignupIdNumInput.placeholder = 'e.g. A12345678';
+            authSignupIdNumInput.value = '';
+          }
+        }
+      });
+    }
+
+    // Sign In Submission
+    const authSigninForm = document.getElementById('auth-signin-form');
+    if (authSigninForm) {
+      authSigninForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('auth-signin-email').value.trim();
+        const password = document.getElementById('auth-signin-password').value;
+
+        const users = JSON.parse(localStorage.getItem('kits_registered_users') || '[]');
+        const user = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+
+        if (user) {
+          localStorage.setItem('kits_user_session', JSON.stringify(user));
+          updateAuthUI();
+          closeAuthModal();
+          authSigninForm.reset();
+          showToast(t('alert-welcome-back', 'Welcome back, {name}!').replace('{name}', user.name), 'success');
+        } else {
+          showToast(t('alert-invalid-login', 'Invalid email or password.'), 'error');
+        }
+      });
+    }
+
+    // Sign Up Submission
+    const authSignupForm = document.getElementById('auth-signup-form');
+    if (authSignupForm) {
+      authSignupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('auth-signup-name').value.trim();
+        const email = document.getElementById('auth-signup-email').value.trim();
+        const password = document.getElementById('auth-signup-password').value;
+        const confirmPassword = document.getElementById('auth-signup-confirm-password').value;
+        const idType = document.getElementById('auth-signup-id-type').value;
+        const gender = document.getElementById('auth-signup-gender').value;
+        const idNum = document.getElementById('auth-signup-id-num').value.trim();
+
+        if (password !== confirmPassword) {
+          showToast(t('alert-pwd-mismatch', 'Passwords do not match.'), 'error');
+          return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('kits_registered_users') || '[]');
+        const userExists = users.some(u => u.email.toLowerCase() === email.toLowerCase());
+
+        if (userExists) {
+          showToast(t('alert-email-registered', 'Email address already registered.'), 'error');
+          return;
+        }
+
+        const newUser = { name, email, password, idType, gender, idNum };
+        users.push(newUser);
+        localStorage.setItem('kits_registered_users', JSON.stringify(users));
+        localStorage.setItem('kits_user_session', JSON.stringify(newUser));
+
+        updateAuthUI();
+        closeAuthModal();
+        authSignupForm.reset();
+        showToast(t('alert-account-created', 'Account created! Welcome, {name}!').replace('{name}', name), 'success');
+      });
+    }
+
+    // Toast alert helper
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `<span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.animation = 'slideInLeft 0.3s reverse';
+        setTimeout(() => {
+          if (toast.parentNode === container) container.removeChild(toast);
+        }, 300);
+      }, 3000);
+    }
+
+    // User Profile Actions Dropdown
+    const btnUserProfile = document.getElementById('btn-user-profile');
+    const userDropdownMenu = document.getElementById('user-dropdown-menu');
+
+    if (btnUserProfile && userDropdownMenu) {
+      btnUserProfile.addEventListener('click', (e) => {
+        e.stopPropagation();
+        userDropdownMenu.classList.toggle('show');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!btnUserProfile.contains(e.target) && !userDropdownMenu.contains(e.target)) {
+          userDropdownMenu.classList.remove('show');
+        }
+      });
+    }
+
+    // Sign out
+    function handleSignOut(e) {
+      if (e) e.preventDefault();
+      localStorage.removeItem('kits_user_session');
+      updateAuthUI();
+      if (userDropdownMenu) userDropdownMenu.classList.remove('show');
+      showToast(t('alert-signed-out', 'You have successfully signed out.'), 'success');
+    }
+    const menuSignout = document.getElementById('menu-signout');
+    if (menuSignout) menuSignout.addEventListener('click', handleSignOut);
+
+    // --- MY BOOKINGS MODAL ---
+    const bookingsModal = document.getElementById('bookings-modal');
+    const bookingsModalClose = document.getElementById('bookings-modal-close');
+
+    function openBookingsModal() {
+      if (!isLoggedIn) {
+        showToast(t('alert-signin-required', 'Please sign in to view your bookings.'), 'error');
+        openAuthModal('signin');
+        return;
+      }
+      if (bookingsModal) {
+        bookingsModal.classList.add('open');
+        renderBookings();
+      }
+    }
+
+    function closeBookingsModal() {
+      if (bookingsModal) bookingsModal.classList.remove('open');
+    }
+
+    if (bookingsModalClose) bookingsModalClose.addEventListener('click', closeBookingsModal);
+    if (bookingsModal) {
+      bookingsModal.addEventListener('click', (e) => {
+        if (e.target === bookingsModal) closeBookingsModal();
+      });
+    }
+
+    const menuMyBookings = document.getElementById('menu-my-bookings');
+    if (menuMyBookings) {
+      menuMyBookings.addEventListener('click', (e) => {
+        if (userDropdownMenu) userDropdownMenu.classList.remove('show');
+      });
+    }
+
+    function findTrainDepTime(trainName) {
+      const fallbackTimes = {
+        'ETS Platinum 9123': '06:00',
+        'KTM Intercity 40': '06:00',
+        'ETS Gold 9026': '06:00',
+        'KTM Intercity 47': '06:15',
+        'ETS Gold 9025': '07:30',
+        'ETS Platinum 9122': '08:00',
+        'KTM Intercity 45': '08:45',
+        'ETS Platinum 9130': '09:30',
+        'KTM Intercity 42': '10:15',
+        'ETS Platinum 9121': '10:45',
+        'ETS Gold 9024': '11:30',
+        'ETS Platinum 9127': '13:00',
+        'ETS Gold 9032': '13:45',
+        'ETS Gold 9023': '14:20',
+        'KTM Intercity 49': '14:30',
+        'ETS Platinum 9128': '15:15',
+        'KTM Intercity 46': '15:30',
+        'ETS Platinum 9125': '16:50',
+        'ETS Platinum 9134': '17:30',
+        'ETS Gold 9029': '18:30',
+        'ETS Gold 9028': '19:00',
+        'KTM Intercity 48': '19:30',
+        'KTM Intercity 51': '20:00',
+        'ETS Platinum 9131': '20:45',
+        'ETS Gold 9036': '21:30',
+        'ETS Gold 9035': '22:15',
+        'ETS Gold 9040': '00:30',
+        'ETS Gold 9039': '00:30',
+        'KTM Intercity 53': '00:30',
+        'KTM Intercity 50': '00:30',
+        'Komuter Service 2007': '06:00',
+        'Komuter Service 2008': '06:00',
+        'Komuter Service 2009': '06:30',
+        'Komuter Service 2011': '07:15',
+        'Komuter Service 2012': '08:00',
+        'Komuter Service 2013': '08:30',
+        'Komuter Service 2015': '09:45',
+        'Komuter Service 2016': '10:30',
+        'Komuter Service 2017': '11:15',
+        'Komuter Service 2019': '12:45',
+        'Komuter Service 2020': '13:00',
+        'Komuter Service 2021': '14:20',
+        'Komuter Service 2024': '15:30',
+        'Komuter Service 2023': '16:00',
+        'Komuter Service 2025': '17:30',
+        'Komuter Service 2028': '18:00',
+        'Komuter Service 2027': '19:00',
+        'Komuter Service 2029': '20:30',
+        'Komuter Service 2032': '20:45',
+        'Komuter Service 2031': '22:00',
+        'Komuter Service 2034': '23:00',
+        'Komuter Service 2033': '23:30',
+        'Komuter Service 2035': '00:30',
+        'Komuter Service 2036': '00:30',
+        'KTM Northern Express 3104': '06:00',
+        'KTM Northern Express 3103': '06:00',
+        'KTM Northern Express 3102': '06:30',
+        'KTM Northern Express 3101': '08:15',
+        'KTM Northern Express 3106': '09:30',
+        'KTM Northern Express 3105': '11:00',
+        'KTM Northern Express 3108': '13:00',
+        'KTM Northern Express 3107': '14:30',
+        'KTM Northern Express 3110': '16:00',
+        'KTM Northern Express 3109': '17:45',
+        'KTM Northern Express 3112': '19:30',
+        'KTM Northern Express 3111': '20:45',
+        'KTM Northern Express 3118': '22:00',
+        'KTM Northern Express 3113': '23:30',
+        'KTM Northern Express 3116': '00:30',
+        'KTM Northern Express 3115': '00:30'
+      };
+      return fallbackTimes[trainName] || '08:00';
+    }
+
+    function isBookingDatePast(booking) {
+      const dateStr = (booking.tripType === 'roundtrip' && booking.returnDate) ? booking.returnDate : booking.departDate;
+      if (!dateStr) return false;
+      const bookingDate = new Date(dateStr);
+      if (isNaN(bookingDate.getTime())) return false;
+
+      let depTimeStr = '23:59';
+      if (booking.tripType === 'roundtrip' && booking.returnDate) {
+        depTimeStr = booking.returnDepTime || findTrainDepTime(booking.returnTrainName) || '23:59';
+      } else {
+        depTimeStr = booking.depTime || findTrainDepTime(booking.trainName) || '23:59';
+      }
+      const [hours, minutes] = depTimeStr.split(':').map(Number);
+      bookingDate.setHours(hours || 0, minutes || 0, 0, 0);
+
+      const now = getMalaysiaTime();
+      return bookingDate < now;
+    }
+
+    function renderBookings() {
+      const bookingsListContainer = document.getElementById('bookings-list-container');
+      if (!bookingsListContainer) return;
+
+      const bookings = JSON.parse(localStorage.getItem('kits_bookings') || '[]');
+      const userBookings = bookings.filter(b => b.userEmail && currentUser && b.userEmail.toLowerCase() === currentUser.email.toLowerCase());
+
+      bookingsListContainer.innerHTML = '';
+
+      if (userBookings.length === 0) {
+        bookingsListContainer.innerHTML = `
+          <div class="empty-passenger-state" style="padding: 30px 10px;">
+            <div class="empty-icon" style="font-size: 36px; margin-bottom: 8px;">🎫</div>
+            <p style="font-size: 14px; color: var(--gray-600);">${t('bookings-empty', 'You have no bookings yet.')}</p>
+          </div>
+        `;
+        return;
+      }
+
+      userBookings.forEach(booking => {
+        const card = document.createElement('div');
+        card.className = 'my-booking-card';
+
+        const isPast = isBookingDatePast(booking);
+        const statusText = isPast ? t('bookings-past', 'Past') : t('bookings-confirmed', 'Confirmed');
+        const statusClass = isPast ? 'past' : 'success';
+
+        let tripDetailsHTML = `
+          <div class="my-booking-route">
+            <strong>${booking.originText}</strong> ${t('route-to', 'to')} <strong>${booking.destText}</strong>
+            ${booking.tripType === 'roundtrip'
+            ? ` <span class="badge-trip-type" style="font-size:10px; padding:2px 6px; background:var(--primary-light); color:var(--dark-900); border-radius:4px; font-weight:700; margin-left:8px; display:inline-block; vertical-align:middle;">${t('widget-trip-roundtrip', 'Round Trip')}</span>`
+            : ` <span class="badge-trip-type" style="font-size:10px; padding:2px 6px; background:var(--gray-200); color:var(--dark-900); border-radius:4px; font-weight:700; margin-left:8px; display:inline-block; vertical-align:middle;">${t('widget-trip-oneway', 'One Way')}</span>`
+          }
+          </div>
+          <div class="my-booking-time" style="font-size: 13px; color: var(--gray-600); margin-top: 4px;">
+            <strong>${t('booking-outbound-label', 'Outbound Journey')}:</strong> <span>${booking.trainName}</span> | <span>${booking.departDate}, ${booking.depTime || findTrainDepTime(booking.trainName)}</span> | <span>${t('bookings-seats', 'Seats')}: ${booking.seats.join(', ')}</span>
+          </div>
+        `;
+
+        if (booking.tripType === 'roundtrip') {
+          tripDetailsHTML += `
+            <div class="my-booking-time" style="font-size: 13px; color: var(--gray-600); margin-top: 4px; border-top: 1px dashed rgba(0,0,0,0.1); padding-top: 4px;">
+              <strong>${t('booking-return-label', 'Return Journey')}:</strong> <span>${booking.returnTrainName}</span> | <span>${booking.returnDate}, ${booking.returnDepTime || findTrainDepTime(booking.returnTrainName)}</span> | <span>${t('bookings-seats', 'Seats')}: ${booking.returnSeats.join(', ')}</span>
+            </div>
+          `;
+        }
+
+        tripDetailsHTML += `
+          <div class="my-booking-passengers" style="font-size: 13px; color: var(--gray-600); margin-top: 6px;">
+            <strong>${t('bookings-name', 'Name')}:</strong> <span>${booking.passengerName}</span>
+          </div>
+        `;
+
+        card.innerHTML = `
+          <div class="my-booking-header">
+            <span class="my-booking-ref">${t('bookings-ref', 'Ref')}: ${booking.bookingRef}</span>
+            <span class="my-booking-status ${statusClass}">${statusText}</span>
+          </div>
+          <div class="my-booking-details">
+            ${tripDetailsHTML}
+            <div class="my-booking-footer" style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+              <span class="my-booking-price" style="font-weight: 700; color: var(--primary); font-size: 16px; white-space: nowrap;">RM ${parseFloat(booking.totalPrice).toFixed(2)}</span>
+              <button class="btn-card show-ticket-btn" data-ref="${booking.bookingRef}" style="padding: 6px 12px; font-size: 12px;">${t('bookings-btn-ticket', 'View E-Ticket')}</button>
+            </div>
+          </div>
+        `;
+        bookingsListContainer.appendChild(card);
+      });
+
+      // E-Ticket button click
+      bookingsListContainer.querySelectorAll('.show-ticket-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const ref = btn.getAttribute('data-ref');
+          closeBookingsModal();
+          window.location.href = `booking.html?view_ticket=${ref}`;
+        });
+      });
+    }
+
+    // ON PAGE LOAD
+    window.addEventListener('load', () => {
+      updateAuthUI();
+
+      // Initialize Date Picker to Malaysia's today
+      const dateFilterInput = document.getElementById('status-date-filter');
+      if (dateFilterInput) {
+        const todayMsia = getMalaysiaTodayStr();
+        dateFilterInput.value = todayMsia;
+        dateFilterInput.min = todayMsia;
+
+        dateFilterInput.addEventListener('change', () => {
+          updateLiveTrains();
+          renderLiveBoard();
+        });
+      }
+
+      // Auto-trigger language selection on page load
+      const savedLang = localStorage.getItem('kits_lang') || 'en';
+      applyLanguage(savedLang); // Note: applyLanguage will call updateLiveTrains() and renderLiveBoard()
+    });
+
+  </script>
+
+  <!-- KAI AI Assistant Chatbot -->
+  <script src="assets/chatbot.js"></script>
+
+  <!-- PAGE TRANSITION -->
+  <div id="page-transition-overlay"></div>
+  <script>
+    document.querySelectorAll('a[href]').forEach(function (link) {
+      var href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var overlay = document.getElementById('page-transition-overlay');
+        overlay.classList.add('fade-out');
+        var dest = href;
+        setTimeout(function () { window.location.href = dest; }, 350);
+      });
+    });
+  </script>
+</body>
+
+</html>

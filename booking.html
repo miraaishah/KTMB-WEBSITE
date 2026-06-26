@@ -1385,11 +1385,59 @@
       return trainName && trainName.startsWith('ETS');
     }
 
-    function getETSSeatGender(seatId) {
-      const row = parseInt(seatId.replace(/[^\d]/g, ''));
-      if (row >= 4 && row <= 6) return 'male';
-      if (row >= 7 && row <= 9) return 'female';
-      return 'general';
+    function getOccupiedSeatGenders(trainName, dateStr, coach) {
+      if (!trainName || !dateStr || !coach) return {};
+      const seatGenders = {};
+
+      const bookings = JSON.parse(localStorage.getItem('kits_bookings') || '[]');
+      bookings.forEach(booking => {
+        // Outbound
+        if (booking.trainName === trainName && booking.departDate === dateStr && booking.coach === coach) {
+          if (Array.isArray(booking.seats)) {
+            booking.seats.forEach((s, idx) => {
+              const parts = s.split('-');
+              const seatId = parts[1] || parts[0];
+              let gender = 'Male';
+              if (booking.genders && booking.genders[idx]) {
+                gender = booking.genders[idx];
+              } else if (booking.passengerGender) {
+                gender = booking.passengerGender;
+              } else if (booking.userGender) {
+                gender = booking.userGender;
+              } else if (booking.passengerName) {
+                const femaleNames = ['Siti Aminah', 'Nurul Izzah', 'Priya Devi', 'Sarah Lim', 'Fatimah Zakaria', 'Amirah Binti Ahmad'];
+                const isFemale = femaleNames.some(fName => booking.passengerName.includes(fName));
+                gender = isFemale ? 'Female' : 'Male';
+              }
+              seatGenders[seatId] = gender.toLowerCase();
+            });
+          }
+        }
+        // Return
+        if (booking.tripType === 'roundtrip' && booking.returnTrainName === trainName && booking.returnDate === dateStr && booking.returnCoach === coach) {
+          if (Array.isArray(booking.returnSeats)) {
+            booking.returnSeats.forEach((s, idx) => {
+              const parts = s.split('-');
+              const seatId = parts[1] || parts[0];
+              let gender = 'Male';
+              if (booking.genders && booking.genders[idx]) {
+                gender = booking.genders[idx];
+              } else if (booking.passengerGender) {
+                gender = booking.passengerGender;
+              } else if (booking.userGender) {
+                gender = booking.userGender;
+              } else if (booking.passengerName) {
+                const femaleNames = ['Siti Aminah', 'Nurul Izzah', 'Priya Devi', 'Sarah Lim', 'Fatimah Zakaria', 'Amirah Binti Ahmad'];
+                const isFemale = femaleNames.some(fName => booking.passengerName.includes(fName));
+                gender = isFemale ? 'Female' : 'Male';
+              }
+              seatGenders[seatId] = gender.toLowerCase();
+            });
+          }
+        }
+      });
+
+      return seatGenders;
     }
 
     function checkGenderRestrictions() {
@@ -1405,14 +1453,6 @@
         if (isOutboundLadies && gender === 'Male') {
           return false;
         }
-
-        if (isOutboundETS) {
-          for (const seat of selectedSeats) {
-            const seatGender = getETSSeatGender(seat);
-            if (seatGender === 'male' && gender === 'Female') return false;
-            if (seatGender === 'female' && gender === 'Male') return false;
-          }
-        }
       }
 
       // Check return journey
@@ -1422,14 +1462,6 @@
 
         if (isReturnLadies && gender === 'Male') {
           return false;
-        }
-
-        if (isReturnETS) {
-          for (const seat of selectedReturnSeats) {
-            const seatGender = getETSSeatGender(seat);
-            if (seatGender === 'male' && gender === 'Female') return false;
-            if (seatGender === 'female' && gender === 'Male') return false;
-          }
         }
       }
 
@@ -1510,6 +1542,12 @@
             const randomEmail = randomName.toLowerCase().replace(/\s+/g, '') + '@gmail.com';
             const ref = 'KTMB-' + Math.floor(100000 + Math.random() * 900000);
 
+            const isFemale = ['Siti Aminah', 'Nurul Izzah', 'Priya Devi', 'Sarah Lim', 'Fatimah Zakaria'].includes(randomName);
+            const seedGenders = Array.from({ length: seatsForThisBooking.length }, (_, idx) => {
+              if (idx === 0) return isFemale ? 'Female' : 'Male';
+              return Math.random() < 0.5 ? 'Male' : 'Female';
+            });
+
             bookings.push({
               bookingRef: ref,
               userEmail: randomEmail,
@@ -1522,6 +1560,8 @@
               seats: seatsForThisBooking.map(s => `${coach}-${s}`),
               passengerName: randomName,
               passengerId: `MyKad: ${Math.floor(100000000000 + Math.random() * 900000000000)}`,
+              genders: seedGenders,
+              passengerGender: isFemale ? 'Female' : 'Male',
               totalPrice: 35.00 * seatsForThisBooking.length,
               tripType: 'oneway'
             });
@@ -2533,6 +2573,7 @@
         seedDefaultBookings(train.name, formatDateString(date));
       }
       const occupiedSeats = getOccupiedSeats(train ? train.name : '', date ? formatDateString(date) : '', phaseCoach);
+      const occupiedGenders = getOccupiedSeatGenders(train ? train.name : '', date ? formatDateString(date) : '', phaseCoach);
 
       for (let r = 1; r <= 10; r++) {
         const letters = isSingleCoach ? ['A', 'B', 'C'] : ['A', 'B', 'C', 'D'];
@@ -2553,18 +2594,23 @@
           let classNames = 'seat-node';
           let displayId = seatId;
 
-          if (isETS) {
-            const gender = getETSSeatGender(seatId);
-            if (gender === 'male') {
-              classNames += ' male-seat';
-              displayId = `${seatId} <span style="font-size:9px; vertical-align:middle; margin-left:1px;">♂</span>`;
-            } else if (gender === 'female') {
-              classNames += ' female-seat';
-              displayId = `${seatId} <span style="font-size:9px; vertical-align:middle; margin-left:1px;">♀</span>`;
+          if (isOccupied) {
+            classNames += ' occupied';
+            if (isETS) {
+              const seatGender = occupiedGenders[seatId];
+              if (seatGender === 'male') {
+                classNames += ' male-seat';
+                displayId = `${seatId} <span style="font-size:9px; vertical-align:middle; margin-left:1px;">♂</span>`;
+              } else if (seatGender === 'female') {
+                classNames += ' female-seat';
+                displayId = `${seatId} <span style="font-size:9px; vertical-align:middle; margin-left:1px;">♀</span>`;
+              }
             }
+          } else {
+            classNames += ' available';
+            if (isSelected) classNames += ' selected';
           }
 
-          classNames += ` ${isOccupied ? 'occupied' : 'available'} ${isSelected ? 'selected' : ''}`;
           seatDiv.className = classNames;
           seatDiv.innerHTML = displayId;
 
@@ -2594,22 +2640,7 @@
           return;
         }
 
-        // ETS gender seat restriction
-        if (isETS) {
-          const seatGender = getETSSeatGender(seatId);
-          if (seatGender === 'male' && gender === 'Female') {
-            const msgEn = "This seat is reserved for male passengers.";
-            const msgBm = "Tempat duduk ini dikhaskan untuk penumpang lelaki.";
-            showToast(currentLang === 'bm' ? msgBm : msgEn, 'error');
-            return;
-          }
-          if (seatGender === 'female' && gender === 'Male') {
-            const msgEn = "This seat is reserved for female passengers.";
-            const msgBm = "Tempat duduk ini dikhaskan untuk penumpang wanita.";
-            showToast(currentLang === 'bm' ? msgBm : msgEn, 'error');
-            return;
-          }
-        }
+
       }
 
       const maxSeats = getPassengerCount();
@@ -2821,6 +2852,7 @@
         let pNameVal = '';
         let pIdVal = '';
         let pIdTypeVal = 'IC';
+        let pGenderVal = 'Male';
 
         // Determine category (Adult for first N, Child for subsequent M)
         const isChild = i > adultsCount;
@@ -2830,11 +2862,13 @@
           pNameVal = primaryUser.name;
           pIdVal = primaryUser.idNum || '';
           pIdTypeVal = primaryUser.idType || 'IC';
+          pGenderVal = primaryUser.gender || 'Male';
         } else if (!isSelf && savedPassengers[i - 2]) {
           // Fill from Passenger directory
           pNameVal = savedPassengers[i - 2].name;
           pIdVal = savedPassengers[i - 2].idNum;
           pIdTypeVal = savedPassengers[i - 2].idType;
+          pGenderVal = savedPassengers[i - 2].gender || 'Male';
         }
 
         const block = document.createElement('div');
@@ -2879,12 +2913,21 @@
               <label for="p-id-num-${i}">${t('pass-label-idnum', 'Document / IC Number')}</label>
               <input type="text" id="p-id-num-${i}" class="input-p-id-num" value="${pIdVal}" placeholder="${t('pass-placeholder-idnum', 'e.g. 950812-14-5678 or A12345678')}" required>
             </div>
-            <div class="form-group">
-              <label for="p-category-${i}">${t('pass-label-category', 'Passenger Category')}</label>
-              <select id="p-category-${i}" class="input-p-category" disabled style="background-color: var(--gray-50); color: var(--gray-600); cursor: not-allowed;">
-                <option value="Adult" ${pCategoryVal === 'Adult' ? 'selected' : ''}>${t('pass-opt-adult', 'Adult (Ages 13+)')}</option>
-                <option value="Child" ${pCategoryVal === 'Child' ? 'selected' : ''}>${t('pass-opt-child', 'Child (Ages 2-12)')}</option>
-              </select>
+            <div class="form-group" style="display: flex; gap: 16px;">
+              <div style="flex: 1;">
+                <label for="p-category-${i}">${t('pass-label-category', 'Category')}</label>
+                <select id="p-category-${i}" class="input-p-category" disabled style="background-color: var(--gray-50); color: var(--gray-600); cursor: not-allowed; width: 100%;">
+                  <option value="Adult" ${pCategoryVal === 'Adult' ? 'selected' : ''}>${t('pass-opt-adult', 'Adult')}</option>
+                  <option value="Child" ${pCategoryVal === 'Child' ? 'selected' : ''}>${t('pass-opt-child', 'Child')}</option>
+                </select>
+              </div>
+              <div style="flex: 1;">
+                <label for="p-gender-${i}">${t('auth-label-gender', 'Gender')}</label>
+                <select id="p-gender-${i}" class="input-p-gender" required style="width: 100%;">
+                  <option value="Male" ${(pGenderVal || '').toLowerCase() === 'male' ? 'selected' : ''}>${t('gender-male', 'Male')}</option>
+                  <option value="Female" ${(pGenderVal || '').toLowerCase() === 'female' ? 'selected' : ''}>${t('gender-female', 'Female')}</option>
+                </select>
+              </div>
             </div>
           </div>
         `;
@@ -2914,6 +2957,7 @@
             document.getElementById(`p-name-${pIndex}`).value = passenger.name;
             document.getElementById(`p-id-type-${pIndex}`).value = passenger.idType;
             document.getElementById(`p-id-num-${pIndex}`).value = passenger.idNum;
+            document.getElementById(`p-gender-${pIndex}`).value = passenger.gender || 'Male';
           }
         });
       });
@@ -3097,6 +3141,7 @@
           const tax = parseFloat(document.getElementById('side-tax').textContent.replace('RM ', ''));
           const total = baseFare + tax;
 
+          const pGenders = document.querySelectorAll('.input-p-gender');
           const bookingData = {
             bookingRef: ref,
             userEmail: currentUser.email,
@@ -3109,6 +3154,9 @@
             seats: selectedSeats.map(s => `${activeCoach}-${s}`),
             passengerName: pNames[0].value.trim(),
             passengerId: `${pIdTypes[0].value}: ${pIdNums[0].value.trim()}`,
+            genders: Array.from(pGenders).map(select => select.value),
+            passengerGender: pGenders[0] ? pGenders[0].value : (currentUser ? currentUser.gender : 'Male'),
+            userGender: currentUser ? currentUser.gender : 'Male',
             totalPrice: total,
             tripType: searchQuery.tripType,
             returnDate: searchQuery.returnDate ? formatDateString(searchQuery.returnDate) : '',
